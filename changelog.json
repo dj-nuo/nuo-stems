@@ -2,12 +2,13 @@
   "changelog": [
      {
     "version": 1,
-    "message": "test message"
+    "message": "test message",
+    "download-link": "https://patreon.com/djnuo" 
      },
      {
     "version": 2,
-    "message": "This has new features"
+    "message": "This has new features",
+    "download-link": "https://patreon.com/djnuo"
      }],
-
   "latest-version": 2
 }
