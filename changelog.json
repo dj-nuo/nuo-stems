@@ -1,14 +1,14 @@
 {
   "changelog": [
      {
-    "version": 1,
+    "version": 0.2,
     "message": "test message",
     "download-link": "https://patreon.com/djnuo" 
      },
      {
-    "version": 2,
+    "version": "1.0.0",
     "message": "This has new features",
     "download-link": "https://patreon.com/djnuo"
      }],
-  "latest-version": 2
+  "latest-version": "1.0.0"
 }
