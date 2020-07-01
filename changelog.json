@@ -9,6 +9,11 @@
     "version": "1.0.0",
     "message": "This has new features",
     "download-link": "https://patreon.com/djnuo"
+     },
+    {
+    "version": "1.0.1",
+    "message": "New version available: fixed 60% status freeze and metadata packing",
+    "download-link": "https://www.patreon.com/posts/38856229"
      }],
-  "latest-version": "1.0.0"
+  "latest-version": "1.0.1"
 }
