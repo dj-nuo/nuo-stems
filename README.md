@@ -1,6 +1,6 @@
 # nuo-stems
 This is official documentation of NUO-STEMS software (https://patreon.com/djnuo)
-![UI Screenshot](https://github.com/dj-nuo/nuo-stems/raw/master/nuo-stems-ui-min.png)
+![UI Screenshot](https://github.com/dj-nuo/nuo-stems/raw/master/nuo-stems-ui-min-1-2-0.png)
 
 # Description
 NUO-STEMS is software which lets you convert your existing MP3/WAV tracks to .STEM tracks which are used by Traktor Pro DJ software.
@@ -16,9 +16,11 @@ It integrates these things to work:
 
 # Features
 ![Traktor STEMS Screenshot](https://github.com/dj-nuo/nuo-stems/raw/master/traktor-stem-deck.png)
-- Mac OS / Windows support
+- Mac OS / Windows 7+ support
 - Process multiple tracks at once
+- mp3, flac, wav support
 - Converts all the core metadata from original track to .stem.m4a track (including artwork😊)
+- Option to save separate wav files to the disk (drums, bass, melody, vocals) for use in other software (for remixes, etc)
 - more to come... (suggestions are welcome - reach me @ https://www.facebook.com/djnuo/ or submit an issue here
 
 # Installation & Usage
@@ -30,6 +32,20 @@ Usage:
 3. Start NUO-STEMS and wait till receiving "ALL FINISHED" message 🥳.
 ### Video instructions
 [![Watch the video](https://github.com/dj-nuo/nuo-stems/raw/master/youtube-preview.jpg)](https://youtu.be/MX89Rz_ljLM)
+
+### Comparison with other software
+|                                                                | [NUO-STEMS](https://www.patreon.com/djnuo) | [XTRAX STEMS](https://audionamix.com/xtrax-stems/) | [stemgen](https://github.com/axeldelafosse/stemgen) | [StemCreator](https://github.com/aleixjf/StemCreator) |
+|----------------------------------------------------------------|-------------------------------------------|------------------------------------------------------|----------------------------------------------------|------------------------------------------------------|
+| Has UI (no need for command line)                              | Yes                                       | Yes                                                  | No                                                 | No                                                   |
+| Price                                                          | 5.00$ / month                             | $32.00 / every 6 months or $48.00 / year             | Free                                               | Free                                                 |
+| Refine separations  in real-time with  the De-bleed Slider     | No                                        | Yes                                                  | No                                                 | No                                                   |
+| Processing                                                     | On local computer                         | Need to upload to the cloud                          | On local computer                                  | On local computer                                    |
+| Multiple files at one go                                       | Yes                                       | No                                                   | No                                                 | No                                                   |
+| Metadata transfer (genre, coverart, etc.)                      | Yes                                       | No                                                   | Yes                                                | Yes                                                  |
+| Mac OS support                                                 | Yes                                       | Yes                                                  | Yes                                                | Yes                                                  |
+| Windows support                                                | Yes                                       | Yes                                                  | No                                                 | No                                                   |
+| Everything is packaged  (no additional installations required) | Yes                                       | Yes                                                  | No                                                 | No                                                   |
+| No programming knowledge required                              | Yes                                       | Yes                                                  | No                                                 | No                                                   |
 
 ### Usefull links
 Download (need to subscribe) on Patreon: https://patreon.com/djnuo
