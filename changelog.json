@@ -24,6 +24,11 @@
     "version": "1.1.1",
     "message": "New version 1.1.1: Benchmark metric added",
     "download-link": "https://www.patreon.com/posts/38971325"
+     },
+    {
+    "version": "1.2.0",
+    "message": "New: 1.2.0: Option to save extra .wav files, or just .stem.m4a",
+    "download-link": "https://www.patreon.com/posts/38971325"
      }],
-  "latest-version": "1.1.1"
+  "latest-version": "1.2.0"
 }
