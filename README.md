@@ -1,6 +1,6 @@
 # nuo-stems
 This is official documentation of NUO-STEMS software (https://patreon.com/djnuo)
-![UI Screenshot](https://github.com/dj-nuo/nuo-stems/raw/master/nuo-stems-ui-min-1-2-0.png)
+![UI Screenshot](https://github.com/dj-nuo/nuo-stems/raw/master/nuo-stems-1-3-0.jpg)
 
 # Description
 NUO-STEMS is software which lets you convert your existing MP3/WAV tracks to .STEM tracks which are used by Traktor Pro DJ software.
@@ -19,8 +19,10 @@ It integrates these things to work:
 - Mac OS / Windows 7+ support
 - Process multiple tracks at once
 - mp3, flac, wav support
+- Option to skip already processed STEMS in output folder
+- Option to save separate .wav and extra files to the disk (drums, bass, melody, vocals) for use in other software (for remixes, etc)
 - Converts all the core metadata from original track to .stem.m4a track (including artwork😊)
-- Option to save separate wav files to the disk (drums, bass, melody, vocals) for use in other software (for remixes, etc)
+- “Traktor Utility” to transfer HotCues, BeatGrid and BPM from original tracks to STEM versions (transfer is done using collection.nml - Traktor collection file)
 - more to come... (suggestions are welcome - reach me @ https://www.facebook.com/djnuo/ or submit an issue here
 
 # Installation & Usage
@@ -31,7 +33,7 @@ Usage:
 2. Select Output Folder. Folder where processed .stem.m4a tracks will be saved.
 3. Start NUO-STEMS and wait till receiving "ALL FINISHED" message 🥳.
 ### Video instructions
-[![Watch the video](https://github.com/dj-nuo/nuo-stems/raw/master/youtube-preview.jpg)](https://youtu.be/MX89Rz_ljLM)
+[![Watch the video](https://github.com/dj-nuo/nuo-stems/raw/master/youtube-preview.jpg)](https://youtu.be/EwiFd_eWL14)
 
 ### Comparison with other software
 |                                                                | [NUO-STEMS](https://www.patreon.com/djnuo) | [XTRAX STEMS](https://audionamix.com/xtrax-stems/) | [stemgen](https://github.com/axeldelafosse/stemgen) | [StemCreator](https://github.com/aleixjf/StemCreator) |
@@ -46,6 +48,7 @@ Usage:
 | Windows support                                                | Yes                                       | Yes                                                  | No                                                 | No                                                   |
 | Everything is packaged  (no additional installations required) | Yes                                       | Yes                                                  | No                                                 | No                                                   |
 | No programming knowledge required                              | Yes                                       | Yes                                                  | No                                                 | No                                                   |
+| Transfer existing HotCues, BeatGrid & BPM from original tracks to STEMS                              | Yes                                       | No                                                  | No                                                 | No                                                   |
 
 ### Usefull links
 Download (need to subscribe) on Patreon: https://patreon.com/djnuo
