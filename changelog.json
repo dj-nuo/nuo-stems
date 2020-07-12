@@ -29,6 +29,11 @@
     "version": "1.2.0",
     "message": "New: 1.2.0: Option to save extra .wav files, or just .stem.m4a",
     "download-link": "https://www.patreon.com/posts/38971325"
+     },
+    {
+    "version": "1.3.0",
+    "message": "New: 1.3.0: Migration of HotCues, BeatGrids and BPM",
+    "download-link": "https://www.patreon.com/posts/nuo-stems-v1-3-0-39243040"
      }],
-  "latest-version": "1.2.0"
+  "latest-version": "1.3.0"
 }
