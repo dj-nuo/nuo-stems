@@ -64,6 +64,11 @@
     "version": "1.4.0",
     "message": "New: 1.4.0: Process full folders with nested structure",
     "download-link": "https://www.patreon.com/posts/nuo-stems-v1-4-0-40618465"
+     },
+    {
+    "version": "1.4.1",
+    "message": "New: 1.4.1: Fixed bug for Patreon activation",
+    "download-link": "https://www.patreon.com/posts/nuo-stems-v1-4-1-41965431"
      }],
-  "latest-version": "1.4.0"
+  "latest-version": "1.4.1"
 }
