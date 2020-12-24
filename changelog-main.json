@@ -69,6 +69,11 @@
     "version": "1.4.1",
     "message": "New: 1.4.1: Fixed bug for Patreon activation",
     "download-link": "https://www.patreon.com/posts/nuo-stems-v1-4-1-41965431"
+     },
+    {
+    "version": "1.5.0",
+    "message": "New: 1.5.0: Now launches 20x faster & more",
+    "download-link": "https://www.patreon.com/posts/45388321"
      }],
-  "latest-version": "1.4.1"
+  "latest-version": "1.5.0"
 }
