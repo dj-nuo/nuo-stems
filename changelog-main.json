@@ -84,6 +84,12 @@
     "version": "1.7.1",
     "message": "New: 1.7.1: Various significant improvements",
     "download-link": "https://www.patreon.com/posts/46293638"
+     },
+    {
+    "version": "1.8.0",
+    "message": "New: 1.8.0: deezer spleeter under-the-hood update, GUI clean-ups and clarifications",
+    "download-link": "https://www.patreon.com/posts/53723577"
      }],
-  "latest-version": "1.7.1"
+  "latest-version": "1.8.0"
 }
+
