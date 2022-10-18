@@ -89,7 +89,12 @@
     "version": "1.8.0",
     "message": "New: 1.8.0: deezer spleeter under-the-hood update, GUI clean-ups and clarifications",
     "download-link": "https://www.patreon.com/posts/53723577"
+     },
+    {
+    "version": "2.0.0",
+    "message": "New: 2.0.0: improved (10x) quality of separation (demucs v3), STEMS color change, M1 support",
+    "download-link": "https://nuo-stems.com"
      }],
-  "latest-version": "1.8.0"
+  "latest-version": "2.0.0"
 }
 
