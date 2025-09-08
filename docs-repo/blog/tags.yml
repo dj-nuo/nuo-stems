@@ -1,0 +1,9 @@
+news:
+  label: News
+  permalink: /news
+  description: General news about NUO-STEMS
+
+dev-notes:
+  label: Dev Notes
+  permalink: /dev-notes
+  description: Development notes about NUO-STEMS

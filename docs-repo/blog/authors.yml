@@ -1,0 +1,10 @@
+nuo-stems:
+  name: DJ NUO
+  title: NUO-STEMS creator
+  url: https://nuo-stems.com
+  # image_url: https://github.com/slorber.png
+  page:
+    # customize the url of the author page at /blog/authors/<permalink>
+    permalink: '/djnuo'
+  socials:
+    github: dj-nuo
