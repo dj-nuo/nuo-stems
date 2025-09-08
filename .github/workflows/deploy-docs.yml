@@ -3,6 +3,7 @@ name: Deploy static docs & blog to FTP
 on:
   push:
     branches:
+      - master
       - main
     paths:
       - 'docs-repo/**'
