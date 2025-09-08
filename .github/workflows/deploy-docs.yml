@@ -1,0 +1,33 @@
+name: Deploy static docs & blog to FTP
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'docs-repo/**'
+
+jobs:
+  build:
+    name: Build Docusaurus
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Change to docs-repo directory
+        run: cd docs-repo
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Build website
+        run: npm run build
+      - name: Set up LFTP
+        run: sudo apt-get install -y lftp
+      - name: Deploy to FTP
+        run: |
+          chmod +x deploy-docs.sh
+          ./deploy-docs.sh ${{ secrets.DOCS_FTP_HOST }} ${{ secrets.DOCS_FTP_USERNAME }} ${{ secrets.DOCS_FTP_PASSWORD }} ./build DOCS_FTP_DIR
