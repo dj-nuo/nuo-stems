@@ -1,0 +1,1 @@
+By submitting a contribution, you are granted a limited license to use the source code only for the purpose of contributing to this project. Any other use, distribution, or derivative work is prohibited.
