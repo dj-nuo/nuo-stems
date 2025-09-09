@@ -11,8 +11,8 @@ LOCAL_DIR=$4
 DOCS_FTP_DIR=$5
 
 # Use lftp to mirror the local directory to the remote directory, skipping SSL verification
-# set ssl:verify-certificate no;
 lftp -d -c "
+set ssl:verify-certificate no;
 open -u $DOCS_FTP_USERNAME,$DOCS_FTP_PASSWORD $DOCS_FTP_HOST;
 mirror -R --verbose --only-newer --parallel=10 $LOCAL_DIR $DOCS_FTP_DIR;
 bye;
