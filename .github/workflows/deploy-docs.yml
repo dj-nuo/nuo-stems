@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - main
+      - docs-dev
     paths:
       - 'docs-repo/**'
 
@@ -12,23 +13,26 @@ jobs:
   build:
     name: Build Docusaurus
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: docs-repo
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Change to docs-repo directory
-        run: cd docs-repo
-      - uses: actions/setup-node@v4
+          sparse-checkout: |
+            docs-repo
+          sparse-checkout-cone: true
+      - uses: oven-sh/setup-bun@v2
         with:
-          node-version: 18
-          cache: npm
+          bun-version: latest
       - name: Install dependencies
-        run: npm ci
+        run: bun install
       - name: Build website
-        run: npm run build
+        run: bun run build
       - name: Set up LFTP
         run: sudo apt-get install -y lftp
       - name: Deploy to FTP
         run: |
           chmod +x deploy-docs.sh
-          ./deploy-docs.sh ${{ secrets.DOCS_FTP_HOST }} ${{ secrets.DOCS_FTP_USERNAME }} ${{ secrets.DOCS_FTP_PASSWORD }} ./build DOCS_FTP_DIR
+          ./deploy-docs.sh ${{ secrets.DOCS_FTP_HOST }} ${{ secrets.DOCS_FTP_USERNAME }} ${{ secrets.DOCS_FTP_PASSWORD }} ./build ${{ secrets.DOCS_FTP_DIR }}
