@@ -118,6 +118,11 @@ const config: Config = {
           position: "right",
         },
         {
+          href: "https://www.facebook.com/groups/nuostems",
+          label: "Facebook Group",
+          position: "right",
+        },
+        {
           href: "https://github.com/dj-nuo/nuo-stems",
           label: "GitHub",
           position: "right",
