@@ -1,15 +1,18 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router";
+import { SidebarTrigger } from "~/components/ui/sidebar";
+import MainSidebar from "~/features/sidebar/MainSidebar";
 import ThemeToggler from "~/features/theme/themeToggler";
 
 export default function GlobalLayout() {
-  const activeClasses = "text-blue-500 bg-red-500";
-  const inactiveClasses = "";
   return (
     <>
-      <div>Global Layout</div>
-      <ThemeToggler />
-      <Outlet />
+      <MainSidebar />
+      <main>
+        <SidebarTrigger />
+        <ThemeToggler />
+        <Outlet />
+      </main>
     </>
   );
 }
