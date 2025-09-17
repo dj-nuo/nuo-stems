@@ -8,7 +8,7 @@ export default function GlobalLayout() {
   return (
     <>
       <MainSidebar />
-      <main>
+      <main className="w-full h-full">
         <SidebarTrigger />
         <ThemeToggler />
         <Outlet />
