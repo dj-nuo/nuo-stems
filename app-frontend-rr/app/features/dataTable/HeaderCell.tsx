@@ -1,4 +1,4 @@
-import React from "react";
+"use no memo";
 import { ArrowUpDown } from "lucide-react";
 import { flexRender, type Header } from "@tanstack/react-table";
 

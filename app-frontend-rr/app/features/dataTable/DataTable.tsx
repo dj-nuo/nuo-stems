@@ -1,3 +1,5 @@
+"use no memo";
+
 import {
   useState,
   type CSSProperties,
@@ -57,7 +59,9 @@ export function useDataTable<TData extends RowData & { id: string }>(props: {
 }) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
+    id: false, //hide the id column by default
+  });
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
   const table = useReactTable({

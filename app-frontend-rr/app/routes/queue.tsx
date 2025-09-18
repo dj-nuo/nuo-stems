@@ -9,6 +9,7 @@ import { generateDummyPayments } from "~/features/queue/dummyData";
 import { useState } from "react";
 
 export default function QueuePage() {
+  "use no memo";
   const initialData = generateDummyPayments(10);
   const [data, setData] = useState(initialData);
   const memoizedColumns = useMemo(() => columns, []);
