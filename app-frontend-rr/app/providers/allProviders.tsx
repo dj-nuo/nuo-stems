@@ -10,9 +10,15 @@ export default function AllProviders({
 }: {
   children: React.ReactNode;
 }) {
+  const debugBorder = false
+    ? "shadow-[inset_0_0_0_3px_rgba(100,100,100,1)]"
+    : "";
+
   return (
     <QueryClientProvider client={queryClient}>
-      <SidebarProvider>{children}</SidebarProvider>
+      <SidebarProvider className={`h-full w-full ${debugBorder}`}>
+        {children}
+      </SidebarProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );

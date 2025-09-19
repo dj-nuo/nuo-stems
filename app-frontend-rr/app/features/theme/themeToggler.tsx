@@ -10,7 +10,7 @@ export default function ThemeToggler() {
           const html = document.documentElement;
           html.classList.toggle("dark");
         }}
-        className="border rounded px-2 py-1 m-2"
+        className="border rounded px-2 py-1 m-1"
       >
         Toggle Theme
       </button>

@@ -1,17 +1,19 @@
-import React from "react";
-import { NavLink, Outlet } from "react-router";
-import { SidebarTrigger } from "~/components/ui/sidebar";
+import { Outlet } from "react-router";
 import MainSidebar from "~/features/sidebar/MainSidebar";
-import ThemeToggler from "~/features/theme/themeToggler";
+import MainHeader from "~/features/header/MainHeader";
 
 export default function GlobalLayout() {
+  const debugBorder = false ? "shadow-[inset_0_0_0_7px_rgba(50,50,100,1)]" : "";
   return (
     <>
       <MainSidebar />
-      <main className="w-full h-full">
-        <SidebarTrigger />
-        <ThemeToggler />
-        <Outlet />
+      <main
+        className={`flex w-full flex-1 min-h-0 flex-col overflow-hidden ${debugBorder}`}
+      >
+        <MainHeader />
+        <div className="flex-1 min-h-0 overflow-hidden">
+          <Outlet />
+        </div>
       </main>
     </>
   );

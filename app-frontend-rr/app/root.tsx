@@ -25,15 +25,17 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const debugBorder = false ? "shadow-[inset_0_0_0_8px_rgba(239,68,68,1)]" : "";
   return (
     <html lang="en">
       <head>
+        <script src="https://cdn.jsdelivr.net/npm/react-scan/dist/auto.global.js"></script>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body className="w-screen h-screen">
+      <body className={`w-dvw h-dvh ${debugBorder}`}>
         <AllProviders>{children}</AllProviders>
         <ScrollRestoration />
         <Scripts />

@@ -97,20 +97,86 @@ export default function DataTableView({
   // reorder rows after drag & drop
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
-    if (active && over && active.id !== over.id) {
+    if (!active || !over || active.id === over.id) return;
+
+    const activeId = String(active.id);
+    const overId = String(over.id);
+
+    // Get selected ids
+    const selectedRowIds = table
+      .getSelectedRowModel()
+      .rows.map((row) => String(row.id));
+    const activeIsSelected = selectedRowIds.includes(activeId);
+
+    // Multi-row drag only when the active item is selected and there is >1 selected
+    if (activeIsSelected && selectedRowIds.length > 1) {
+      const selectedSet = new Set(selectedRowIds);
+
+      // If dropping onto an item that's part of the selection - nothing to do
+      if (selectedSet.has(overId)) return;
+
       setData((prev) => {
-        const activeId = String(active.id);
-        const overId = String(over.id);
-        const oldIndex = prev.findIndex(
-          (item: any) => String(item.id) === activeId
+        const originalActiveIndex = prev.findIndex(
+          (item) => String(item.id) === activeId
         );
-        const newIndex = prev.findIndex(
-          (item: any) => String(item.id) === overId
+        const originalOverIndex = prev.findIndex(
+          (item) => String(item.id) === overId
         );
-        if (oldIndex === -1 || newIndex === -1) return prev;
-        return arrayMove(prev, oldIndex, newIndex);
+        if (originalOverIndex === -1 || originalActiveIndex === -1) return prev;
+
+        // Indices of selected items in the original data (sorted)
+        const selectedIndices = selectedRowIds
+          .map((id) => prev.findIndex((item) => String(item.id) === id))
+          .filter((i) => i !== -1)
+          .sort((a, b) => a - b);
+
+        // How many selected items were located before the original over index
+        const numSelectedBeforeTarget = selectedIndices.filter(
+          (i) => i < originalOverIndex
+        ).length;
+
+        // Map the over index into the "cleaned" array (data without selected rows)
+        let targetIndexInCleaned = originalOverIndex - numSelectedBeforeTarget;
+
+        // If moving downward (over is after active) we want to insert after the over item
+        if (originalOverIndex > originalActiveIndex) {
+          targetIndexInCleaned = targetIndexInCleaned + 1;
+        }
+
+        // Build cleaned array and preserve relative order of selected rows
+        const cleaned = prev.filter(
+          (item) => !selectedSet.has(String(item.id))
+        );
+        const selectedRows = prev.filter((item) =>
+          selectedSet.has(String(item.id))
+        );
+
+        // Clamp
+        const clampedTarget = Math.max(
+          0,
+          Math.min(cleaned.length, targetIndexInCleaned)
+        );
+
+        return [
+          ...cleaned.slice(0, clampedTarget),
+          ...selectedRows,
+          ...cleaned.slice(clampedTarget),
+        ];
       });
+      return;
     }
+
+    // Single-row drag as a fallback
+    setData((prev) => {
+      const oldIndex = prev.findIndex(
+        (item: any) => String(item.id) === activeId
+      );
+      const newIndex = prev.findIndex(
+        (item: any) => String(item.id) === overId
+      );
+      if (oldIndex === -1 || newIndex === -1) return prev;
+      return arrayMove(prev, oldIndex, newIndex);
+    });
   }
 
   const sensors = useSensors(
@@ -120,8 +186,8 @@ export default function DataTableView({
   );
 
   return (
-    <div className="w-full ">
-      <div className="rounded-md border h-[300px]">
+    <div className="w-full h-full">
+      <div className="rounded-md h-full overflow-hidden">
         <DndContext
           collisionDetection={closestCenter}
           modifiers={[restrictToVerticalAxis]}

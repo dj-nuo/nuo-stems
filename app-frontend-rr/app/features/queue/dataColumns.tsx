@@ -85,6 +85,39 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
+    accessorKey: "dummy1",
+    header: "Dummy 1",
+    cell: () => (
+      <span>
+        {crypto.randomUUID()}
+      </span>
+    ),
+    enableSorting: false,
+    enableHiding: true,
+  },
+  {
+    accessorKey: "dummy2",
+    header: "Dummy 2",
+    cell: () => (
+      <span>
+        {crypto.randomUUID()}
+      </span>
+    ),
+    enableSorting: false,
+    enableHiding: true,
+  },
+  {
+    accessorKey: "dummy3",
+    header: "Dummy 3",
+    cell: () => (
+      <span>
+        {crypto.randomUUID()}
+      </span>
+    ),
+    enableSorting: false,
+    enableHiding: true,
+  },
+  {
     id: "actions",
     enableSorting: false,
     enableHiding: false,

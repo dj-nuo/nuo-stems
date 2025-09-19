@@ -31,7 +31,11 @@ export default function MainSidebarView(params: {
     <Sidebar collapsible="icon" variant="floating">
       <SidebarHeader>
         <div className="flex items-center justify-start gap-2 z-0">
-          <img src={iconNuoStems} alt="App Icon" className="w-8 h-8" />
+          <img
+            src={iconNuoStems}
+            alt="App Icon"
+            className="w-7 h-7 transition-all duration-1000"
+          />
           <span
             className={`font-semibold whitespace-nowrap transition-opacity duration-100 ${
               params.sidebarOpen
