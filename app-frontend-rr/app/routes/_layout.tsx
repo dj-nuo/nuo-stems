@@ -11,7 +11,7 @@ export default function GlobalLayout() {
         className={`flex w-full flex-1 min-h-0 flex-col overflow-hidden ${debugBorder}`}
       >
         <MainHeader />
-        <div className="flex-1 min-h-0 overflow-hidden">
+        <div className="flex-1 min-h-0">
           <Outlet />
         </div>
       </main>
