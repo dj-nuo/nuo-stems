@@ -1,4 +1,4 @@
-import React from "react";
+"use no memo";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
