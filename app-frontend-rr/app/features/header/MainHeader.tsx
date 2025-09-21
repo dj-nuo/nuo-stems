@@ -1,6 +1,6 @@
 import React from "react";
 import { SidebarTrigger } from "~/components/ui/sidebar";
-import { AnimatedThemeToggler } from "~/components/ui/animated-theme-toggler";
+import { AnimatedThemeToggler } from "~/components/magicui/animated-theme-toggler";
 
 export default function MainHeader() {
   return (
