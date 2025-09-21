@@ -6,6 +6,7 @@ import { TopTiles } from "~/features/queue/topTiles/TopTiles";
 import TextSearch from "~/features/dataTable/TextSearch";
 import { columns } from "~/features/queue/dataColumns";
 import { generateDummyPayments } from "~/features/queue/dummyData";
+import QueueDragAndDrop from "~/features/queue/QueueDragAndDrop";
 
 export default function QueuePage() {
   const processed = useMemo(
@@ -18,6 +19,9 @@ export default function QueuePage() {
     []
   );
   const debugBorder = false ? "shadow-[inset_0_0_0_4px_rgba(34,197,94,1)]" : "";
+
+  const [queue, setQueue] = useState([]);
+
   return (
     <div className={`flex flex-col h-full ${debugBorder}`}>
       <div className="flex-0 p-2">
@@ -30,7 +34,8 @@ export default function QueuePage() {
       <div className="flex-1 min-h-0">
         {/* min-h-0 - This is crucial so a child with overflow-y-auto can actually scroll instead of forcing parents to grow/overflow.
          */}
-        <QueueTableSection />
+        {queue.length > 0 && <QueueTableSection />}
+        {queue.length === 0 && <QueueDragAndDrop setFiles={setQueue} />}
       </div>
     </div>
   );
