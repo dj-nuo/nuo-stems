@@ -44,12 +44,6 @@ const config: Config = {
     [
       "classic",
       {
-        gtag: {
-          trackingID: "G-YKXDPXJTKV",
-          anonymizeIP: true,
-        },
-      },
-      {
         docs: {
           sidebarPath: "./sidebars.ts",
           lastVersion: "current",
@@ -88,6 +82,10 @@ const config: Config = {
         },
         theme: {
           customCss: "./src/css/custom.css",
+        },
+        gtag: {
+          trackingID: "G-YKXDPXJTKV",
+          anonymizeIP: true,
         },
       } satisfies Preset.Options,
     ],
