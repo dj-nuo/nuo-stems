@@ -28,7 +28,11 @@ export default function MainSidebarView(params: {
   sidebarOpen: boolean;
 }) {
   return (
-    <Sidebar collapsible="icon" variant="floating" className="pt-6">
+    <Sidebar
+      collapsible="icon"
+      variant="floating"
+      className="pt-6 sidebar-gradient"
+    >
       <SidebarHeader>
         <div className="flex items-center justify-start gap-2 z-0">
           <img
@@ -55,18 +59,19 @@ export default function MainSidebarView(params: {
             <SidebarMenu>
               {params.menuItems.map((item) => (
                 <SidebarMenuItem key={item.url}>
-                  <NavLink
-                    to={item.url}
-                    className={({ isActive }) =>
-                      isActive ? "text-blue-500" : ""
-                    }
-                  >
-                    <SidebarMenuButton asChild tooltip={item.title}>
-                      <span>
-                        <item.icon className="size-4" />
-                        <span>{item.title}</span>
-                      </span>
-                    </SidebarMenuButton>
+                  <NavLink to={item.url}>
+                    {({ isActive }) => (
+                      <SidebarMenuButton
+                        asChild
+                        tooltip={item.title}
+                        isActive={isActive}
+                      >
+                        <span>
+                          <item.icon className="size-4" />
+                          <span>{item.title}</span>
+                        </span>
+                      </SidebarMenuButton>
+                    )}
                   </NavLink>
                 </SidebarMenuItem>
               ))}

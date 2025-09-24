@@ -4,7 +4,7 @@ import { AnimatedThemeToggler } from "~/components/magicui/animated-theme-toggle
 
 export default function MainHeader() {
   return (
-    <div className="flex shrink-0 justify-between items-center border-b border-gray-200">
+    <div className="flex shrink-0 justify-between items-center px-4 bg-white dark:bg-gray-800 shadow-xs">
       <SidebarTrigger />
       <AnimatedThemeToggler className="m-2" />
     </div>

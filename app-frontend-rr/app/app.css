@@ -228,11 +228,11 @@ body {
 
 :root {
   --radius: 1.0rem;
-  --background: oklch(0.9940 0 0);
+  --background: oklch(0.948 0.008 240);
   --foreground: oklch(0 0 0);
-  --card: oklch(0.9940 0 0);
+  --card: oklch(0.97 0.005 240);
   --card-foreground: oklch(0 0 0);
-  --popover: oklch(0.9911 0 0);
+  --popover: oklch(0.965 0.006 240);
   --popover-foreground: oklch(0 0 0);
   --primary: oklch(0.5393 0.2713 286.7462);
   --primary-foreground: oklch(1.0000 0 0);
@@ -283,11 +283,11 @@ body {
 }
 
 .dark {
-  --background: oklch(0.2223 0.0060 271.1393);
+  --background: oklch(0.12 0.01 250);
   --foreground: oklch(0.9551 0 0);
-  --card: oklch(0.2568 0.0076 274.6528);
+  --card: oklch(0.18 0.008 250);
   --card-foreground: oklch(0.9551 0 0);
-  --popover: oklch(0.2568 0.0076 274.6528);
+  --popover: oklch(0.16 0.009 250);
   --popover-foreground: oklch(0.9551 0 0);
   --primary: oklch(0.6132 0.2294 291.7437);
   --primary-foreground: oklch(1.0000 0 0);
@@ -311,7 +311,7 @@ body {
   --sidebar-primary: oklch(0.6132 0.2294 291.7437);
   --sidebar-primary-foreground: oklch(1.0000 0 0);
   --sidebar-accent: oklch(0.2940 0.0130 272.9312);
-  --sidebar-accent-foreground: oklch(0.6132 0.2294 291.7437);
+  --sidebar-accent-foreground: oklch(1.0000 0 0);
   --sidebar-border: oklch(0.3289 0.0092 268.3843);
   --sidebar-ring: oklch(0.6132 0.2294 291.7437);
   --destructive-foreground: oklch(1.0000 0 0);
@@ -345,6 +345,17 @@ body {
     @apply bg-background text-foreground;
     letter-spacing: var(--tracking-normal);
   }
+}
+
+/* Custom sidebar gradient background */
+.sidebar-gradient {
+  background: linear-gradient(180deg, #716dff 0%, #a47dff 100%);
+  box-shadow: 4px 2px 12px rgba(83, 97, 255, 0.15);
+}
+
+.dark .sidebar-gradient {
+  background: linear-gradient(180deg, #5a5dff 0%, #8a5dff 100%);
+  box-shadow: 4px 2px 12px rgba(83, 97, 255, 0.2);
 }
 
 ::view-transition-old(root), ::view-transition-new(root) {
