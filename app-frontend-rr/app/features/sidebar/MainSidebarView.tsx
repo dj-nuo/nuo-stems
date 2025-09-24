@@ -28,7 +28,7 @@ export default function MainSidebarView(params: {
   sidebarOpen: boolean;
 }) {
   return (
-    <Sidebar collapsible="icon" variant="floating">
+    <Sidebar collapsible="icon" variant="floating" className="pt-6">
       <SidebarHeader>
         <div className="flex items-center justify-start gap-2 z-0">
           <img
