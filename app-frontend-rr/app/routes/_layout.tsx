@@ -8,7 +8,7 @@ export default function GlobalLayout() {
     <>
       <MainSidebar />
       <main
-        className={`flex w-full flex-1 min-h-0 flex-col overflow-hidden ${debugBorder}`}
+        className={`flex w-full flex-1 min-h-0 flex-col overflow-hidden ${debugBorder} bg-background`}
       >
         <MainHeader />
         <div className="flex-1 min-h-0">
