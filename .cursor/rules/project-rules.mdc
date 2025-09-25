@@ -1,0 +1,7 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+Don't run dev server or try to build the project. (e.g. npm run dev, npm run build). I will do it muself.
