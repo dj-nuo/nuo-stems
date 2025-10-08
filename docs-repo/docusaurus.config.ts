@@ -98,7 +98,7 @@ const config: Config = {
       title: "NUO-STEMS Docs & Blog",
       logo: {
         alt: "My Site Logo",
-        src: "img/logo.svg",
+        src: "img/icon.png",
       },
       items: [
         {
