@@ -3,11 +3,10 @@
 title: Release 4.0.0-alpha.27-29 | The KRAKEN
 # authors: [slorber, yangshun]
 tags: [news]
+image: ./pic1.webp
 ---
 
-![Screenshot](./pic1.webp)
-
-# NUO-STEMS 4
+![NUO-STEMS 4 alpha is out!](./pic1.webp)
 
 Release the kraken! NUO-STEMS 4-alpha is now fully integrated with Traktor Pro 4.
 
