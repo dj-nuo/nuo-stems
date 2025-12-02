@@ -1,0 +1,75 @@
+# FAQ
+
+### How does NUO-STEMS 4 work with TP4 native stems?
+Best way of thinking about NUO-STEMS 4 is "it works exactly like TP4 native stems". Adding stems from "Traktor Pro 4" tab to the queue adds them as "traktor" tracks - meaning they will be added to your defined TP4 Stems native folder & linked to the original track in collection. No second entry will be added/created in collection, so everything is linked to the original track.
+![Screenshot](./img/example-of-linked-stems.webp)
+
+
+### What are the different ways to create stems in NUO-STEMS 4?
+There are 2 ways to create stems in NUO-STEMS 4:
+- native (.stem.mp4), saved in whatever folder you have set for Stems in Traktor Pro 4 settings
+    - Therefore, it's not saved to the "output folder" you set in NUO-STEMS 4 Settings.
+- legacy (.stem.m4a), saved in whatever output folder you want.
+    - Saved to the "output folder" you set in NUO-STEMS 4 Settings.
+
+![Screenshot](./img/traktor-stems-folder-preferences.webp)
+
+### for existing TP4 stems, will NUO-STEMS 4 replace these in-place?
+Yes, just right-click on track/s in "Traktor Pro 4" tab of NUO-STEMS 4 and click "Add to Queue".
+
+### New native mode will also mean the playlists are now automatically synced from the original to the stem?
+Yes. Playlists consist of original tracks. And original tracks have natively linked stems.
+
+### Will it be possible to add tracks from a playlist from traktor utilities, ie it can read playlists and not just the whole collection?
+Playlists is something on my backlog, but not the first priority. Gotta fix all the possible bugs that users have and solve few ways to transition from old way of doing stems to the new one for many users
+
+### How to stay tuned for announcements and updates?
+- Join our Discord server: https://discord.gg/dfpk9FbvJE
+- And Facebook group: https://www.facebook.com/groups/nuostems/
+
+### Windows support
+Coming soon. It just takes time 😅
+
+### MacOS Intel support
+Coming soon. It just takes time 😅
+
+### Do I need to purchase a new license for NUO-STEMS 4?
+Yes, NUO-STEMS 4 is a separate license. You can't use your NUO-STEMS 3 license for NUO-STEMS 4.
+All users who purchased NUO-STEMS 3 after 1 November 2025 will get a free upgrade to NUO-STEMS 4.
+
+### Patreon subscribers
+Patreon subscribers will get a free upgrade to NUO-STEMS 4.
+Just install NUO-STEMS 4 and your license will be activated automatically.
+
+### I use only Traktor Pro 3, can I still use NUO-STEMS 4?
+Yes, you can use NUO-STEMS 4 with Traktor Pro 3 by generating .stem.m4a files (aka "legacy" stems).
+BUT, there are no "Traktor Utilities" similar to NUO-STEMS 3 which would allow you to transfer metadata between originals and stems.
+Essentially, you need to treat .stem.m4a files as first class citizens - and get rid of original files (e.g. MP3/WAV/etc).
+
+This is a deliberate decision - I want you to support Traktor team by upgrading to Traktor Pro 4. I strongly believe that 50$ (as of Black Friday deals) is a great value for what you’re getting - it’s an investment into future of Traktor.
+
+### Can I convert my existing .stem.m4a files to NUO-STEMS 4 native stems?
+No. Because NUO-STEMS 4 now has a different decoding mechanism. This results in a different track length than NUO-STEMS 3 (which relied on additional silence added at the beginning of the track and offset from the original track)
+
+NUO-STEMS 4 now has exeactly the same track length as the original track.
+
+### I don't have originals in my collection, I only use .stem.m4a files. Can I still use NUO-STEMS 4?
+Yes, you have 2 options:
+1. Just re-convert your existing .stem.m4a files to NUO-STEMS 4 .stem.m4a files. The only benefit you're getting here is improved STEMS quality thanks to the new algorithms.
+2. Migrate to Traktor Pro 4 approach. Have both originals and "linked native" stems in your collection.
+    1. :::info
+        Currently, there is no straight-forward way to do this. But I will look into it in the future. So you might want to hold off from migration right now.
+    2. If you still want to do this, you need to:
+        1. Add originals to your collection.
+        2. Analyze all originals in TP4 (no need to set hotcues).
+        3. Close Traktor Pro 4.
+        4. Open NUO-STEMS 4 and go to Settings > Traktor Utilities. 
+        5. Change "Transfer direction" to "STEMS to Original".
+        6. Go to "Traktor Utilities" tab and click "Sync All".
+        7. Now you have both originals and "linked native" stems in your collection synced. Originals shall have correct colors, hotcues, beatgrids, etc.
+            1. :::warning 
+                I would advice to check at least few originals to make sure that everything is synced correctly. 
+        8. Delete all .stem.m4a files from your collection.
+        9. Prooceed with generating new "linked native" stems from the originals using NUO-STEMS 4.
+            
+

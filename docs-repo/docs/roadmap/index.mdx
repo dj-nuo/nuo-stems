@@ -1,0 +1,39 @@
+# Roadmap
+
+## Priorities:
+- [ ] Fix all the bugs that users have reported.
+- [ ] Windows support.
+- [ ] MacOS Intel support.
+- [ ] Everything else.
+
+## Bug list:
+- [ ] Layout of top tiles gets weird when it’s 3+ days of audio.
+- [ ] Is it possible to add "rating" to column options on the "Traktor Pro 4" page? I'd like to be able to prioritize highly-rated tracks when queueing up a large batch to convert.
+- [ ] Separately toggling columns in the Traktor Mgmt tab do not stay when moving between tabs. Hopefully you can save them in between opening and closing the app as well whenever you can address this.
+- [ ] Color column in Traktor collection presentation in "Traktor Pro 4" tab
+- [ ] When I click on STEMS Colors in Settings its not giving me the palette of colors
+- [x] allow saving .wav, even if track type is "traktor" in the queue
+
+## Feature list:
+- [ ] Figure out the best way to migrate from .stem.m4a (and no originals) to linked native stems.
+    - Use case: user only has .stem.m4a files in their collection, and no originals.
+        - [ ] Proposal (have to experiment if AUDIO_ID stays the same):
+            - [ ] Extract original mix from .stem.m4a
+            - [ ] Replace file path, STEMS property in ENTRY in collection with new “original”.
+- [ ] Change STEMS colors
+- [ ] So what does this mean for our old stems? Does this automatically replace them or do we have to reanalyse the library and manually discard the old ones?
+- [ ] How to use another computer to convert stems?
+    - [ ] how to know AUDIO_ID of the original track on the computer which doesn't have Traktor installed (e.g. your gaming NVIDIA PC)?
+        - [ ] Your suggestion is actually quite clever... Hmmm... I can definitely write my own "hash" or for simplicity - "original filename" into .stem.m4a or .stem.mp4. 
+        - [ ] Let me think about it for a day or two to understand the most robust way 🙂
+        - [ ]   (e.g. I don't want to calculate hash for all entries on the main DJ computer to match with stems as it will be resource intensive and long process. But maybe it's the only reliable option and resource usage is not that high. Will have to experiment.)
+
+- [ ] News popup on app startup. Linked to Blog.
+- [ ] Add playlists support.
+- [x] TRAKTOR_STEMS_NOT_ALLOWED_IN_DEMO_MODE
+- [x] when the song is in the "all" tab, instead of showing the message that it's in the queue, it should show that it has already been converted (because it appears in the "all" tab).
+
+## Hypothetical feature list:
+- [ ] Traktor Utilitiy: extract individual stems from .stem.mp4 or .stem.m4a file
+- [ ] Repair broken links for TP4 stems.
+    - [ ] Identify .stem.mp4 tracks in Traktor Stems folder that don’t have correct flag in collection.nml
