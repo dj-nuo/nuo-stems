@@ -93,7 +93,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "img/docusaurus-social-card.jpg",
+    image: "img/blog-pic.webp",
     navbar: {
       title: "NUO-STEMS Docs & Blog",
       logo: {
@@ -127,6 +127,11 @@ const config: Config = {
           position: "right",
         },
         {
+          href: "https://discord.gg/dfpk9FbvJE",
+          label: "Discord",
+          position: "right",
+        },
+        {
           href: "https://github.com/dj-nuo/nuo-stems",
           label: "GitHub",
           position: "right",
@@ -155,6 +160,10 @@ const config: Config = {
             {
               label: "Facebook Group",
               href: "https://www.facebook.com/groups/nuostems",
+            },
+            {
+              label: "Discord",
+              href: "https://discord.gg/dfpk9FbvJE",
             },
             {
               label: "Website",
