@@ -48,6 +48,13 @@ As a reminder, we now have Discord server: https://discord.gg/dfpk9FbvJE
 
 # Updates from alpha.27 to alpha.29
 
+- 4.0.0-alpha.31
+  - fix: potential fix for UND_ERR_SOCKET (reason: STEMS_JOB_POLLING_FAILED)
+  - misc: analytics maintainance
+  - misc: check app updates every 10 mins
+  - fix: correct "analysis lock" in Traktor collection
+- 4.0.0-alpha.30
+  - fix: potential fix for STEMS_JOB_POLLING_FAILED caused by ECONNRESET
 - 4.0.0-alpha.29
   - track analytics reason for STEMS_JOB_POLLING_FAILED to understand the root cause
   - extended tooltip for "traktor" tracks in queue to mention that .stem.m4a will not be created in this mode
