@@ -53,6 +53,15 @@ No. Because NUO-STEMS 4 now has a different decoding mechanism. This results in 
 
 NUO-STEMS 4 now has exeactly the same track length as the original track.
 
+### If I'm using 320 AAC CBR stems, is it still better to process using FLAC files vs high quality MP3? I keep most of my music in mp3 (but I convert them from FLAC myself using high quality conversion)
+Depends on your "lossless religion" xD. I'd say mp3 is fine. I just keep my library original all ALAC, as it's easier to download them this way. 
+And it case future algorithms will need lossless for some reason - I'm covered.
+But of course, I have random mp3 and m4a tracks from SoundCloud that are completely lossy.
+
+Another argument for FLAC/ALAC originals is how mp3 gets decoded into WAV/FLAC/ALAC. If you've ever heard about hotcue offset issues when converting hotcues between Traktor/RB/Serato/etc - this is what it's related to - mp3 decoding which impacts absolute track duration.
+
+If you're using "natively linked" 320 CBR NS4 stems though, it relies on what's inside your collection (in your case - .mp3 originals). So if you're not using FLAC/ALAC in your collection - you won't be able to convert from FLAC/ALAC to "natively linked" STEMS as well (due to the mp3 decoding issues described above).
+
 ### I don't have originals in my collection, I only use .stem.m4a files. Can I still use NUO-STEMS 4?
 Yes, you have 2 options:
 1. Just re-convert your existing .stem.m4a files to NUO-STEMS 4 .stem.m4a files. The only benefit you're getting here is improved STEMS quality thanks to the new algorithms.

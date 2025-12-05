@@ -46,8 +46,23 @@ My next step is to make everything work on 🔥Windows🔥, so stay tuned for th
 
 As a reminder, we now have Discord server: https://discord.gg/dfpk9FbvJE
 
-# Updates from alpha.27 to alpha.29
+# Updates from alpha.27 to alpha.33
 
+- 4.0.0-alpha.33
+  - feat: "Show STEMS file" added to the Queue row right-click
+  - feat: add error handling for missing track files - TRACK_FILE_DOESNT_EXIST_ON_FILESYSTEM
+  - fix: Stems Colors selector
+  - feat: go to Queue page on Header Tiles click
+  - fix: hours/days counter in Time Remaining overflowing the container
+  - feat: add color column for Traktor Collection table
+  - feat: add star rating conversion for ranking in Traktor Collection table
+  - feat: add reset to default functionality in Column Visibility Dropdown for Traktor Collection
+  - feat: column visibility persistence in "Traktor Pro 4" tab. Including app restarts
+  - feat: restore scroll positions of Queue and Traktor Collection tables
+  - fix: selection counter on Queue tab getting stuck when removing tracks
+  - fix: top Actions menu on "Traktor Pro 4" tab not working
+- 4.0.0-alpha.32
+  - fix: Major Bug on MacOS 14 and below on Apple Silicon have whole track instead of separated vocals in vocals stem. Only at the beginning and end of some tracks (not all)
 - 4.0.0-alpha.31
   - fix: potential fix for UND_ERR_SOCKET (reason: STEMS_JOB_POLLING_FAILED)
   - misc: analytics maintainance

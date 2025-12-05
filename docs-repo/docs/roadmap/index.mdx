@@ -7,19 +7,19 @@
 - [ ] Everything else.
 
 ## Bug list:
-- [ ] selection counter on Queue tab getting stuck when removing tracks
-- [ ] top Actions menu on "Traktor Pro 4" tab not working
-- [ ] Layout of top tiles gets weird when it’s 3+ days of audio.
-- [ ] Is it possible to add "rating" to column options on the "Traktor Pro 4" page? I'd like to be able to prioritize highly-rated tracks when queueing up a large batch to convert.
-- [ ] Separately toggling columns in the Traktor Mgmt tab do not stay when moving between tabs. Hopefully you can save them in between opening and closing the app as well whenever you can address this.
-- [ ] Color column in Traktor collection presentation in "Traktor Pro 4" tab
-- [ ] When I click on STEMS Colors in Settings its not giving me the palette of colors
+- [x] When I click on STEMS Colors in Settings its not giving me the palette of colors
+- [x] Layout of top tiles gets weird when it’s 3+ days of audio. (processing 2k files takes a while and breaks the UI slightly)
+- [x] Is it possible to add "rating" to column options on the "Traktor Pro 4" page? I'd like to be able to prioritize highly-rated tracks when queueing up a large batch to convert.
+- [x] Separately toggling columns in the Traktor Mgmt tab do not stay when moving between tabs. Hopefully you can save them in between opening and closing the app as well whenever you can address this.
+- [x] Color column in Traktor collection presentation in "Traktor Pro 4" tab
+- [x] selection counter on Queue tab getting stuck when removing tracks
+- [x] top Actions menu on "Traktor Pro 4" tab not working
 - [x] allow saving .wav, even if track type is "traktor" in the queue
 - [x] fix: correct "analysis lock" in Traktor collection
 - [x] Major Bug:MacOS 14 and below on Apple Silicon have whole track instead of separated vocals in vocals stem. Only at the beginning and end of the track.
 
 ## Feature list:
-- [ ] "Show stem file" when right clicking on a track in a Queue.
+- [x] "Show stem file" when right clicking on a track in a Queue.
 - [ ] UX critical change. How to make "native" vs "legacy" mode more intuitive?
     :::info
     It's an interesting idea to have general "switch" to either ONLY create native stems or .stem.m4a.
@@ -56,6 +56,18 @@
 - [x] when the song is in the "all" tab, instead of showing the message that it's in the queue, it should show that it has already been converted (because it appears in the "all" tab).
 
 ## Hypothetical feature list:
-- [ ] Traktor Utilitiy: extract individual stems from .stem.mp4 or .stem.m4a file
+- [ ] Offline licensing. Ability to use NUO-STEMS 4 without an internet connection.
+- [ ] Traktor Utilities: extract individual stems from .stem.mp4 or .stem.m4a file
 - [ ] Repair broken links for TP4 stems.
     - [ ] Identify .stem.mp4 tracks in Traktor Stems folder that don’t have correct flag in collection.nml
+- [ ] Support AMD GPUs acceleration.
+    As of right now, AMD Rocm is not supported with PyTorch on Windows (only Linux).
+    There is some experimental support, but it requires [special system drivers](https://www.amd.com/en/resources/support-articles/release-notes/RN-AMDGPU-WINDOWS-PYTORCH-PREVIEW.html).
+    Not super UX-friendly, therefore not a good choice for NUO-STEMS. List of GPUs is also limited. And only Win 11.
+
+    Vulkan is not supported in PyTorch as well on Windows. Only on [Android via ExecuTorch](https://docs.pytorch.org/executorch/stable/backends/vulkan/vulkan-overview.html).
+
+    There seems to be a way to make ONNX work on AMD GPU on Windows, but not sure how stable it is.
+
+    Currently, NUO-STEMS uses frozen PyTorch for inference, but I had success previously testing ONNX. On MacOS it was slower, so I abandoned this idea. 
+    Anyways, my current priority is to make NVIDIA GPUs run properly on Windows using PyTorch. And when some future comes - I'll take a look at AMD GPUs and ONNX.
