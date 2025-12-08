@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>[Mixxx-devel] Traktor DJ playlist thumbnail decoder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/apple-touch-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/apple-touch-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/apple-touch-icon-57x57.png"
+    />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="contents" href="thrd2.html#05061" id="c" />
+    <link rel="index" href="mail2.html#05061" id="i" />
+    <link rel="prev" href="msg05059.html" id="p" />
+    <link rel="next" href="msg05062.html" id="n" />
+    <link
+      rel="canonical"
+      href="https://www.mail-archive.com/mixxx-devel@lists.sourceforge.net/msg05061.html"
+    />
+    <link rel="stylesheet" href="/normalize.css" media="screen" />
+    <link rel="stylesheet" href="/master.css" media="screen" />
+
+    <!--[if lt IE 9]>
+      <link rel="stylesheet" href="/ie.css" media="screen" />
+    <![endif]-->
+  </head>
+  <body>
+    <script language="javascript" type="text/javascript">
+      document.onkeydown = NavigateThrough;
+      function NavigateThrough(event) {
+        if (!document.getElementById) return;
+        if (window.event) event = window.event;
+        if (event.target.tagName == "INPUT") return;
+        if (event.ctrlKey || event.metaKey) return;
+        var link = null;
+        switch (
+          event.keyCode ? event.keyCode : event.which ? event.which : null
+        ) {
+          case 74:
+          case 80:
+            link = document.getElementById("p");
+            break;
+          case 75:
+          case 78:
+            link = document.getElementById("n");
+            break;
+          case 69:
+            link = document.getElementById("e");
+            break;
+        }
+        if (link && link.href) document.location = link.href;
+      }
+    </script>
+    <div itemscope itemtype="http://schema.org/Article" class="container">
+      <div class="skipLink">
+        <a href="#nav">Skip to site navigation (Press enter)</a>
+      </div>
+      <div class="content" role="main">
+        <div class="msgHead">
+          <h1>
+            <span class="subject"
+              ><a
+                href="/search?l=mixxx-devel@lists.sourceforge.net&amp;q=subject:%22%5C%5BMixxx%5C-devel%5C%5D+Traktor+DJ+playlist+thumbnail+decoder%22&amp;o=newest"
+                rel="nofollow"
+                ><span itemprop="name"
+                  >[Mixxx-devel] Traktor DJ playlist thumbnail decoder</span
+                ></a
+              ></span
+            >
+          </h1>
+          <p class="darkgray font13">
+            <span class="sender pipe"
+              ><a
+                href="/search?l=mixxx-devel@lists.sourceforge.net&amp;q=from:%22petah%22"
+                rel="nofollow"
+                ><span
+                  itemprop="author"
+                  itemscope
+                  itemtype="http://schema.org/Person"
+                  ><span itemprop="name">petah</span></span
+                ></a
+              ></span
+            >
+            <span class="date"
+              ><a
+                href="/search?l=mixxx-devel@lists.sourceforge.net&amp;q=date:20131217"
+                rel="nofollow"
+                >Tue, 17 Dec 2013 08:46:30 -0800</a
+              ></span
+            >
+          </p>
+        </div>
+        <div itemprop="articleBody" class="msgBody">
+          <!--X-Body-of-Message-->
+          <pre>
+Hey,
+
+I no longer use Mixxx or other software-based mixing (at least for the moment) 
+but figured someone here may be interested to know the &quot;AudioID&quot; binary blob in 
+a Traktor DJ playlist's entry is actually a base64-encoded visual thumbnail of 
+the track's WAV, squeezed to 512-pixels wide, with each 4-bit nybble 
+representing a volume. The image is mirrored vertically. I guess it's used as a 
+preview while tracks are deep-scanned.</pre
+          >
+          <pre>
+
+I attached my source here, the thumbnail decoder function is at the end, 
+nmlEntry::SaveWAVThumbnail(), the rest is rubbish.
+
+cheers,
+
+-- p
+
+</pre
+          >
+          <pre>
+// Native Instruments' Traktor DJ NML playlist decoder
+
+// #include &lt;regex&gt;		// not supported until gcc 4.9 ?
+// #include &lt;tuple&gt;
+
+/*
+	- RELEASE_DATE is optional
+
+*/
+
+#include &quot;wx/filename.h&quot;
+#include &quot;wx/base64.h&quot;
+#include &quot;wx/wfstream.h&quot;
+#include &quot;wx/txtstrm.h&quot;
+#include &quot;wx/sstream.h&quot;
+
+#include &quot;wx/regex.h&quot;
+
+#include &quot;Controller.h&quot;
+
+#include &quot;TraktorDec.h&quot;
+
+using namespace LX;
+using namespace std;
+
+enum FIELD_TYPES : int
+{
+	FIELD_ILLEGAL = 0,
+	FIELD_STRING,
+	FIELD_INTEGER,
+	FIELD_DOUBLE,		// front space-padding is ok
+	FIELD_UNIX_PATH,
+	FIELD_FILE_NAME,
+	FIELD_OS_PATH,
+	FIELD_OS_VOLUME,
+	FIELD_DATE,		// YYYY/MM/DD
+	FIELD_MARKER_NAME,	// { Cue | Beat Marker | Fade In | Fade Out } or { first moan | aha! | beat start | beat restart | restart | buildup start }
+	FIELD_ENC64,
+	FIELD_STRING_LIST	// for CUEs
+};
+
+enum TAG_TYPES : int
+{
+	TTYP_ARTIST = 0,
+	TTYP_AUDIO_ID,
+	TTYP_ID,
+	TTYP_LOCK,
+	TTYP_TRACK_TITLE,
+	TTYP_DIR,
+	TTYP_FILE,
+	TTYP_PATH,
+	TTYP_DISK_VOLUME,
+	TTYP_ALBUM,
+	TTYP_TRACK_NUMBER,
+	TTYP_BITRATE,
+	TTYP_COMMENT,
+	TTYP_GENRE,
+	TTYP_IMPORT_DATE,
+	TTYP_KEY_LYRICS,
+	TTYP_LAST_PLAYED,
+	TTYP_PLAYCOUNT,
+	TTYP_PLAYTIME,
+	TTYP_RANKING,
+	TTYP_RELEASE_DATE,
+	TTYP_BPM,
+	TTYP_BPM_QUALITY,
+	TTYP_PEAK_DB,
+	TTYP_PERCEIVED_DB,
+	TTYP_LABEL,
+	TTYP_POS,
+	TTYP_TYPE
+};
+
+static
+void	ConvVal(const wxString &amp;s, wxString *val_s)
+{	
+	wxASSERT(val_s);
+	
+	*val_s = s;
+}
+
+static
+void	ConvVal(const wxString &amp;s, int *ip)
+{
+	wxASSERT(ip);
+	
+	long	l = 0;
+	
+	bool	ok = s.ToLong(&amp;l);
+	wxASSERT(ok);
+	
+	*ip = (int) l;
+}
+
+static
+void	ConvVal(const wxString &amp;s, double *dp)
+{
+	wxASSERT(dp);
+	
+	bool	ok = s.ToDouble(dp);
+	wxASSERT(ok);
+}
+
+static
+void	ConvVal(const wxString &amp;s, wxDateTime *dt)
+{
+	wxASSERT(dt);
+	
+	bool	ok = dt-&gt;ParseDate(s);
+	wxASSERT(ok);
+}
+
+//---- CTOR -------------------------------------------------------------------
+
+	TraktorDecoder::TraktorDecoder(Controller *controller)
+{
+	wxASSERT(controller);
+	m_Controller = controller;
+	
+	m_PlaylistEntries.clear();
+	m_TagToInfoMap.clear();
+	
+#if 0
+	m_TypeToConvMap = 
+	{
+		{FIELD_STRING,		{&amp;ValToStr}},
+		{FIELD_INTEGER,		{&amp;ValToInt}},
+		{FIELD_DOUBLE,		{&amp;ValToDouble}},	// may be space-padded in front
+		{FIELD_UNIX_PATH,	{&amp;ValToStr}},
+		{FIELD_FILE_NAME,	{&amp;ValToStr}},
+		{FIELD_OS_PATH,		{&amp;ValToStr}},
+		{FIELD_OS_VOLUME,	{&amp;ValToStr}},
+		{FIELD_DATE,		{&amp;ValToDate}},		// YYYY/MM/DD
+		{FIELD_MARKER_NAME,	{&amp;ValToStr}},		// { Cue | Beat Marker | Fade In | Fade Out } or { first moan | aha! | beat start | beat restart | restart | buildup start }
+		{FIELD_ENC64,		{&amp;ValToStr}},
+		{FIELD_STRING_LIST,	{&amp;ValToStr}},		// for CUEs
+	};
+#endif
+	
+	// use ___(unique)___ (R)aw string delimiter to use double-quotes within, even if preceding a ')'
+	bool	ok = m_EntryRE.Compile(R&quot;___(.*?&lt;ENTRY(.*?)&lt;/ENTRY&gt;)___&quot;, wxRE_ADVANCED);
+	wxASSERT(ok &amp;&amp; m_EntryRE.IsValid());
+	
+	ok = m_FieldRE.Compile(R&quot;___(.*? ([A-Z_]+)=&quot;(.*?)&quot;)___&quot;, wxRE_ADVANCED);
+	wxASSERT(ok &amp;&amp; m_FieldRE.IsValid());
+	
+	// few duplicate tags despite XML hierarchy, except for
+	//   labels (list)
+	//   title (duplicate)
+	m_TagToInfoMap = 
+	{
+		{&quot;ARTIST&quot;,		{TTYP_ARTIST,		FIELD_STRING}},
+		{&quot;AUDIO_ID&quot;,		{TTYP_AUDIO_ID,		FIELD_ENC64}},
+		{&quot;ID&quot;,			{TTYP_ID,		FIELD_INTEGER}},
+		{&quot;LOCK&quot;,		{TTYP_LOCK,		FIELD_INTEGER}},
+		{&quot;TITLE&quot;,		{TTYP_TRACK_TITLE,	FIELD_STRING}},
+		{&quot;DIR&quot;,			{TTYP_DIR,		FIELD_UNIX_PATH}},
+		{&quot;FILE&quot;,		{TTYP_FILE,		FIELD_FILE_NAME}},
+		{&quot;PATH&quot;,		{TTYP_PATH,		FIELD_OS_PATH}},
+		{&quot;VOLUME&quot;,		{TTYP_DISK_VOLUME,	FIELD_OS_VOLUME}},
+		{&quot;ALBUM&quot;,		{TTYP_ALBUM,		FIELD_STRING}},
+		{&quot;TRACK&quot;,		{TTYP_TRACK_NUMBER,	FIELD_INTEGER}},
+		{&quot;BITRATE&quot;,		{TTYP_BITRATE,		FIELD_INTEGER}},
+		{&quot;COMMENT&quot;,		{TTYP_COMMENT,		FIELD_STRING}},
+		{&quot;GENRE&quot;,		{TTYP_GENRE,		FIELD_STRING}},
+		{&quot;IMPORT_DATE&quot;,		{TTYP_IMPORT_DATE,	FIELD_DATE}},
+		{&quot;KEY_LYRICS&quot;,		{TTYP_KEY_LYRICS,	FIELD_STRING}},
+		{&quot;LAST_PLAYED&quot;,		{TTYP_LAST_PLAYED,	FIELD_DATE}},
+		{&quot;PLAYCOUNT&quot;,		{TTYP_PLAYCOUNT,	FIELD_INTEGER}},
+		{&quot;PLAYTIME&quot;,		{TTYP_PLAYTIME,		FIELD_INTEGER}},
+		{&quot;RANKING&quot;,		{TTYP_RANKING,		FIELD_INTEGER}},
+		{&quot;RELEASE_DATE&quot;,	{TTYP_RELEASE_DATE,	FIELD_DATE}},
+		{&quot;BPM&quot;,			{TTYP_BPM,		FIELD_DOUBLE}},
+		{&quot;BPM_QUALITY&quot;,		{TTYP_BPM_QUALITY,	FIELD_INTEGER}},
+		{&quot;PEAK_DB&quot;,		{TTYP_PEAK_DB,		FIELD_DOUBLE}},
+		{&quot;PERCEIVED_DB&quot;,	{TTYP_PERCEIVED_DB,	FIELD_DOUBLE}},			// may be negative
+		
+	// list
+		
+		{&quot;LABEL&quot;,		{TTYP_LABEL,		FIELD_STRING_LIST}},		// is LIST (not limited string set, despite appearances)
+		{&quot;POS&quot;,			{TTYP_POS,		FIELD_DOUBLE}},
+		{&quot;TYPE&quot;,		{TTYP_TYPE,		FIELD_INTEGER}}			// actually limited integer set
+	};
+}
+	
+//---- DTOR -------------------------------------------------------------------
+
+	TraktorDecoder::~TraktorDecoder()
+{
+	m_Controller = nil;
+}
+
+//---- Reset Decoder ----------------------------------------------------------
+
+void	TraktorDecoder::Reset(void)
+{
+	m_PlaylistEntries.clear();
+	
+	m_FileNameToIndexMap.clear();
+	m_TitleToIndexMap.clear();
+	m_ArtistTitleToIndexMap.clear();
+}
+
+//---- Index Entries ----------------------------------------------------------
+
+void	TraktorDecoder::IndexEntries(void)
+{
+	m_FileNameToIndexMap.clear();
+	m_TitleToIndexMap.clear();
+	m_ArtistTitleToIndexMap.clear();
+	
+	for (int i = 0; i &lt; m_PlaylistEntries.size(); i++)
+	{
+		const nmlEntry	&amp;ne = m_PlaylistEntries[i];
+		
+		m_FileNameToIndexMap[ne.GetShortFileName()] = i;
+		m_TitleToIndexMap[ne.GetTrackTitle()] = i;
+		
+		const wxString	artist_title = ne.GetArtist() + ne.GetTrackTitle();
+		
+		m_ArtistTitleToIndexMap[artist_title] = i;
+	}
+}
+
+//---- Has Indexed Entries ? --------------------------------------------------
+
+bool	TraktorDecoder::HasIndexedEntries(void) const
+{
+	bool	f = (m_FileNameToIndexMap.size() &gt; 0) &amp;&amp; (m_TitleToIndexMap.size() &gt; 0);
+	
+	return f;
+}
+
+//---- Get Short Filename Index -----------------------------------------------
+
+int	TraktorDecoder::GetFileNameIndex(const wxString &amp;short_fn)
+{
+	if (m_FileNameToIndexMap.count(short_fn) == 0)
+		return -1;					// not found
+	else	return m_FileNameToIndexMap[short_fn];	
+}
+
+//---- Get Track Title Index --------------------------------------------------
+
+int	TraktorDecoder::GetTrackTitleIndex(const wxString &amp;track_title)
+{
+	if (m_TitleToIndexMap.count(track_title) == 0)
+		return -1;					// not found
+	else	return m_TitleToIndexMap[track_title];	
+}
+
+//---- Get Artist + Title Index -----------------------------------------------
+
+int	TraktorDecoder::GetArtistTitleIndex(const wxString &amp;artist_n_title)
+{
+	if (m_ArtistTitleToIndexMap.count(artist_n_title) == 0)
+		return -1;					// not found
+	else	return m_ArtistTitleToIndexMap[artist_n_title];	
+}
+
+//---- Playlist Entry defaults ------------------------------------------------
+
+void	nmlEntry::Defaults(void)
+{
+	m_Artist = m_TrackTitle = m_Album = m_Comment = m_Genres = m_KeyLyrics = wxEmptyString;
+	m_Location.m_Dir = m_Location.m_Path = m_Location.m_File = m_Location.m_DiskVolume = wxEmptyString;
+	
+	m_ID = m_Lock = m_TrackNumber = m_BitRate = m_PlayCount = m_PlayTime = m_Ranking = m_BPMPrecision = 0;
+	
+	m_PeakDB = m_PerceivedDB = m_BPM = -1;
+	
+	m_CuePoints.clear();
+	
+	m_Index = 0;
+}
+
+//---- Dump Entry -------------------------------------------------------------
+
+void	nmlEntry::Dump(void) const
+{
+	wxString	s;
+	
+	s.Printf(&quot;\n\n# %d\n&quot;, m_Index);
+	s &lt;&lt; wxString::Format(&quot;Artist \&quot;%s\&quot;\n&quot;, m_Artist);
+	s &lt;&lt; wxString::Format(&quot;Title  \&quot;%s\&quot;\n&quot;, m_TrackTitle);
+	s &lt;&lt; wxString::Format(&quot;Album  \&quot;%s\&quot;\n&quot;, m_Album);
+	s &lt;&lt; wxString::Format(&quot;Genre  \&quot;%s\&quot;\n&quot;, m_Genres);
+	s &lt;&lt; wxString::Format(&quot;BPM     %f\n\n&quot;, m_BPM);
+	
+	wxLogMessage(s);
+}
+
+//---- Get Index --------------------------------------------------------------
+
+int	nmlEntry::GetIndex(void) const
+{
+	return m_Index;
+}
+
+//---- Get Artist -------------------------------------------------------------
+
+wxString	nmlEntry::GetArtist(void) const
+{
+	return m_Artist;
+}
+
+//---- Get Track Title --------------------------------------------------------
+
+wxString	nmlEntry::GetTrackTitle(void) const
+{
+	return m_TrackTitle;
+}
+
+//---- Get Short Filename -----------------------------------------------------
+
+wxString	nmlEntry::GetShortFileName(void) const
+{
+	return m_Location.m_File;
+}
+
+//---- Dump Playlist ----------------------------------------------------------
+
+void	TraktorDecoder::Dump(void)
+{
+	for (const auto &amp;it : m_PlaylistEntries)
+	{
+		const nmlEntry	&amp;ne = it;
+		
+		ne.Dump();
+	}
+}
+
+//---- Decode Field -----------------------------------------------------------
+
+void	TraktorDecoder::DecodeField(const wxString &amp;k_s, const wxString &amp;v, nmlEntry &amp;ne)
+{
+	wxASSERT_MSG(m_TagToInfoMap.count(k_s) == 1, wxString::Format(&quot;Traktor key \&quot;%s\&quot; not found&quot;, k_s));
+	
+	const TInfo	&amp;tinfo = m_TagToInfoMap[k_s];
+	const int	k = tinfo.m_KeyType;
+	
+	/*
+	const int	typ = tinfo.m_ValueType;
+	
+	wxASSERT(m_TypeToConvMap.count(typ) == 1);
+	ConvInfo	cinfo = m_TypeToConvMap[typ];
+	
+	convFn		fn = cinfo.m_ConvFn;
+	*/
+	
+	switch (k)
+	{	case TTYP_ARTIST:
+			
+			ConvVal(v, &amp;ne.m_Artist);
+			break;
+		
+		case TTYP_AUDIO_ID:
+			
+			ConvVal(v, &amp;ne.m_AudioID);
+			break;
+			
+		case TTYP_ID:
+			
+			ConvVal(v, &amp;ne.m_ID);
+			break;
+			
+		case TTYP_LOCK:
+			
+			ConvVal(v, &amp;ne.m_Lock);
+			break;
+			
+		case TTYP_TRACK_TITLE:
+			
+			ConvVal(v, &amp;ne.m_TrackTitle);
+			break;
+			
+		case TTYP_DIR:
+			
+			ConvVal(v, &amp;ne.m_Location.m_Dir);
+			break;
+			
+		case TTYP_FILE:
+			
+			ConvVal(v, &amp;ne.m_Location.m_File);
+			break;
+			
+		case TTYP_PATH:
+			
+			ConvVal(v, &amp;ne.m_Location.m_Path);
+			break;
+			
+		case TTYP_DISK_VOLUME:
+			
+			ConvVal(v, &amp;ne.m_Location.m_DiskVolume);
+			break;
+			
+		case TTYP_ALBUM:
+			
+			ConvVal(v, &amp;ne.m_Album);
+			break;
+			
+		case TTYP_TRACK_NUMBER:
+			
+			ConvVal(v, &amp;ne.m_TrackNumber);
+			break;
+			
+		case TTYP_BITRATE:
+			
+			ConvVal(v, &amp;ne.m_BitRate);
+			break;
+			
+		case TTYP_COMMENT:
+			
+			ConvVal(v, &amp;ne.m_Comment);
+			break;
+			
+		case TTYP_GENRE:
+			
+			ConvVal(v, &amp;ne.m_Genres);
+			break;
+			
+		case TTYP_IMPORT_DATE:
+			
+			ConvVal(v, &amp;ne.m_ImportDate);
+			break;
+		
+		case TTYP_KEY_LYRICS:
+			
+			ConvVal(v, &amp;ne.m_KeyLyrics);
+			break;
+			
+		case TTYP_LAST_PLAYED:
+			
+			ConvVal(v, &amp;ne.m_LastPlayedDate);
+			break;
+		
+		case TTYP_PLAYCOUNT:
+			
+			ConvVal(v, &amp;ne.m_PlayCount);
+			break;
+			
+		case TTYP_PLAYTIME:
+			
+			ConvVal(v, &amp;ne.m_PlayTime);
+			break;
+			
+		case TTYP_RANKING:
+			
+			ConvVal(v, &amp;ne.m_Ranking);
+			break;
+			
+		case TTYP_RELEASE_DATE:
+			
+			ConvVal(v, &amp;ne.m_ReleaseDate);
+			break;
+			
+		case TTYP_BPM:
+			
+			ConvVal(v, &amp;ne.m_BPM);
+			break;
+			
+		case TTYP_BPM_QUALITY:
+	
+			ConvVal(v, &amp;ne.m_BPMPrecision);
+			break;
+
+		case TTYP_PEAK_DB:
+			
+			ConvVal(v, &amp;ne.m_PeakDB);
+			break;
+			
+		case TTYP_PERCEIVED_DB:
+			
+			ConvVal(v, &amp;ne.m_PerceivedDB);
+			break;
+	// LIST
+	
+		case TTYP_LABEL:
+			
+			// (push, then fill)
+			ne.m_CuePoints.push_back(CuePoint());
+			ConvVal(v, &amp;ne.m_CuePoints.back().m_Name);
+			break;
+			
+		case TTYP_POS:
+			
+			ConvVal(v, &amp;ne.m_CuePoints.back().m_PosMS);
+			break;
+			
+		case TTYP_TYPE:
+			
+			ConvVal(v, &amp;ne.m_CuePoints.back().m_Type);
+			break;
+	
+		default:
+			
+			wxFAIL_MSG(&quot;unrecognized Traktor tag&quot;);
+			break;
+	}
+}
+
+//---- Process Entry ----------------------------------------------------------
+
+void	TraktorDecoder::ProcessEntry(wxString entry)
+{
+	wxASSERT(!entry.IsEmpty());
+	
+	// de-duplicates into uniques (this prevents duplicate &quot;title&quot;)
+	entry.Replace(&quot;ALBUM TITLE&quot;, &quot;TITLE ALBUM&quot;);
+	
+	nmlEntry	ne;
+	
+	const wxChar	*field_p = entry.c_str();
+	
+	while (m_FieldRE.Matches(field_p))
+	{	size_t	field_match_start = 0, field_match_len = 0;
+		
+		bool	f = m_FieldRE.GetMatch(&amp;field_match_start, &amp;field_match_len, 0/*whole field match*/);
+		wxASSERT(f);
+		
+		size_t	ki = 0, kl = 0;
+		
+		f = m_FieldRE.GetMatch(&amp;ki, &amp;kl, 1);
+		wxASSERT(f);
+		
+		const wxString	k_s(field_p + ki, kl);
+		
+		size_t	vi = 0, vl = 0;
+		
+		f = m_FieldRE.GetMatch(&amp;vi, &amp;vl, 2);
+		wxASSERT(f);
+		
+		const wxString	val(field_p + vi, vl);
+		
+		DecodeField(k_s, val, ne/*&amp;*/);
+		
+		field_p += field_match_len;
+	}
+	
+	// (internal index)
+	ne.m_Index = m_PlaylistEntries.size();
+	
+	m_PlaylistEntries.push_back(ne);
+}
+
+//---- Decode File ------------------------------------------------------------
+
+size_t	TraktorDecoder::DecodeFile(const wxFileName &amp;cfn)
+{
+	const wxString	fpath = cfn.GetFullPath();
+	wxLogMessage(&quot;TraktorDecoder::DecodeFile(\&quot;%s\&quot;)&quot;, fpath);
+	wxASSERT(cfn.IsOk() &amp;&amp; cfn.FileExists());
+	const size_t	sz = cfn.GetSize().GetLo();
+	
+	Reset();
+	
+	wxFileInputStream	fis(fpath);
+	wxASSERT(fis.IsOk());
+	
+	// load whole file ahead
+	wxString	s_buff;
+	
+	wxStringOutputStream	sos(&amp;s_buff, wxConvUTF8);
+	
+	const size_t	n_bytes_read = fis.Read(sos/*&amp;*/).LastRead();
+	wxASSERT(n_bytes_read == sz);
+	
+	const wxChar	*str_p = s_buff.c_str();
+	int		index = 0;
+	
+	while (m_EntryRE.Matches(str_p))
+	{	
+		size_t	whole_match_start = 0, whole_match_len = 0;
+		bool	f = m_EntryRE.GetMatch(&amp;whole_match_start, &amp;whole_match_len, 0/*whole match*/);
+		wxASSERT(f);
+		
+		size_t	match_start = 0, match_len = 0;
+		f = m_EntryRE.GetMatch(&amp;match_start, &amp;match_len, 1/*first match*/);
+		wxASSERT(f);
+		
+		ProcessEntry(wxString(str_p + match_start, match_len));
+		
+		str_p += whole_match_len;
+		index++;
+	}
+	
+	return index;
+}
+
+//---- Get # Playlist Entries -------------------------------------------------
+
+size_t	TraktorDecoder::GetNumEntries(void) const
+{
+	return m_PlaylistEntries.size();
+}
+
+//---- Get Nth Entry ----------------------------------------------------------
+
+const nmlEntry&amp;	TraktorDecoder::GetNthEntry(const int &amp;index) const
+{
+	wxASSERT((index &gt;= 0) &amp;&amp; (index &lt; m_PlaylistEntries.size()));
+	
+	return m_PlaylistEntries[index];
+}
+
+//---- Get WAV Thumbnail ------------------------------------------------------
+
+bool	nmlEntry::SaveWAVThumbnail(const wxString &amp;fname, const bool &amp;bin_safe_f) const
+{
+	wxASSERT(!fname.IsEmpty());
+	wxASSERT(!m_AudioID.IsEmpty());
+	
+	wxString	enc64 = m_AudioID;
+	
+	const size_t	unpadded_sz = enc64.Len();
+	wxASSERT_MSG(unpadded_sz == 342, &quot;illegal base64 encoded size&quot;);
+	
+	// pad base64 with '='
+	const size_t	n_pad = (4 - (unpadded_sz % 4)) % 4;
+	enc64 += wxString('=', n_pad);
+	
+	const size_t	enc_b64_sz = enc64.length();
+	wxASSERT_MSG(enc_b64_sz == 344, &quot;illegal base64 encoded size&quot;);
+		
+/*	const size_t	dec_b64_sz = wxBase64DecodedSize(enc_b64_sz);		// should be 256 bytes, but wx rounds up to 258 with pad!
+	wxASSERT_MSG(dec_b64_sz == 256, &quot;illegal base64 decoded size&quot;);
+*/
+
+	const char	*c_ascii = enc64.fn_str();
+	wxASSERT(c_ascii);
+	
+	uint8_t	buff[256];
+	size_t	err_index = -1;
+	
+	// decode64
+	const int32_t	dec_sz = wxBase64Decode(&amp;buff[0], sizeof(buff), c_ascii, enc_b64_sz, wxBase64DecodeMode_Strict, &amp;err_index);
+	wxASSERT((dec_sz == 256) &amp;&amp; (-1 == err_index));
+	if ((dec_sz != 256) || (-1 != err_index))		return false;
+	
+	if (bin_safe_f)
+	{	// write as raw binary
+		wxFileOutputStream	fos(fname + &quot;.bin&quot;);
+		wxASSERT(fos.IsOk());
+	
+		fos.WriteAll(&amp;buff[0], dec_sz);
+	}
+	
+	// convert bytes to nybbles
+	vector&lt;uint8_t&gt;	nybbles;
+	
+	const size_t	UNKNOWN_HEADER_BYTES = 4;		// (skip unknowns)
+	
+	for (int i = UNKNOWN_HEADER_BYTES; i &lt; 256; i++)
+	{
+		const uint8_t	b = buff[i];
+		
+		nybbles.push_back(b &gt;&gt; 4);
+		nybbles.push_back(b &amp; 0xF);
+	}
+
+	const int	h = 32;
+	wxBitmap	bm(nybbles.size(), h, 32/*depth*/);
+	wxMemoryDC	dc(bm);
+	
+	// erase bitmap
+	dc.SetBrush(wxBrush(wxColour(0, 0, 0, 0), wxSOLID));
+	dc.SetPen(*wxTRANSPARENT_PEN);
+	dc.DrawRectangle(0, 0, bm.GetWidth(), h);
+	
+	// draw WAV thumbnail
+	dc.SetDeviceOrigin(0, h / 2);
+	
+	const wxColour	LX_ORANGE_COLOR = wxColor(255, 180, 20, 255);
+	
+	const wxPen	orangePen(LX_ORANGE_COLOR, 1, wxSOLID);
+	dc.SetPen(orangePen);
+	
+	for (int i = 0; i &lt; nybbles.size(); i++)
+	{	
+		int	dy = nybbles[i];
+		
+		dc.DrawLine(i, -dy, i, dy);
+	}
+	
+	dc.SelectObject(wxNullBitmap);
+	
+	// save thumbnail bitmap
+	bool	ok = bm.SaveFile(fname + &quot;.png&quot;, wxBITMAP_TYPE_PNG);
+	wxASSERT(ok);
+	
+	return ok;
+}
+
+// nada mas
+</pre
+          >
+          <pre>------------------------------------------------------------------------------
+Rapidly troubleshoot problems before they affect your business. Most IT 
+organizations don't have a clear picture of how application performance 
+affects their revenue. With AppDynamics, you get 100% visibility into your 
+Java,.NET, &amp; PHP application. Start your 15-day FREE TRIAL of AppDynamics Pro!
+<a rel="nofollow" href="https://pubads.g.doubleclick.net/gampad/clk?id=84349831&amp;iu=/4140/ostg.clktrk">http://pubads.g.doubleclick.net/gampad/clk?id=84349831&amp;iu=/4140/ostg.clktrk</a></pre>
+          <pre>_______________________________________________
+Get Mixxx, the #1 Free MP3 DJ Mixing software Today
+<a  rel="nofollow" href="http://mixxx.org">http://mixxx.org</a>
+
+
+Mixxx-devel mailing list
+<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9fd2f6e7e7e7b2fbfae9faf3dff3f6ecebecb1ecf0eaedfcfaf9f0edf8fab1f1faeb">[email&#160;protected]</a>
+<a  rel="nofollow" href="https://lists.sourceforge.net/lists/listinfo/mixxx-devel">https://lists.sourceforge.net/lists/listinfo/mixxx-devel</a></pre>
+        </div>
+        <div class="msgButtons margintopdouble">
+          <ul class="overflow">
+            <li class="msgButtonItems">
+              <a class="button buttonleft" accesskey="p" href="msg05059.html"
+                >Previous message</a
+              >
+            </li>
+            <li class="msgButtonItems textaligncenter">
+              <a class="button" accesskey="c" href="thrd2.html#05061"
+                >View by thread</a
+              >
+            </li>
+            <li class="msgButtonItems textaligncenter">
+              <a class="button" accesskey="i" href="mail2.html#05061"
+                >View by date</a
+              >
+            </li>
+            <li class="msgButtonItems textalignright">
+              <a class="button buttonright" accesskey="n" href="msg05062.html"
+                >Next message</a
+              >
+            </li>
+          </ul>
+        </div>
+        <a name="tslice"></a>
+        <div class="tSliceList margintopdouble">
+          <ul class="icons monospace"></ul>
+        </div>
+        <div class="overflow msgActions margintopdouble">
+          <div class="msgReply">
+            <h2>Reply via email to</h2>
+            <form method="POST" action="/mailto.php">
+              <input
+                type="hidden"
+                name="subject"
+                value="[Mixxx-devel] Traktor DJ playlist thumbnail decoder"
+              />
+              <input
+                type="hidden"
+                name="msgid"
+                value="20131217173520.3c2c26e5@djpetah.com"
+              />
+              <input
+                type="hidden"
+                name="relpath"
+                value="mixxx-devel@lists.sourceforge.net/msg05061.html"
+              />
+              <input type="submit" value=" petah " />
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="aside" role="complementary">
+        <div class="logo">
+          <a href="/"
+            ><img
+              src="/logo.png"
+              width="247"
+              height="88"
+              alt="The Mail Archive"
+          /></a>
+        </div>
+        <form class="overflow" action="/search" method="get">
+          <input
+            type="hidden"
+            name="l"
+            value="mixxx-devel@lists.sourceforge.net"
+          />
+          <label class="hidden" for="q">Search the site</label>
+          <input
+            class="submittext"
+            type="text"
+            id="q"
+            name="q"
+            placeholder="Search mixxx-devel"
+          />
+          <input
+            class="submitbutton"
+            name="submit"
+            type="image"
+            src="/submit.png"
+            alt="Submit"
+          />
+        </form>
+        <div class="nav margintop" id="nav" role="navigation">
+          <ul class="icons font16">
+            <li class="icons-home"><a href="/">The Mail Archive home</a></li>
+            <li class="icons-list">
+              <a href="/mixxx-devel@lists.sourceforge.net/"
+                >mixxx-devel - all messages</a
+              >
+            </li>
+            <li class="icons-about">
+              <a href="/mixxx-devel@lists.sourceforge.net/info.html"
+                >mixxx-devel - about the list</a
+              >
+            </li>
+            <li class="icons-expand">
+              <a
+                href="/search?l=mixxx-devel@lists.sourceforge.net&amp;q=subject:%22%5C%5BMixxx%5C-devel%5C%5D+Traktor+DJ+playlist+thumbnail+decoder%22&amp;o=newest&amp;f=1"
+                title="e"
+                id="e"
+                >Expand</a
+              >
+            </li>
+            <li class="icons-prev">
+              <a href="msg05059.html" title="p">Previous message</a>
+            </li>
+            <li class="icons-next">
+              <a href="msg05062.html" title="n">Next message</a>
+            </li>
+          </ul>
+        </div>
+        <div class="listlogo margintopdouble"></div>
+        <div class="margintopdouble"></div>
+      </div>
+    </div>
+    <div class="footer" role="contentinfo">
+      <ul>
+        <li><a href="/">The Mail Archive home</a></li>
+        <li><a href="/faq.html#newlist">Add your mailing list</a></li>
+        <li><a href="/faq.html">FAQ</a></li>
+        <li><a href="/faq.html#support">Support</a></li>
+        <li><a href="/faq.html#privacy">Privacy</a></li>
+        <li class="darkgray">
+          <a
+            href="/cdn-cgi/l/email-protection"
+            class="__cf_email__"
+            data-cfemail="27151716141615161016101412151709144415441511421267434d574253464f0944484a"
+            >[email&#160;protected]</a
+          >
+        </li>
+      </ul>
+    </div>
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'9aab7b89da5eb124',t:'MTc2NTE4ODcyNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>

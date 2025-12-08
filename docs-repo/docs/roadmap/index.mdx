@@ -12,6 +12,7 @@
 - [x] Failing to convert .m4a/mp4 tracks
 - [x] Failing to save native linked stems
 
+### General bugs:
 - [x] When I click on STEMS Colors in Settings its not giving me the palette of colors
 - [x] Layout of top tiles gets weird when it’s 3+ days of audio. (processing 2k files takes a while and breaks the UI slightly)
 - [x] Is it possible to add "rating" to column options on the "Traktor Pro 4" page? I'd like to be able to prioritize highly-rated tracks when queueing up a large batch to convert.
@@ -21,6 +22,8 @@
 - [x] top Actions menu on "Traktor Pro 4" tab not working
 - [x] allow saving .wav, even if track type is "traktor" in the queue
 - [x] fix: correct "analysis lock" in Traktor collection
+
+### MacOS bugs:
 - [x] Major Bug:MacOS 14 and below on Apple Silicon have whole track instead of separated vocals in vocals stem. Only at the beginning and end of the track.
 
 ## Feature list:
@@ -50,10 +53,28 @@
 - [ ] Change STEMS colors
 - [ ] So what does this mean for our old stems? Does this automatically replace them or do we have to reanalyse the library and manually discard the old ones?
 - [ ] How to use another computer to convert stems?
+    :::info
     - [ ] how to know AUDIO_ID of the original track on the computer which doesn't have Traktor installed (e.g. your gaming NVIDIA PC)?
         - [ ] Your suggestion is actually quite clever... Hmmm... I can definitely write my own "hash" or for simplicity - "original filename" into .stem.m4a or .stem.mp4. 
         - [ ] Let me think about it for a day or two to understand the most robust way 🙂
         - [ ]   (e.g. I don't want to calculate hash for all entries on the main DJ computer to match with stems as it will be resource intensive and long process. But maybe it's the only reliable option and resource usage is not that high. Will have to experiment.)
+
+        ---
+        From user in Discord:
+        Hey Nuo, I may have just found out how the AUDIO_ID's are generated. Check this link (scroll to the bottom for the relevant C++ function) https://www.mail-archive.com/mixxx-devel@lists.sourceforge.net/msg05061.html
+
+        I just re-wrote it in Python and can confirm it does actually generate a valid thumbnail of the waveform! I don't wanna get ahead of myself, but I'm assuming this means if we write a new function to basically do this process backwards, we should be able to generate a perfectly valid AUDIO_ID from nothing more than the original audio track 😄
+        
+        ---
+        My response:
+        This is truly interesting find.
+        BUT, you need to understand that Traktor has it's own audio decoders & decoders are pain in the ass (refer to 26ms issue here - https://pestrela.github.io/dj_kb/dj_collection_converters/ )
+
+        With NS4 I tried to get decoders behave the same as Traktor. In works on Apple Silicon at least, while Intel MacOS & Windows are subject to confirm this finding. 
+        AND, testing was limited to tracks that I have. It is subject to users of NS4 now to test whether there is truly no offset in beatgrid & hotcues between Original & Linked STEMS.
+
+        Only once this is confirmed - it's a valid option to investigate generating AUDIO_ID from the audio itself, without relying on collection.nml.
+    :::
 
 - [ ] News popup on app startup. Linked to Blog.
 - [ ] Add playlists support.
