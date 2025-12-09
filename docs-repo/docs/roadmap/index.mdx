@@ -2,8 +2,8 @@
 
 ## Priorities:
 - [ ] Fix all the bugs that users have reported.
-- [ ] Windows support.
-- [ ] MacOS Intel support.
+- [x] Windows support.
+- [x] MacOS Intel support.
 - [ ] Everything else.
 
 ## Bug list:
@@ -27,6 +27,7 @@
 - [x] Major Bug:MacOS 14 and below on Apple Silicon have whole track instead of separated vocals in vocals stem. Only at the beginning and end of the track.
 
 ## Feature list:
+- [ ] Custom collection.nml file selection in Traktor Pro 4 tab. Persist selection between app restarts. Show warning that collection.nml is not default.
 - [x] "Show stem file" when right clicking on a track in a Queue.
 - [ ] UX critical change. How to make "native" vs "legacy" mode more intuitive?
     :::info
@@ -74,6 +75,27 @@
         AND, testing was limited to tracks that I have. It is subject to users of NS4 now to test whether there is truly no offset in beatgrid & hotcues between Original & Linked STEMS.
 
         Only once this is confirmed - it's a valid option to investigate generating AUDIO_ID from the audio itself, without relying on collection.nml.
+
+        ----
+        Some more exploration from me [Discord message link](https://discord.com/channels/1436013832391753771/1436014193571790960/1447725613472546990):
+        
+        Okay, some news on AUDIO_ID and potential ability to convert stems on gaming computer and then transfer to MacBook for DJing.
+
+        IF both of your computers are on the same platform (e.g. Win + Win or Mac + Mac) - things might work. 
+        IF NOT - Traktor decodes .m4a (aac/alac) files differently on MacOS vs Windows. 
+
+        I've just tested with the same track on both systems & got different AUDIO_ID's for the same .m4a tracks.
+
+        I haven't tested other file formats yet, but this is already a huge issue.
+
+        This means that when you transfer .stem.mp4 files from Win,  and link to originals on Mac - there will be offset between them. According to my tests, this offset is different from track to track, ranging from 0ms to 93 ms...
+
+        This might be okay for other formats.
+        I'd like to hear your thoughts, guys
+
+        Edit: FLAC, MP3, AIFF are fine (same on Mac & Win)
+
+        Also, added some comments here: https://community.native-instruments.com/discussion/49074/bug-traktor-does-not-play-first-50ms-of-alac-files#latest
     :::
 
 - [ ] News popup on app startup. Linked to Blog.
