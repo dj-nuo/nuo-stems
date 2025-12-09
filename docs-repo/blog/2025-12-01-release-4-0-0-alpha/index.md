@@ -16,7 +16,7 @@ Yes, linked native STEMS! 🔥
 
 👉 Please write me in private messages or to djnuo95@gmail.com, and I will send you the installer 🚀
 
-For now it's Apple Silicon only. Windows support is coming soon. MacOS Intel support is coming soon.
+Edit: now available on Windows, Apple Silicon & MacOS Intel.
 
 See NUO-STEMS 4:
 
