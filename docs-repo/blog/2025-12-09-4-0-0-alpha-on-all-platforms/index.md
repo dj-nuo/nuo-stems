@@ -3,10 +3,10 @@
 title: NUO-STEMS 4.0.0-alpha | Now available on all platforms
 # authors: [slorber, yangshun]
 tags: [news]
-image: ./pic1.webp
+image: ./screenshot1.webp
 ---
 
-![Screenshot](./pic1.webp)
+![Screenshot](./screenshot1.webp)
 
 NUO-STEMS 4 alpha is now available on Windows, Apple Silicon and Intel Mac 💪
 
