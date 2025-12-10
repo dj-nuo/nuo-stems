@@ -32,5 +32,6 @@ See NUO-STEMS 4:
 - [Docs](/docs/intro) for more information.
 - [FAQ](/docs/faq) for more information.
 - [Roadmap](/docs/roadmap) for more information.
+- [Changelog](/docs/changelog) for more information.
 - [Discord](https://discord.gg/dfpk9FbvJE) for more information.
 - [Facebook group](https://www.facebook.com/groups/nuostems/) for more information.
