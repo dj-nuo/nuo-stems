@@ -1,0 +1,301 @@
+---
+sidebar_position: 999
+---
+
+# Changelog for NUO-STEMS 3
+
+### Structure of the changelog
+Releases are listed in chronological order (newest first) and include all the changes made before the release.
+
+
+### Changelog
+
+**3.2.2** - Dec 14, 2025
+- feat: add 'Check If Traktor Running' setting
+
+**3.2.1** - Dec 8, 2025
+- upd changelog link
+
+**3.2.1-beta.1** - Dec 3, 2025
+- fix: news modal cache preventing latest news
+
+**3.2.1-alpha.2** - Dec 2, 2025
+- some more polishing of checkIfTraktorRunning()
+- fix: traktor crashpad_handler treated as Traktor running
+
+**3.2.0-beta.1** - Nov 4, 2025
+- feat: add error handling for NML file writing
+
+**3.2.0-alpha.2** - Oct 28, 2025
+- feat: rosetta 2 check on Apple Silicon
+
+**3.2.0-alpha.1** - Oct 3, 2025
+- feat: AAC 320 kbps (CBR) - Traktor Pro 4 introduced this format for native stems, and it's now supported by NUO-STEMS. Previous AAC 256 (VBR) is still supported and remains the default option in NUO-STEMS because it provides 25% smaller file size.
+:::warning
+- fix: auto-gpu CUDA failed. Now only NVIDIA GPUs with 4GB or more VRAM are supported.
+:::
+
+**3.1.1-alpha.20** - Sep 23, 2025
+- feat: enhance GPU memory management
+- fix: NUO-STEMS froze on 3% (crashed) on Windows when using NVIDIA GPU with < 4GB of VRAM, even if setting "GPU acceleration" to "disabled (force CPU only)"
+- fix: pressing "Stop Processing" button triggered an error on Windows (even though everything was working fine)
+- fix: if the Queue finished all tasks, it triggered an error on Windows (even though everything was working fine)
+
+**3.1.1-alpha.17** - Sep 21, 2025
+- upd NewsModal & source to https://docs.nuo-stems.com/blog/rss.xml
+
+**3.1.1-alpha.16** - Jul 30, 2025
+- feat: log errors sent to UI for better debugging
+
+**3.1.1-alpha.10** - Mar 25, 2025
+- fix: crashes when loading Traktor collection
+- feat: implement news modal for displaying latest blog posts
+
+**3.1.1-alpha.8** - Mar 24, 2025
+- feat: Traktor Utilities - matching of original ↔️ STEMS version is done also by audio information (previously matching was only by the filename)
+- fix: Traktor Utilities - even identified pairs sometimes didn't sync
+- feat: Traktor Utilities - button is now called "Sync All" to prevent confusion with tickboxes
+- fix: Traktor Utilities - some pair didn't sync due to non-latin characters
+- feat: NUO-STEMS on MacOS now supports differential updates. It means that you won't need to download whole 2.5 GB every time there is an update. Instead, it will download only what was changed (e.g. 100 MB)
+
+**3.1.1-alpha.3** - Mar 23, 2025
+- feat: when loading collection and matching originals to stems - use audio **fingerprinting to match stems if multiple stems are found with the same name**
+
+**3.1.1-alpha.1** - Mar 22, 2025
+- enhabce metadata sync in Traktor Utilities
+
+**3.1.0-beta.6** - Dec 8, 2024
+- fix: skip hidden files (starting with ".")
+- fix: WEBADDRESS ENTRY in collection.nml causing collection not loaded
+- fix: "Traktor Utilities" issue when loading collection showed no tracks (caused by Beatport tracks)
+- fix: issue adding hidden files to the Queue. Happened when users selected folder to process & it contained hidden metadata files that don't contain any musical information (e.g. ".track.mp3"). Now all hidden files (starting with ".") are omitted when adding to the Queue
+
+**3.1.0-beta.4** - Nov 29, 2024
+- fix: cpu_cores setting
+
+**3.1.0-beta.3** - Oct 19, 2024
+- fix: flac & aiff files not added to Queue
+
+**3.1.0-alpha.38** - Oct 16, 2024
+- misc: change default algo to mel_band_roformer
+- feat: buy full version button & dialog reworked
+- fix: StemsColors selector to the right
+- fix: formatting of OutputFolder section in Settings
+- feat: show device on UI only if non-auto
+- feat: auto detect device
+
+**3.1.0-alpha.33** - Sep 11, 2024
+- feat: New AAC Encoder on Windows -- QAAC (instead of FFMPEG aac). On Windows, NUO-STEMS is now using QAAC as AAC encoder. In simple terms: 256 AAC compression of stems shall be significantly improved resulting in higher quality. QAAC provides results that are almost identical to Mac AAC encoding
+- feat: NEW Feature: "AI distribute on 'drums' and 'other' stem" -- when using "sum of stems = original", new option is now selected by default. It substantially cleans up "other" stem from leftovers of drums & percussion, while keeping "sum of stems = original"
+- fix: issue of not being able to convert using htdemucs & htdemucs_ft algorithms (resulting is "-1%")
+
+**3.1.0-alpha.32** - Sep 11, 2024
+- feat: qaac for windows to encode 256 AAC
+- feat: "sum of stems = original" in encoded metadata
+- feat: "sum of stems = original" now defaults to AI
+
+**3.1.0-alpha.31** - Sep 4, 2024
+- IMPORTANT QUALITY UPDATE
+- fix: bug where conversion got stuck on "-1 %" if lyrics of the track contained special symbols
+- fix: bug that quality was not improved prior to this release, and it stayed the same as 3.0.0 for drums, bass & other. Quality improved substantially: Drums: 11.26 > 11.77, Bass: 12.04 > 12.38, Other: 5.74 > 6.90. If you used "mel_band_roformer" algorithm to convert to STEMS since it's release, you now need to re-convert all your tracks to actually gain quality increases in all stems, and not just vocal
+
+**3.1.0-alpha.29** - Aug 26, 2024
+- mel_band_roformer executable update for MacOS 14+ silent vocals
+- fix: issue of "empty vocals" on MacOS 14+
+
+**3.1.0-alpha.28** - Aug 25, 2024
+- feat: New "Sum of stems = original mix" feature. Makes sum of stems (drums, bass, other, vocals) exactly equal original mix. Keep in mind that this will make the stem that you selected very "dirty"
+- feat: New "Added silence duration feature". 100ms of additional silence was introduced in early versions of 3.1.0-alpha. Now there is an option to enable/disable adding 100ms of silence to the beginning of the track
+- feat: Saving .wav stems now has additional option - "Template of the filename". You can now select whether you want to append/prepend original filename to each individual stem, or leave it without it. (example: filename_vocals.wav)
+
+**3.1.0-alpha.27** - Aug 24, 2024
+- fix: StemsColors presets divs stylying when small width of window
+- feat: SaveWavTemplate of filename: basic/append/prepend
+- feat: AddedSilenceDuration option in settings
+- feat: "sum of stems = original"
+- fix: issue where users of old Mac OS systems (10.15) had progress stuck at 3%
+
+**3.1.0-alpha.26** - Aug 23, 2024
+- generateFinalInstrumentalAndAcapella, convertToMP3
+- AlgorithmRadio: refined descriptions & badges
+- removed mdx_extra from UI
+- removed stemMetadata from UI
+- StemsColors - added Traktor Pro 4 preset
+- feat: mel_band_roformer added to UI
+- feat: check if Traktor Pro 4 is running (previously only Traktor Pro 3)
+- feat: completely reworked under-the-hood to potentially provide more stable performance for "mel_band_roformer" & other algorithms. You might also experience higher benchmark on systems with good NVidia GPU or Apple Silicon
+- feat: added new preset for STEMS Colors - "Traktor Pro 4" color preset
+- feat: removed "STEMS Metadata" section from Settings
+- feat: removed "mdx_extra" algorithm, as mentioned in previous post (it's outdated & almost nobody uses it)
+
+**3.1.0-alpha.25** - Aug 11, 2024
+- feat: BIG UPDATE: new algorithm "mel_band_roformer". Also known as "insane"
+
+**3.1.0-alpha.20** - Jul 30, 2024
+- fix: issue when lyrics of input file contained special characters that caused program to freeze
+
+**3.1.0-alpha.19** - Jul 29, 2024
+- fix: spaces in id's of tooltips in Queue Table
+- fix: convert mono->stereo input file
+
+**3.1.0-alpha.18** - Jul 29, 2024
+- disable loading TraktorCollection option 
+- feat: mp4 extension added to supported formats
+- fix: issue when mono files where added to the queue
+- feat: "Load Traktor Collection" disable option. If disabled -- Traktor collection won't be loaded & Traktor Utilities will be disabled
+
+**3.1.0-alpha.17** - Jun 30, 2024
+- IMPORT_DATE now part of Traktor Utilities Sync
+- fix: change "chat" button to Facebook Page instead of Messanger
+- TraktorUtilities table: various changes
+- Dialog Windows - more types support: skip-existing-stems, duplicate-tracks-in-queue, archive, delete, nothing, add-available-regular-as-traktor
+- force stopProcessing if Traktor is opened
+- TraktorUtilities Instructions cleaned up
+- StemsColors in TraktorUtilities removed. Because replaced by global StemsColors
+- fix: LonelyStems settings text clarifications
+- feat: filters for algorithm & offset in Traktor Utilities table
+- Sidebar: fix: traktor utilities "new" badge
+- loadTraktorCollection: move to trash instead of delete
+- UI elements for Lonely STEMS
+- feat: RemoveStemsAlertDialog (individual remove for now)
+- fix: error handling when reading encoded_by from STEMS file
+- feat: Traktor Utilities: New table view. Sorting & Filtering
+- feat: Traktor Utilities: Now it shows all tracks in Traktor Collection. Both the ones that have STEMS & the ones that don't
+- feat: Traktor Utilities: See algorithm of the STEMS track that is already created for the original
+- feat: Traktor Utilities: Filter whole table to see STEMS tracks of particular algorithm
+- feat: Traktor Utilities: Add tracks from Traktor Utilities table directly to the Queue (Convert page). Option to add these tracks as "Traktor" type tracks in queue. "Traktor" tracks in the Queue (have Traktor logo next to them) trigger adding them to the collection.nml once the conversion is done, along with transferring metadata/beatgrid/hotcues. This part is very experimental, but worked pretty good in my testing. This means that you now don't need to add STEMS to Traktor manually -- it's done by NUO-STEMS itself
+- feat: Traktor Utilities: "Change STEMS colours" is now a separate button. Also, colours selection is now using colours from General Settings page
+- feat: Traktor Utilities: "Transfer" button is now "Sync" button. Sufficient speed improvements when transferring metadata/hotcues/beatgrid
+- feat: Traktor Utilities: Settings related to "Traktor Utilities" are now part of "Settings" page
+- feat: Traktor Utilities: Buttons to select collection, refresh collection, reset collection are now simplified and put at the top bar of the app
+- feat: Traktor Utilities: "Instructions" button is now put at the top bar of the app
+- feat: Traktor Utilities: Each track now has "add to queue" button
+- feat: Traktor Utilities: Each track now has "delete" button to remove STEMS file from collection & also put the file to system trash bin
+- feat: Traktor Utilities: Multi-select tracks to "add to queue" or "delete"
+- feat: Traktor Utilities: Ability to manually set "offset" for transferring hotcues & beatgrid between original & STEMS versions of the track. Now more streamlined & has "dashed border" if manual offset is set
+- feat: Traktor Utilities: Modal window to "remove" STEMS files
+- feat: Traktor Utilities: Modal window to "reconvert" STEMS tracks when existing STEMS track algorithm is different from the "Settings" algorithm
+- feat: Traktor Utilities: Modal window to "replace-regular-with-traktor". When tracks were added to the Queue as just regular tracks, but you want to replace them with "Traktor" tracks type (which, as described above, adds these STEMS tracks to collection once the conversion is done in the Queue)
+- feat: Traktor Utilities: "Lonely STEMS" actions at the app start. What to do in case there is no matching Original track in Traktor Collection. For example, you deleted Original track from the collection & want STEMS version to be deleted automatically
+- feat: Convert page: Now tracks that were added to the Queue from "Traktor Utilities" page as "Traktor" tracks have Traktor Pro logo next to them
+
+**3.1.0-beta.1** - Apr 20, 2024
+- fix: additional activation Windows UUID fix
+- fix: potential fix for UUID on Windows (WMIC deprecated)
+- fixed: filtering of virtual table
+- feat: virtualized table in Traktor Utilities
+- feat: Traktor Utilities: Much improved precision when transferring hotcues & beatgrids. Missed ratio on my 2300 tracks collection is 1.70%
+- feat: Traktor Utilities: Much increased speed of transfer
+- fix: Traktor Utilities: STEMS colors are now changed for all STEMS in the collection. Previously it was only for "matched pairs"
+- feat: Traktor Utilities: Ability to set "manual offset" in milliseconds between original & STEMS version. Useful when Traktor Utilities calculates offset wrong. Available in Traktor Utilities -> Transfer section -> See all matched tracks
+- feat: Traktor Utilities: Now NUO-STEMS checks if Traktor Pro is opened & warns the user to close Traktor before doing the transfer
+- feat: Convert page: All newly-converted STEMS now have additional 100ms of silence at the beginning of the track. This is needed for properly transfer of Hotcues & Beatgrids in Traktor Utilities
+- feat: Settings: Update Channel. You can now select which version of NUO-STEMS you want to use & keep up to date. Available options: default, stable, beta, alpha. Useful when you want to try some of the cutting edge features
+
+**3.1.0-alpha.10** - Apr 7, 2024
+- feat: change manual offset from TraktorUtilities in renderer
+
+**3.1.0-alpha.8** - Apr 1, 2024
+- feat: change STEMS color separated
+- feat: checkIfTraktorIsRunning on UI
+
+**3.1.0-alpha.7** - Mar 30, 2024
+- improved offset algorithm
+
+**3.1.0-alpha.5** - Mar 26, 2024
+- 100ms silence added
+- remove changelog from git. Replace with link to website
+- fix: encoded_by shall contain nuo-stems version
+- new algorithm for offset (Big Boom)
+- feat: loadTraktorCollection speed boost
+
+**3.0.0** - Mar 12, 2024
+:::info
+- Release
+:::
+
+**3.0.0-beta.21** - Mar 9, 2024
+- feat: skipAddingSTEMStoQueue
+- fix: uppercase extensions
+
+**3.0.0-beta.17** - Aug 13, 2023
+- fix: corrupted stereo wav
+
+**3.0.0-beta.15** - Jul 17, 2023
+- fix: mdx_extra on mac generating broken stems. Fall back to "cpu"
+- fix: incorrect coverart transfer for Instrumental & Acapella
+- potential fix: $ sign in filename crashing on Windows
+
+**3.0.0-beta.14** - Jul 9, 2023
+- fix: .stem.m4a tracks being omitted by .m4a filter in Traktor Utilities
+- fix: vocal.wav file not being saved
+
+**3.0.0-beta.13** - Jun 27, 2023
+- fix: instrumentalAcapella metadata not being transferred properly in some cases
+- fix: m4a originals causing Traktor Utilities to freeze
+
+**3.0.0-beta.11** - Jun 22, 2023
+- fix: potential fix of hotcues drift on some tracks
+- fix: transfer COLOR original => STEM
+- fix: check if collection file exists when determining latest
+- fix: incorrect .stem.m4a search when "same as input folder structure"
+
+**3.0.0-beta.10** - Jun 3, 2023
+- fix: escape special characters in file names
+
+**3.0.0-beta.9** - Jun 1, 2023
+- feat: prevent computer sleep (power save)
+- fix: glob collection.nml search on Windows
+- feat: GPU/MPS acceleration on Mac
+- feat: show currently selected device at the header
+
+**3.0.0-beta.7** - May 27, 2023
+- feat: warnings & ability to disable saving to .stem.m4a
+- feat: save Instrumental & Acapella (mp3, wav)
+- fix: algorithm selected styles
+
+**3.0.0-beta.6** - May 25, 2023
+- feat: stem compression (aac / alac)
+- fix: stems colors not encoded properly, so Traktor overwrote
+
+**3.0.0-beta.5** - May 23, 2023
+- fix: Windows updater cannot close the app
+- feat: confirm modal when clearing queue
+- changed default algorithm to 'htdemucs', added "Quality" labels
+- feat: progress bar on icon in Tray
+- feat: check if converting is stopped before using Traktor Utilities
+- feat: custom top bar menu
+- feat: limit Traktor Utilities to last # pairs
+- feat: loading Traktor collection is now not freezing the app
+- feat: stems colors change in Traktor Utilities
+- feat: backup traktor collection on load
+- feat: Traktor Utilities (except colors)
+- feat: working transfer of all metadata & hotcues in "Traktor Utilities"
+- fix: showing skipped stems modal
+- resetTrackProgress fixed
+- feat: sidebar progress
+- feat: skip existing tracks modal
+- feat: Select Input Folder & it's customizations
+- feat: OutputFolder modal on launch
+- feat: table - scroll to currently processing
+- feat: "Same as Original" output folder
+- feat: reset track progress in the table
+- feat: hard reset in settings
+- feat: algorithm modal on launch & radio styles
+- feat: removed mdx_extra_q from algorithms
+- feat: top row of benchmark tiles
+- feat: cpuCores setting, M1/Intel demucs builds separated for performance
+- feat: select device
+- feat: Windows build
+- feat: open logs dir in settings
+- feat: build for x86 & arm64 on M1
+- feat: start/stop processing implemented
+- feat: cancel processing draft implementation
+
+...
+
+...
+
+...
+
+**Earlier dev builds of 3.0.0 are not listed.**
