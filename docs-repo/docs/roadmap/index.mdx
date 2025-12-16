@@ -14,8 +14,8 @@
 
 Then I can create a smart list in Traktor again and/or search for it in the browser.
 
-- [ ] Figure out the best way to migrate from .stem.m4a (and no originals) to linked native stems.
-    - Use case: user only has .stem.m4a files in their collection, and no originals.
+- [ ] Figure out the best way to migrate from NUO-STEMS 3 .stem.m4a (and no originals) to linked native stems.
+    - Use case: user only has NUO-STEMS 3 .stem.m4a files in their collection, and no originals.
         - [ ] Proposal (have to experiment if AUDIO_ID stays the same):
             - [ ] Extract original mix from .stem.m4a
             - [ ] Replace file path, STEMS property in ENTRY in collection with new “original”.
@@ -30,8 +30,10 @@ Then I can create a smart list in Traktor again and/or search for it in the brow
         2. automatically adding tracks not yet converted when Traktor is closed
 
         Just having 1. would be nice, since I sometimes open Traktor to resolve some issue (f.e. analyze a track) but then forget to restart processing once I close Traktor.
-- [ ] How to use another computer to convert stems?
-    :::info
+- [x] How to use another computer to convert stems?
+    <details>
+    <summary>Click to expand technical details</summary>
+
     - [ ] how to know AUDIO_ID of the original track on the computer which doesn't have Traktor installed (e.g. your gaming NVIDIA PC)?
         - [ ] Your suggestion is actually quite clever... Hmmm... I can definitely write my own "hash" or for simplicity - "original filename" into .stem.m4a or .stem.mp4. 
         - [ ] Let me think about it for a day or two to understand the most robust way 🙂
@@ -73,15 +75,15 @@ Then I can create a smart list in Traktor again and/or search for it in the brow
         Edit: FLAC, MP3, AIFF are fine (same on Mac & Win)
 
         Also, added some comments here: https://community.native-instruments.com/discussion/49074/bug-traktor-does-not-play-first-50ms-of-alac-files#latest
-    :::
+    </details>
 
 - [ ] News popup on app startup. Linked to Blog.
 - [ ] Add Traktor playlists support. (see collection tree on the left side of the app)
 
 ## Hypothetical feature list:
 - [ ] Offline licensing. Ability to use NUO-STEMS 4 without an internet connection.
-- [ ] Traktor Utilities: extract individual stems from .stem.mp4 or .stem.m4a file
-- [ ] It would be good if "Show STEMS file" were available from "Traktor Pro 4" tab (for converted files)
+- [x] Traktor Utilities: extract individual stems from .stem.mp4 or .stem.m4a file
+- [x] It would be good if "Show STEMS file" were available from "Traktor Pro 4" tab (for converted files)
 - [ ] Repair broken links for TP4 stems.
     - [ ] Identify .stem.mp4 tracks in Traktor Stems folder that don’t have correct flag in collection.nml
     - [ ] Another interesting feature would be that Nuo-Stems detects the stems in the Traktor's preferences folder that are not associated with an original file, so you could clean up and free up disk space (i.e. if you move or delete an original file, the stem will remain in the stems folder, it won't be automatically deleted).
@@ -133,3 +135,4 @@ Then I can create a smart list in Traktor again and/or search for it in the brow
 
 On the .stem.m4a song I loaded in VirtualDJ on Windows the 'Kick' stem is empty, the 'Hi Hat' stem is the Nuo Stems 'Drums' stem. All other stems are as you'd expect.
 - [ ] Denon Engine integration exploration.
+- [x] Add to queue position (top/bottom) setting. Would you be able to bring back the feature to add to top by default? It's a bit annoying that it adds to bottom and I have to drag to the top
