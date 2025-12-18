@@ -6,6 +6,32 @@ Releases are listed in chronological order (newest first) and include all the ch
 
 ### Changelog
 
+**4.0.0-alpha.42**
+
+**This release is a major overhaul of the app UX.** The idea is to align with Traktor's UX and make it more intuitive and user-friendly to use NUO-STEMS 4 in "Native TP4" mode.
+
+- feat: Settings: Auto-start processing when NUO-STEMS launches
+- feat: Settings: Auto-start processing when Traktor collection is loaded
+- feat: stop Queue in Native mode or if there are Traktor tracks in progress when TP4 is launched
+- misc: refactor location of "Show Original File" and hide it from "Actions" menu
+- feat: improve UX for adding Traktor tracks to the Queue: only warn if track is in Queue and not converted yet
+- fix: make Stems Colors hue selector less ambiguous
+- feat: remove "File" column on Traktor Pro 4 tab and replace it with right-click menu item
+- feat: show both algorithm and queue status per track on Traktor Pro 4 tab
+- misc: select column width reduced
+- feat: show/hide Home cards based on NuoStemsMode
+- feat: remove "Download but install later" option when an update is available to simplify UX
+- misc: remove "sum of stems = original" instructions in AlgorithmRadio component
+- fix: right-click Queue menu overflowing window
+- misc: Tables row colors now have more contrast
+- feat: update NuoStemsModeRadio to include recommended option for Traktor Pro 4
+- misc: time remaining shows "-- : -- : --" when no tracks are processed yet
+- feat: Queue Tabs filter now defaults to "all"
+- feat: in Native TP4 mode, show Queue as popup window instead of tab. Visible when clicking on Top Tiles (Benchmarks)
+- feat: hide QueueDragAndDrop and Adding files to Queue buttons in Native TP4 mode
+- feat: update OutputFolderSelector and SameAsOriginalFolderToggle to reflect NuoStems mode
+- feat: enhance sidebar menu filtering based on NuoStems mode
+
 **4.0.0-alpha.41**
 - feat: Traktor Utilities: extract individual stems from .stem.mp4 or .stem.m4a file and save as .wav files.
 - feat: Settings: Position for new tracks in queue (top or bottom)

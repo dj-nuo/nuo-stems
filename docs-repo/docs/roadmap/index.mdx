@@ -7,6 +7,7 @@
 - [ ] Everything else.
 
 ## Feature list:
+- [ ] Make text in app not selectable.
 - [ ] It would definitely be very cool if NS4 had an option to add automated metadata: for example, a fixed #tag that could be added to the comments or comments 2. Ideally, it would also indicate whether it was generated with #BS or #mel_band. For example, #NS4 mel / #NS4 bs
 
 >I will not include algorithm into it.
@@ -21,15 +22,6 @@ Then I can create a smart list in Traktor again and/or search for it in the brow
             - [ ] Replace file path, STEMS property in ENTRY in collection with new “original”.
 - [ ] Change STEMS colors
 - [ ] So what does this mean for our old stems? Does this automatically replace them or do we have to reanalyse the library and manually discard the old ones?
-- [ ] Auto-start the queue when the app is launched if there are non-processed tracks in the queue.
-    - any thoughts on an auto-convert mode? ie. which automatically queues up any tracks in the Traktor collection that are not yet converted as soon as Traktor is closed.
-
-        this basically needs two things:
-
-        1. auto start when the queue is not empty and Traktor is not running
-        2. automatically adding tracks not yet converted when Traktor is closed
-
-        Just having 1. would be nice, since I sometimes open Traktor to resolve some issue (f.e. analyze a track) but then forget to restart processing once I close Traktor.
 - [x] How to use another computer to convert stems?
     <details>
     <summary>Click to expand technical details</summary>
@@ -82,8 +74,6 @@ Then I can create a smart list in Traktor again and/or search for it in the brow
 
 ## Hypothetical feature list:
 - [ ] Offline licensing. Ability to use NUO-STEMS 4 without an internet connection.
-- [x] Traktor Utilities: extract individual stems from .stem.mp4 or .stem.m4a file
-- [x] It would be good if "Show STEMS file" were available from "Traktor Pro 4" tab (for converted files)
 - [ ] Repair broken links for TP4 stems.
     - [ ] Identify .stem.mp4 tracks in Traktor Stems folder that don’t have correct flag in collection.nml
     - [ ] Another interesting feature would be that Nuo-Stems detects the stems in the Traktor's preferences folder that are not associated with an original file, so you could clean up and free up disk space (i.e. if you move or delete an original file, the stem will remain in the stems folder, it won't be automatically deleted).
@@ -135,4 +125,3 @@ Then I can create a smart list in Traktor again and/or search for it in the brow
 
 On the .stem.m4a song I loaded in VirtualDJ on Windows the 'Kick' stem is empty, the 'Hi Hat' stem is the Nuo Stems 'Drums' stem. All other stems are as you'd expect.
 - [ ] Denon Engine integration exploration.
-- [x] Add to queue position (top/bottom) setting. Would you be able to bring back the feature to add to top by default? It's a bit annoying that it adds to bottom and I have to drag to the top
