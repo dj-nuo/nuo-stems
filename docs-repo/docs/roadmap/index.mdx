@@ -7,7 +7,6 @@
 - [ ] Everything else.
 
 ## Feature list:
-- [ ] Make text in app not selectable.
 - [ ] It would definitely be very cool if NS4 had an option to add automated metadata: for example, a fixed #tag that could be added to the comments or comments 2. Ideally, it would also indicate whether it was generated with #BS or #mel_band. For example, #NS4 mel / #NS4 bs
 
 >I will not include algorithm into it.
@@ -70,7 +69,8 @@ Then I can create a smart list in Traktor again and/or search for it in the brow
     </details>
 
 - [ ] News popup on app startup. Linked to Blog.
-- [ ] Add Traktor playlists support. (see collection tree on the left side of the app)
+- [x] Add Traktor static playlists support. (see collection tree on the left side of the app)
+- [ ] Add Traktor Smart playlists support.
 
 ## Hypothetical feature list:
 - [ ] Offline licensing. Ability to use NUO-STEMS 4 without an internet connection.
@@ -124,4 +124,5 @@ Then I can create a smart list in Traktor again and/or search for it in the brow
 
 
 On the .stem.m4a song I loaded in VirtualDJ on Windows the 'Kick' stem is empty, the 'Hi Hat' stem is the Nuo Stems 'Drums' stem. All other stems are as you'd expect.
-- [ ] Denon Engine integration exploration.
+- [x] Denon Engine DJ integration exploration.
+    - Upon primary investigation, it seems that Denon Engine encodes .stems files in a very weird way and none of the decoders (ffmpeg, sox, mp4box) can decode them.

@@ -6,7 +6,23 @@ Releases are listed in chronological order (newest first) and include all the ch
 
 ### Changelog
 
-**4.0.0-alpha.42**
+**4.0.0-alpha.43** - Dec 20, 2025
+- feat: support for Traktor Pro 4 static playlists and folders
+- feat: new setting "Auto-starting queue processing when adding Traktor tracks"
+- feat: add CSV download functionality for file addition errors and improved error path display
+- feat: "Add to queue" logic now overwrites tracks that previously had errors
+- feat: prevent app text selection for a more "native" application feel
+- feat: increase default app window size to 1150x700 px
+- fix: update all duplicate tracks with the same `AUDIO_ID` when creating linked stems
+- fix: elements border radius in light mode
+- fix: adjust styling of "recommended" pill in `NuoStemsModeRadio`
+- fix: clarify `QueueFilterToggle` label and tooltip
+- fix: update header tooltip text for queue progress
+- misc: add "File Location" column to Traktor Pro 4 tab (available in column list)
+- misc: remove "Load Traktor Collection" setting
+- refactor: adjust max width of Home component for improved layout
+
+**4.0.0-alpha.42** - Dec 18, 2025
 
 **This release is a major overhaul of the app UX.** The idea is to align with Traktor's UX and make it more intuitive and user-friendly to use NUO-STEMS 4 in "Native TP4" mode.
 
@@ -32,14 +48,14 @@ Releases are listed in chronological order (newest first) and include all the ch
 - feat: update OutputFolderSelector and SameAsOriginalFolderToggle to reflect NuoStems mode
 - feat: enhance sidebar menu filtering based on NuoStems mode
 
-**4.0.0-alpha.41**
+**4.0.0-alpha.41** - Dec 16, 2025
 - feat: Traktor Utilities: extract individual stems from .stem.mp4 or .stem.m4a file and save as .wav files.
 - feat: Settings: Position for new tracks in queue (top or bottom)
 - feat: Added "Show STEMS File" button to the right-click menu on the "Traktor Pro 4" tab
 - fix: update placeholder text in AlgorithmFilter for improved clarity on Traktor Pro 4 tab
 - fix: enhance Adding Tracks to Queue to skip hidden files (starting with ".")
 
-**4.0.0-alpha.40**
+**4.0.0-alpha.40** - Dec 15, 2025
 - feat: Migrate .stem.m4a page. This page allows you to migrate .stem.m4a created in NUO-STEMS 4 to linked native TP4 stems.
 - feat: "CMD/CTRL" multi-column sort key on Traktor Pro 4 tab
 - feat: show algorithm used for converted tracks in the Queue page
@@ -47,7 +63,7 @@ Releases are listed in chronological order (newest first) and include all the ch
 - feat: add systemInfo to encoded_by metadata of .stem.m4a/mp4 (platform, os version, architecture)
 - refactor: improve layout and styling of StemColorsSettings component for better user interaction
 
-**4.0.0-alpha.39**
+**4.0.0-alpha.39** - Dec 11, 2025
 - feat: NuoStemsMode settings (Native, Legacy, DAW) & first-launch dialog popup
 - feat: add legacy mode warning dialog for Traktor collection file additions
 - feat: filter sidebar menu items based on NuoStemsMode setting
