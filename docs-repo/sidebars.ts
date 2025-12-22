@@ -25,6 +25,15 @@ const sidebars: SidebarsConfig = {
         "getting-started/daw-non-traktor",
       ],
     },
+    {
+      type: "category",
+      label: "Traktor Utilities",
+      items: [
+        "traktor-utilities/overview",
+        "traktor-utilities/migrate-stem-m4a-to-tp4",
+        "traktor-utilities/extract-individual-stems-from-stem-m4a",
+      ],
+    },
     "faq/index",
     "roadmap/index",
     "changelog/index",

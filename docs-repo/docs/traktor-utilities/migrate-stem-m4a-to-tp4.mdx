@@ -1,0 +1,47 @@
+---
+sidebar_position: 1
+title: Migrate .stem.m4a to natively linked TP4 stems
+---
+
+# Migrate .stem.m4a (created in NUO-STEMS 4) to natively linked TP4 stems
+
+
+Used with [Legacy / Export Mode](/docs/getting-started/legacy-traktor) to migrate .stem.m4a files generated on your Gaming PC to linked stems on your DJ Laptop Traktor collection.
+
+:::warning
+If your originals are in AAC/ALAC format, make sure both you Gaming PC and DJ Laptop are using the same platform (Windows/MacOS). Otherwise, you might experience issues with the migration process, as Traktor Pro 4 decodes AAC/ALAC differently on different platforms resulting in different track lengths and different AUDIO_ID's.
+
+This is a [known Traktor issue](https://community.native-instruments.com/discussion/comment/250963) and NUO-STEMS 4 does not fix it.
+
+If you're using FLAC/MP3/AIFF/etc originals, you're safe to use this utility on any platform.
+:::
+:::tip
+This is a free feature in NUO-STEMS 4. No license required.
+:::
+
+## Typical workflow
+1. Generate `.stem.m4a` files on your Gaming PC using [Legacy / Export Mode](/docs/getting-started/legacy-traktor)
+2. Copy `.stem.m4a` files to your DJ Laptop
+3. Open NUO-STEMS 4 on your DJ Laptop
+4. Navigate to the **Traktor Utilities** tab - "Migrate `.stem.m4a` (created in NUO-STEMS 4) to natively linked TP4 stems"
+![Screenshot](/img/shared/migrate-stem-m4a-to-tp4-blank.webp)
+5. Select the folder with `.stem.m4a` files you want to migrate
+![Screenshot](/img/shared/migrate-stem-m4a-to-tp4-example.webp)
+6. Click "Migrate All". Alternatively, you can click "Migrate" on individual `.stem.m4a` files to migrate only selected `.stem.m4a` files.
+
+:::tip 
+I recommend trying migrating just one `.stem.m4a` file first to make sure that the migration process is working correctly.
+If it's working correctly, you can then migrate all `.stem.m4a` files in the folder.
+:::
+
+7. Wait for the migration process to complete
+8. STEMS shall now be available in your Traktor collection as natively linked STEMS.
+![Screenshot](/img/shared/linked-stems-traktor-list-example.webp)
+9. Enjoy your stems!
+
+## Technical details
+- Utility tries to match original in collection with your `.stem.m4a` files by their file names without extension (e.g. `song.mp3` -> `song`).
+- If you have multiple original tracks or `.stem.m4a` files with the same file name, utility will use music fingerprint to match them.
+- Only `.stem.m4a` files created in NUO-STEMS 4 are supported. This is because NUO-STEMS 4 uses a different decoding mechanism than NUO-STEMS 3.
+- `.stem.m4a` files are copied as .stem.mp4 files to the Stems Folder specified in Traktor Pro 4 Preferences.
+![Screenshot](/img/shared/traktor-stems-folder-preferences-cropped.webp)
