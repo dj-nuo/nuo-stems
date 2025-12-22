@@ -1,0 +1,60 @@
+---
+sidebar_position: 3
+title: Traktor Pro related Settings
+---
+
+:::info
+**Note**: These settings are only available when NUO-STEMS Mode is set to ["Native Traktor Pro 4"](/docs/getting-started/native-traktor-pro-4) or ["Legacy / Export Mode"](/docs/getting-started/legacy-traktor). They are hidden when in ["DAW / Non-Traktor"](/docs/getting-started/daw-non-traktor) mode.
+:::
+
+## Compression of .stem.m4a
+
+Select the compression format for stem files:
+
+### AAC 320 kbps (CBR) - Recommended
+- Recommended for most use cases
+- Provides high quality with constant bitrate
+- As of Traktor Pro 4, 320 kbps CBR AAC is used by native Traktor stems
+
+### AAC 256 kbps (VBR)
+- Good quality with smaller file size
+- Default in Native Instruments "Stem Creator" software
+
+### ALAC (Lossless)
+- **Not recommended**. See warnings below.
+- Lossless compression, preserves original quality in 16-bit 44100Hz
+- Results in larger file sizes
+
+:::warning
+ALAC encoded .stem.m4a seem to currently work only on macOS Traktor Pro (as of October 2025).
+:::
+:::warning
+Some ALAC encoded .stem.m4a files show corruption errors in Traktor Pro 4 at the end of the track. It doesn't affect the playback and seems to not crash Traktor. But I would advice to stay away from ALAC encoding for now.
+:::
+
+## STEMS Colors
+
+Customize the colors used for your STEMS in Traktor and on supported controllers.
+
+Changes apply to newly converted files only.
+
+:::tip
+Not all controllers support the full gamut of colors. If a selected color does not appear as expected, try experimenting with different values or use a preset optimized for your gear.
+:::
+
+:::info
+To update colors for previously converted files, use the [Traktor Utilities](/docs/traktor-utilities/overview) tools.
+:::
+
+## Auto-start Processing When Collection Loaded
+
+When enabled, NUO-STEMS will automatically start processing tracks in the queue as soon as the Traktor collection is successfully loaded.
+
+:::info
+Keep in mind that ["Auto-start processing" from Advanced tab](/docs/settings/advanced) in settings takes precedence over this setting.
+:::
+
+## Auto-start Processing When Adding Traktor Tracks
+
+When enabled, NUO-STEMS will automatically start processing tracks in the queue as soon as Traktor tracks are added to the queue.
+

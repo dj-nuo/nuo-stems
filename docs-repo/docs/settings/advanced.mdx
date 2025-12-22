@@ -1,0 +1,32 @@
+---
+sidebar_position: 2
+title: Advanced Settings
+---
+
+## GPU Acceleration
+
+Select the device used for processing:
+
+- **Auto** - Automatically detects and uses the best available device (GPU if available, otherwise CPU)
+- **Only CPU** - Forces CPU-only processing
+
+:::warning
+If your processing is stuck or fails on GPU, please select "Only CPU" option.
+:::
+
+### Supported GPUs
+
+- **NVIDIA GPUs** with CUDA & at least 4GB VRAM (Windows)
+- **Apple Silicon** (macOS)
+
+## Auto-start Processing
+
+When enabled, NUO-STEMS will automatically start processing tracks in the queue as soon as the application is launched.
+
+
+## Position for New Tracks in Queue
+
+Choose where new tracks are added to the queue:
+
+- **Top of Queue** - Adds tracks at the beginning, so they are processed first
+- **Bottom of Queue** - Adds tracks at the end, so they are processed after existing tracks

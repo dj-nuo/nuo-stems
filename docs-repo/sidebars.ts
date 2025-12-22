@@ -34,6 +34,11 @@ const sidebars: SidebarsConfig = {
         "traktor-utilities/extract-individual-stems-from-stem-m4a",
       ],
     },
+    {
+      type: "category",
+      label: "Settings",
+      items: ["settings/general", "settings/advanced", "settings/traktor-pro"],
+    },
     "faq/index",
     "roadmap/index",
     "changelog/index",

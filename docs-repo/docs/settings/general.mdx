@@ -1,0 +1,89 @@
+---
+sidebar_position: 1
+title: General Settings
+---
+
+## Preferred Algorithm
+
+Select the algorithm used for processing all tracks in the queue.
+
+### Available Algorithms
+
+#### mel_vocals_bs_others (Recommended)
+- **Vocals**: Processed with Mel-Band-RoFormer
+- **Drums, Bass & Other**: Processed with BS-RoFormer
+- Provides amazing quality, especially for vocals
+- [Algorithm link](https://github.com/KimberleyJensen/Mel-Band-Roformer-Vocal-Model)
+
+#### bs_roformer
+- New algorithm introduced in NUO-STEMS 4
+- Provides great quality for all stems
+- Vocals quality is similar to 'mel_vocals_bs_others'
+- Feel free to experiment and compare with 'mel_vocals_bs_others' - sometimes one or another brings better results
+- [Algorithm link](https://github.com/undef13/splifft)
+
+## Sum of Stems = Original Mix
+
+This option makes the sum of stems (drums, bass, other, vocals) exactly equal to the original mix.
+
+**Options:**
+- **AI Method** - Uses AI to distribute the difference across drums and other stems
+- **Disabled** - Stems are kept as clean as possible without ensuring the sum equals the original
+
+:::info
+**For DJing**: Keep this option enabled (AI Method) to ensure the sum of stems equals the original mix.
+
+**For Music Production**: It's recommended to disable this option to get cleaner individual stems.
+
+Due to the nature of audio separation algorithms, the output stems want to be as clean as possible, but this also means a small portion of audio information is lost. To mitigate this, NUO-STEMS calculates what audio information was lost and provides an option where the sum of individual stems equals the original audio mix.
+:::
+
+## Output Folder
+
+Select the folder where processed files will be saved.
+
+:::info
+**Note**: When using "Native Traktor Pro 4" mode, native (.stem.mp4) linked stems are saved in the folder configured in Traktor Pro 4 Preferences, not in the output folder set here. The output folder is only used for .wav files in Native mode.
+:::
+
+## Output to Original Folder
+
+When enabled, conversion results are saved to the same location as the original track.
+
+This applies to:
+- .stem.m4a files (in [Legacy / Export Mode](/docs/getting-started/legacy-traktor))
+- .wav stem files (if enabled)
+- Instrumental and acapella files (if enabled)
+
+## Keep WAV Files
+
+When enabled, the original WAV files (drums, bass, other, vocals, instrumental) will be saved in the output folder alongside the processed stems.
+
+### WAV Filename Template
+
+When "Keep WAV files" is enabled, you can select the template for stem filenames:
+
+- **Basic** - Just keeps the stem name. Example: `vocals.wav`
+- **Prepend** - Adds original filename before stem name. Example: `filename_vocals.wav`
+- **Append** - Adds original filename after stem name. Example: `vocals_filename.wav`
+
+### Append Metadata to WAV Filenames
+
+When enabled, conversion metadata (algorithm, sum of stems = original, app version) will be appended to WAV filenames.
+
+Example:
+`track1_vocals___algorithm-mel_vocals_bs_others___nullifySum-ai_distribute_on_drums_and_other___nuoStemsVersion-4.0.0-alpha.37.wav`
+
+## Save Instrumental & Acapella
+
+When enabled, instrumental (all stems except vocals) and acapella (vocals only) stems will be saved in the output folder alongside the processed stems.
+
+This is commonly used in non-Traktor DJ software.
+
+Metadata is migrated and "(acapella/instrumental)" is appended to the end of the title.
+
+You can select the encoding format for instrumental and acapella:
+
+- **MP3 @ 320 kbps** - Compressed format with high quality
+- **WAV** - Uncompressed format
+
