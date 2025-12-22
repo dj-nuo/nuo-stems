@@ -22,13 +22,13 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/docs/intro"
           >
-            Check out the NUO-STEMS 4 docs
+            NUO-STEMS 4 docs 🚀
           </Link>
         </div>
         or
         <div className={styles.buttons}>
           <Link className="button button--secondary button--lg" to="/docs/v3/">
-            Check out the NUO-STEMS 3 docs
+            NUO-STEMS 3 docs
           </Link>
         </div>
         or

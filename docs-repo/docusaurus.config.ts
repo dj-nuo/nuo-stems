@@ -119,10 +119,14 @@ const config: Config = {
           position: "right",
         },
         {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
+          to: "/docs/intro",
           position: "left",
-          label: "Documentation",
+          label: "Docs NUO-STEMS 4 🚀",
+        },
+        {
+          to: "/docs/v3/",
+          position: "left",
+          label: "Docs NUO-STEMS 3",
         },
         { to: "/blog", label: "Blog", position: "left" },
         {
