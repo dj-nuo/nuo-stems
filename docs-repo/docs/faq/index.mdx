@@ -70,6 +70,20 @@ Another argument for FLAC/ALAC originals is how mp3 gets decoded into WAV/FLAC/A
 
 If you're using "natively linked" 320 CBR NUO-STEMS 4 stems though, it relies on what's inside your collection (in your case - .mp3 originals). So if you're not using FLAC/ALAC in your collection - you won't be able to convert from FLAC/ALAC to "natively linked" STEMS as well (due to the mp3 decoding issues described above).
 
+### NUO-STEMS is "stuck" at "Checking License" or "License Check Failed"
+There might be few potential causes:
+
+1.  Your computer is not connected to the internet. NUO-STEMS requires internet connection on the startup to check the license.
+2.  Your provider/system/WiFi-router blocks `https://nuo-stems.com` from being reachable.
+    1.  Restart computer
+    2.  **Restart WiFi router**
+    3.  Launch NUO-STEMS
+3.  Windows PowerShell is for some reason "broken" on your computer
+    1.  Follow this guide to fix it:[link](https://support.slatedigital.com/hc/en-us/articles/20352080857363-Powershell-is-not-recognized)
+
+If none of the above helps - try settings your DNS to Google DNS: 8.8.8.8 and 8.8.4.4. Instructions: [link](https://developers.google.com/speed/public-dns/docs/using)
+
+
 ### I don't have originals in my collection, I only use .stem.m4a files. Can I still use NUO-STEMS 4?
 Yes, you have 2 options:
 1. Just re-convert your existing .stem.m4a files to NUO-STEMS 4 .stem.m4a files. The only benefit you're getting here is improved STEMS quality thanks to the new algorithms.
