@@ -126,3 +126,12 @@ Then I can create a smart list in Traktor again and/or search for it in the brow
 On the .stem.m4a song I loaded in VirtualDJ on Windows the 'Kick' stem is empty, the 'Hi Hat' stem is the Nuo Stems 'Drums' stem. All other stems are as you'd expect.
 - [x] Denon Engine DJ integration exploration.
     - Upon primary investigation, it seems that Denon Engine encodes .stems files in a very weird way and none of the decoders (ffmpeg, sox, mp4box) can decode them.
+
+Bugs:
+- [ ] Electron 26 (latest version supporting macOS 10.15) causes certain .wav files to fail extracting metadata. Fix involves upgrade to Electron 36+. This makes me deprecate macOS 10.15 and macOS 11 support.
+    - For now I will hold off from doing this fix.
+    - My plan:
+        - Release NUO-STEMS 3 updated version with analytics, so that I can collect stats about who is still using those old macOS versions.
+        - Wait 2 weeks to collect stats.
+        - If there are not many users with these old macOS versions - I'll release the update that fixes your .wav issue.
+    - There is also hope that upstream dependency that causes the issue fixes the bug. I reported it, but have low hopes it will be fixed.
