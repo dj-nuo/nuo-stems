@@ -21,7 +21,78 @@ Then I can create a smart list in Traktor again and/or search for it in the brow
             - [ ] Replace file path, STEMS property in ENTRY in collection with new “original”.
 - [ ] Change STEMS colors
 - [ ] So what does this mean for our old stems? Does this automatically replace them or do we have to reanalyse the library and manually discard the old ones?
-- [x] How to use another computer to convert stems?
+- [ ] News popup on app startup. Linked to Blog.
+- [x] Add Traktor static playlists support. (see collection tree on the left side of the app)
+- [ ] Add Traktor Smart playlists support.
+
+## Hypothetical feature list:
+- [ ] Offline licensing. Ability to use NUO-STEMS 4 without an internet connection.
+- [ ] Repair broken links for TP4 stems.
+    - [ ] Identify .stem.mp4 tracks in Traktor Stems folder that don’t have correct flag in collection.nml
+    - [ ] Another interesting feature would be that Nuo-Stems detects the stems in the Traktor's preferences folder that are not associated with an original file, so you could clean up and free up disk space (i.e. if you move or delete an original file, the stem will remain in the stems folder, it won't be automatically deleted).
+- [ ] Support AMD GPUs acceleration.
+    As of right now, AMD Rocm is not supported with PyTorch on Windows (only Linux).
+    There is some experimental support, but it requires [special system drivers](https://www.amd.com/en/resources/support-articles/release-notes/RN-AMDGPU-WINDOWS-PYTORCH-PREVIEW.html).
+    Not super UX-friendly, therefore not a good choice for NUO-STEMS. List of GPUs is also limited. And only Win 11.
+
+    Vulkan is not supported in PyTorch as well on Windows. Only on [Android via ExecuTorch](https://docs.pytorch.org/executorch/stable/backends/vulkan/vulkan-overview.html).
+
+    There seems to be a way to make ONNX work on AMD GPU on Windows, but not sure how stable it is.
+
+    Currently, NUO-STEMS uses frozen PyTorch for inference, but I had success previously testing ONNX. On MacOS it was slower, so I abandoned this idea. 
+    Anyways, my current priority is to make NVIDIA GPUs run properly on Windows using PyTorch. And when some future comes - I'll take a look at AMD GPUs and ONNX.
+
+- [ ] VirtualDJ integration exploration. Some users report that .stem.m4a files can be played in VirtualDJ.
+<details>
+<summary>Click to expand details</summary>
+
+    **User A reported**: 
+
+    Ok. Just tried on Windows again, VDJ v2025 b8909 . It does indeed work (now) on Windows 💯
+
+    All the info I could retrieve from the Song that it worked with:
+    Format Mpeg-4 Audio (AAC LC) .stem.m4a 
+
+    Steps I took before I loaded the song in VirtualDJ:
+    - Created a Folder in Windows Explorer named 'VirtualDJ Stems'.
+    - Copied some tracks into that folder to test.
+    - VDJ Settings - Search keyword 'stem'
+    - Performance - stemsRealtimeSeparation: Fully Disabled
+    - Performance -stemsSavedStems: Manual
+    - Performance - stemsFix: Don't use GPU
+    - Performance - stemsSavedFolder -> Linked to folder I created
+    - Loaded .stems.m4a song directly from the 'VirtualDJ Stems'-folder I created
+
+    I tried EXACTLY the same on macOS (Ventura 13.6.9 on MacBook Pro 13 M1 16GB) as far as I can tell: Same Settings, Same .stems.m4a file, copied to 'VirtualDJ Stems'-folder I created on macOS. VirtualDJ version v2025-m b8909 . On macOS unfortunately it did NOT work for me ... 🙁
+    Will contact Virtual DJ Support.
+
+    ---
+
+    To have 4 stems instead of 5 stems in VirtualDJ, you need to:
+    - Go get a 4 stem pad from the extensions rather than use the default 5
+
+    ![Screenshot](./img/vdj-example-1.webp)
+    the combined drums stem is called rhythm in VDJ if you're doing any commands IIRC 
+    also, if you ever want to get just the bass drum or just the hi hats (ish) just apply the filter to the drums
+
+</details>
+
+On the .stem.m4a song I loaded in VirtualDJ on Windows the 'Kick' stem is empty, the 'Hi Hat' stem is the Nuo Stems 'Drums' stem. All other stems are as you'd expect.
+- [x] Denon Engine DJ integration exploration.
+    - Upon primary investigation, it seems that Denon Engine encodes .stems files in a very weird way and none of the decoders (ffmpeg, sox, mp4box) can decode them.
+
+Bugs:
+- [ ] Electron 26 (latest version supporting macOS 10.15) causes certain .wav files to fail extracting metadata. Fix involves upgrade to Electron 36+. This makes me deprecate macOS 10.15 and macOS 11 support.
+    - For now I will hold off from doing this fix.
+    - My plan:
+        - Release NUO-STEMS 3 updated version with analytics, so that I can collect stats about who is still using those old macOS versions.
+        - Wait 2 weeks to collect stats.
+        - If there are not many users with these old macOS versions - I'll release the update that fixes your .wav issue.
+    - There is also hope that upstream dependency that causes the issue fixes the bug. I reported it, but have low hopes it will be fixed.
+
+
+Left for history:
+- [x] How to use another computer to convert stems? - already implemented in NUO-STEMS 4 - see [migrate .stem.m4a to natively linked TP4 stems](/docs/traktor-utilities/migrate-stem-m4a-to-tp4)
     <details>
     <summary>Click to expand technical details</summary>
 
@@ -67,71 +138,3 @@ Then I can create a smart list in Traktor again and/or search for it in the brow
 
         Also, added some comments here: https://community.native-instruments.com/discussion/49074/bug-traktor-does-not-play-first-50ms-of-alac-files#latest
     </details>
-
-- [ ] News popup on app startup. Linked to Blog.
-- [x] Add Traktor static playlists support. (see collection tree on the left side of the app)
-- [ ] Add Traktor Smart playlists support.
-
-## Hypothetical feature list:
-- [ ] Offline licensing. Ability to use NUO-STEMS 4 without an internet connection.
-- [ ] Repair broken links for TP4 stems.
-    - [ ] Identify .stem.mp4 tracks in Traktor Stems folder that don’t have correct flag in collection.nml
-    - [ ] Another interesting feature would be that Nuo-Stems detects the stems in the Traktor's preferences folder that are not associated with an original file, so you could clean up and free up disk space (i.e. if you move or delete an original file, the stem will remain in the stems folder, it won't be automatically deleted).
-- [ ] Support AMD GPUs acceleration.
-    As of right now, AMD Rocm is not supported with PyTorch on Windows (only Linux).
-    There is some experimental support, but it requires [special system drivers](https://www.amd.com/en/resources/support-articles/release-notes/RN-AMDGPU-WINDOWS-PYTORCH-PREVIEW.html).
-    Not super UX-friendly, therefore not a good choice for NUO-STEMS. List of GPUs is also limited. And only Win 11.
-
-    Vulkan is not supported in PyTorch as well on Windows. Only on [Android via ExecuTorch](https://docs.pytorch.org/executorch/stable/backends/vulkan/vulkan-overview.html).
-
-    There seems to be a way to make ONNX work on AMD GPU on Windows, but not sure how stable it is.
-
-    Currently, NUO-STEMS uses frozen PyTorch for inference, but I had success previously testing ONNX. On MacOS it was slower, so I abandoned this idea. 
-    Anyways, my current priority is to make NVIDIA GPUs run properly on Windows using PyTorch. And when some future comes - I'll take a look at AMD GPUs and ONNX.
-
-- [ ] VirtualDJ integration exploration. Some users report that .stem.m4a files can be played in VirtualDJ.
-    :::info
-    **User A reported**: 
-
-    Ok. Just tried on Windows again, VDJ v2025 b8909 . It does indeed work (now) on Windows 💯
-
-    All the info I could retrieve from the Song that it worked with:
-    Format Mpeg-4 Audio (AAC LC) .stem.m4a 
-
-    Steps I took before I loaded the song in VirtualDJ:
-    - Created a Folder in Windows Explorer named 'VirtualDJ Stems'.
-    - Copied some tracks into that folder to test.
-    - VDJ Settings - Search keyword 'stem'
-    - Performance - stemsRealtimeSeparation: Fully Disabled
-    - Performance -stemsSavedStems: Manual
-    - Performance - stemsFix: Don't use GPU
-    - Performance - stemsSavedFolder -> Linked to folder I created
-    - Loaded .stems.m4a song directly from the 'VirtualDJ Stems'-folder I created
-
-    I tried EXACTLY the same on macOS (Ventura 13.6.9 on MacBook Pro 13 M1 16GB) as far as I can tell: Same Settings, Same .stems.m4a file, copied to 'VirtualDJ Stems'-folder I created on macOS. VirtualDJ version v2025-m b8909 . On macOS unfortunately it did NOT work for me ... 🙁
-    Will contact Virtual DJ Support.
-
-    ---
-
-    To have 4 stems instead of 5 stems in VirtualDJ, you need to:
-    - Go get a 4 stem pad from the extensions rather than use the default 5
-
-    ![Screenshot](./img/vdj-example-1.webp)
-    the combined drums stem is called rhythm in VDJ if you're doing any commands IIRC 
-    also, if you ever want to get just the bass drum or just the hi hats (ish) just apply the filter to the drums
-
-    :::
-
-
-On the .stem.m4a song I loaded in VirtualDJ on Windows the 'Kick' stem is empty, the 'Hi Hat' stem is the Nuo Stems 'Drums' stem. All other stems are as you'd expect.
-- [x] Denon Engine DJ integration exploration.
-    - Upon primary investigation, it seems that Denon Engine encodes .stems files in a very weird way and none of the decoders (ffmpeg, sox, mp4box) can decode them.
-
-Bugs:
-- [ ] Electron 26 (latest version supporting macOS 10.15) causes certain .wav files to fail extracting metadata. Fix involves upgrade to Electron 36+. This makes me deprecate macOS 10.15 and macOS 11 support.
-    - For now I will hold off from doing this fix.
-    - My plan:
-        - Release NUO-STEMS 3 updated version with analytics, so that I can collect stats about who is still using those old macOS versions.
-        - Wait 2 weeks to collect stats.
-        - If there are not many users with these old macOS versions - I'll release the update that fixes your .wav issue.
-    - There is also hope that upstream dependency that causes the issue fixes the bug. I reported it, but have low hopes it will be fixed.
