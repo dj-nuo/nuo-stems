@@ -1,0 +1,42 @@
+---
+title: I have only .stem.m4a and no originals
+---
+
+If you only have `.stem.m4a` files (created in NUO-STEMS 3 or NUO-STEMS 4) in your collection and no original tracks, you have a few options:
+
+## Option 1: Re-convert existing .stem.m4a files
+
+You can re-convert your existing `.stem.m4a` files to NUO-STEMS 4 `.stem.m4a` files. The main benefit you'll get is improved STEMS quality thanks to the new algorithms in NUO-STEMS 4.
+
+:::info
+Upon my testing, AUDIO_ID of the new .stem.m4a (created in NUO-STEMS 4) shall be the same as previous .stem.m4a (created in NUO-STEMS 3). So you can potentially replace existing .stem.m4a files in-place. However, I would advise to check at least a few originals to make sure that everything is working correctly.
+
+Also, it's always a good idea to backup your collection & files before doing any major changes.
+
+NUO-STEMS 4 will also make sure to output correct filename (e.g. `song.stem.m4a` will be converted to `song.stem.m4a`).
+:::
+
+
+## Option 2: Migrate to Traktor Pro 4 approach
+
+If you want to migrate to the [Traktor Pro 4 approach](/docs/getting-started/native-traktor-pro-4) with both originals and "linked native" stems in your collection:
+
+:::info
+Currently, there is no straight-forward way to do this. But this feature is being looked into for the future. You might want to hold off from migration right now.
+:::
+
+If you still want to proceed with migration, you need to:
+
+1. Add originals to your collection.
+2. Analyze all originals in TP4 (no need to set hotcues).
+3. Close Traktor Pro 4.
+4. Open **NUO-STEMS 3** (not NUO-STEMS 4) and go to [Settings > Traktor Utilities](/docs/v3/traktor-utilities/general/). 
+5. Change "Transfer direction" to "STEMS to Original".
+6. Go to "Traktor Utilities" tab and click "Sync All".
+7. Now you have both originals and "linked native" stems in your collection synced. Originals shall have correct colors, hotcues, beatgrids, etc.
+    1. :::warning 
+        I would advice to check at least few originals to make sure that everything is synced correctly. 
+8. Delete all .stem.m4a files from your collection.
+9. Prooceed with generating new ["linked native"](/docs/getting-started/native-traktor-pro-4) stems from the originals using NUO-STEMS 4.
+
+

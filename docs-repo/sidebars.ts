@@ -40,6 +40,11 @@ const sidebars: SidebarsConfig = {
       label: "Settings",
       items: ["settings/general", "settings/advanced", "settings/traktor-pro"],
     },
+    {
+      type: "category",
+      label: "Tips & Workflows",
+      items: ["tips-and-workflows/only-stem-m4a-no-originals"],
+    },
     "faq/index",
     "roadmap/index",
     "changelog/index",
