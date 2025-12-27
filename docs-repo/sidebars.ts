@@ -34,6 +34,7 @@ const sidebars: SidebarsConfig = {
         "traktor-utilities/overview",
         "traktor-utilities/migrate-stem-m4a-to-tp4",
         "traktor-utilities/extract-individual-stems-from-stem-m4a",
+        "traktor-utilities/change-stems-colors",
       ],
     },
     {
