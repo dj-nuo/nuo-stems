@@ -1,0 +1,7 @@
+{
+    "updateRequired": true,
+    "updateRequiredForVersionEqualOrLowerThan": "4.0.0-alpha.48",
+    "title": "Turbulance Update required",
+    "description": "Sorry, but app has critical bug that prevents it from working correctly. Please download the latest version from the website to fix the issue.",
+    "downloadLink": "https://nuo-stems.com/"
+}
