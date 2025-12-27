@@ -1,10 +1,14 @@
 # FAQ
 
-## How does some feature work in NUO-STEMS?
-- See this video first that answers many questions: https://www.youtube.com/watch?v=ndHu0_1TLiY
-- Read [NUO-STEMS documentation](/)
+### How does some feature work in NUO-STEMS 3?
+- See these videos first that answer many questions: 
+    - https://www.youtube.com/watch?v=KTAMIDx9YWw
+    - https://www.youtube.com/watch?v=ndHu0_1TLiY
+- Read [NUO-STEMS 3 documentation](/docs/v3/)
 
-## Conversion get's "stuck" at some %
+import CommonTroubleshooting from '@site/src/components/CommonTroubleshooting.mdx';
+
+### Conversion get's "stuck" at some %
 It might happen for various reasons, but the most common one - your anti-virus (almost solely on Windows) deleted some files that NUO-STEMS installed.\
 To fix it there are 2 options:
 
@@ -29,68 +33,7 @@ In case you have issues with the second option - feel free to write me[here](htt
 Windows Defender. NUO-STEMS is not "signed" on Windows because it's incredible hard to obtain "EV Certificate". You need to have a company, various checks etc. At some point I tried to do that, but failed due to being situated in Ukraine. There are no such issues on Mac OS - everything is properly signed there.
 :::
 
-## Can NUO-STEMS replace Stem Creator by Native Instruments?
-First of all, here is the fix to Stem Creator to make it work with latest versions of Mac OS:[link](https://community.native-instruments.com/discussion/2946/stem-creator-m1-monterey-export-failed/p2)
+<CommonTroubleshooting />
 
-Secondly, here is the reason why "not":\
-Mostly because of "compressor" & "limiter" that are present in Stem Creator. It looks like some VST magic that NI built into Stem Creator to provide real-time feedback. I'm not familiar with this technology, so your best luck remains with Stem Creator 🙂
 
-## NUO-STEMS is "stuck" at "Checking License" or "License Check Failed"
-There might be few potential causes:
 
-1.  Your computer is not connected to the internet. NUO-STEMS requires internet connection on the startup to check the license.
-2.  Your provider/system/WiFi-router blocks `https://nuo-stems.com` from being reachable.
-    1.  Restart computer
-    2.  **Restart WiFi router**
-    3.  Launch NUO-STEMS
-3.  Windows PowerShell is for some reason "broken" on your computer
-    1.  Follow this guide to fix it:[link](https://support.slatedigital.com/hc/en-us/articles/20352080857363-Powershell-is-not-recognized)
-
-If none of the above helps - try settings your DNS to Google DNS: 8.8.8.8 and 8.8.4.4. Instructions: [link](https://developers.google.com/speed/public-dns/docs/using)
-
-## I bought new computer, how do I activate/transfer my license to it?
-If you want to transfer license to new computer - you need to [send me](https://www.facebook.com/djnuo):
-
-1.  Your email that you used for purchase
-2.  New computer uuid - https://nuo-stems.com/uuid
-
-##  NUO-STEMS crashes at launch
-Try deleting these folders and then start NUO-STEMS again:
-
-1. On Windows:
-    1. `C:\Users\YOUR_USERNAME\AppData\Local\Programs\NUO-STEMS-3\`
-    2. And also remove: `C:\Users\YOUR_USERNAME\AppData\Roaming\NUO-STEMS-3\`
-2. On Mac OS:
-    1. `/Users/YOUR_USERNAME/Library/Application Support/nuo-stems-3/`
-
-If it doesn't help:
-
-1. Launch NUO-STEMS and let it "crash"
-2. [Send me](https://www.facebook.com/djnuo) main.log file from:
-    1. Windows logs location: `C:\Users\YOUR_USERNAME\AppData\Roaming\nuo-stems-3\logs\main.log`
-    2. Mac OS logs location: `/Users/YOUR_USERNAME/Library/Logs/nuo-stems-3/main.log`
-
-## Where can I read about what's coming & talk to other users?
-All the communication is on the [Facebook Group](https://www.facebook.com/groups/nuostems/)
-
-Join our Discord server: https://discord.gg/dfpk9FbvJE
-
-Some things are also posted in the [NUO-STEMS blog](https://docs.nuo-stems.com/blog/)
-
-##  I don't have Facebook Page, how can I get support?
-You can contact me on djnuo95@gmail.com
-
-##  [error] Unhandled Exception UnhandledRejection Error: Python exited with code 255
-Solution: change Preferred Algorithm in “Settings” from MPS to CPU.
-
-## Can I use my license on 2 computers?
-One license is only for one computer.
-
-If you want to transfer your license to another computer – see license transferring section above 🙂
-
-## My collection.nml got corrupted, how do I fix it?
-NUO-STEMS v3 automatically creates a backup of your collection.nml on every launch. If you have a problem with your collection.nml - try to revert it to the backup.
-
-Backups are stored in the **"Collection Backups NUO-STEMS 3"** folder in the same folder as your collection.nml. Example for Traktor 4.1.1:
-- MacOS: `/Users/YOUR_USERNAME/Documents/Native Instruments/Traktor 4.1.1/Collection Backups NUO-STEMS 3`
-- Windows: `C:\Users\YOUR_USERNAME\Documents\Native Instruments\Traktor 4.1.1\Collection Backups NUO-STEMS 3`

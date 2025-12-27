@@ -42,24 +42,22 @@ GPU acceleration requires:
 - NVIDIA GPU with 4GB or more VRAM on Windows.
 - Apple Silicon on MacOS.
 
-### I want to generate stems on my Gaming PC and then use them on my DJ Laptop. Can I do this?
-Yes, you can use [Legacy / Export Mode](/docs/getting-started/legacy-traktor) to generate .stem.m4a files on your Gaming PC.
-Then you can use [Traktor Utilities](/docs/traktor-utilities/migrate-stem-m4a-to-tp4) to migrate .stem.m4a files to linked stems on your DJ Laptop Traktor collection.
-Using Traktor Utilities doesn't require paid license.
+import GamingPCToDJLaptop from '@site/src/components/GamingPCToDJLaptop.mdx';
+
+<GamingPCToDJLaptop />
 
 ### I use only Traktor Pro 3, can I still use NUO-STEMS 4?
 Yes, you can use NUO-STEMS 4 with Traktor Pro 3 by generating .stem.m4a files (aka "legacy" stems).
 BUT, there are no ["Traktor Utilities"](/docs/v3/traktor-utilities/general/) similar to NUO-STEMS 3 which would allow you to transfer metadata between originals and stems.
-Essentially, you need to treat .stem.m4a files as first class citizens - and get rid of original files (e.g. MP3/WAV/etc).
+Essentially, you need to treat .stem.m4a files as [first class citizens](/docs/tips-and-workflows/only-stem-m4a-no-originals) - and get rid of original files (e.g. MP3/WAV/etc).
 
 This is a deliberate decision - I want you to support Traktor team by upgrading to Traktor Pro 4. I strongly believe that 50$ (as of Black Friday deals) is a great value for what you’re getting - it’s an investment into future of Traktor.
 
 You can read more about this in [Legacy / Export Mode](/docs/getting-started/legacy-traktor) section.
 
-### Can I convert my existing .stem.m4a files (created in NUO-STEMS 3) to NUO-STEMS 4 native stems?
-No. Because NUO-STEMS 4 now has a different decoding mechanism. This results in a different track length than NUO-STEMS 3 (which relied on additional silence added at the beginning of the track and offset from the original track)
+import MigratingFromNS3 from '@site/src/components/MigratingFromNS3.mdx';
 
-NUO-STEMS 4 now has exactly the same track length as the original track.
+<MigratingFromNS3 />
 
 ### If I'm using 320 AAC CBR stems, is it still better to process using FLAC files vs high quality MP3? I keep most of my music in mp3 (but I convert them from FLAC myself using high quality conversion)
 Depends on your "lossless religion" 😅. I'd say mp3 is fine. I just keep my library original all ALAC, as it's easier to download them this way. 
@@ -70,18 +68,15 @@ Another argument for FLAC/ALAC originals is how mp3 gets decoded into WAV/FLAC/A
 
 If you're using "natively linked" 320 CBR NUO-STEMS 4 stems though, it relies on what's inside your collection (in your case - .mp3 originals). So if you're not using FLAC/ALAC in your collection - you won't be able to convert from FLAC/ALAC to "natively linked" STEMS as well (due to the mp3 decoding issues described above).
 
-### NUO-STEMS is "stuck" at "Checking License" or "License Check Failed"
-There might be few potential causes:
+### My Anti-Virus complaints about NUO-STEMS 4 on Windows
+If you're using Windows, your Anti-Virus might complain about NUO-STEMS 4. 
 
-1.  Your computer is not connected to the internet. NUO-STEMS requires internet connection on the startup to check the license.
-2.  Your provider/system/WiFi-router blocks `https://nuo-stems.com` from being reachable.
-    1.  Restart computer
-    2.  **Restart WiFi router**
-    3.  Launch NUO-STEMS
-3.  Windows PowerShell is for some reason "broken" on your computer
-    1.  Follow this guide to fix it:[link](https://support.slatedigital.com/hc/en-us/articles/20352080857363-Powershell-is-not-recognized)
+This is because NUO-STEMS is not "signed" on Windows because it's incredibly hard to obtain "EV Certificate". You need to have a company, various checks etc. At some point I tried to do that, but failed due to being situated in Ukraine. There are no such issues on MacOS - everything is properly signed there.
 
-If none of the above helps - try settings your DNS to Google DNS: 8.8.8.8 and 8.8.4.4. Instructions: [link](https://developers.google.com/speed/public-dns/docs/using)
+
+import CommonTroubleshooting from '@site/src/components/CommonTroubleshooting.mdx';
+
+<CommonTroubleshooting />
 
 
 ### I don't have originals in my collection, I only use .stem.m4a files. Can I still use NUO-STEMS 4?

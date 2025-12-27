@@ -1,0 +1,12 @@
+
+### Can I convert my existing .stem.m4a files (created in NUO-STEMS 3) to NUO-STEMS 4 native stems?
+No. Because NUO-STEMS 4 now has a different decoding mechanism. This results in a different track length than NUO-STEMS 3 (which relied on additional silence added at the beginning of the track and offset from the original track)
+
+NUO-STEMS 4 now has exactly the same track length as the original track.
+
+### So what does this mean for our NUO-STEMS 3 stems? Does NS4 automatically replace them or do we have to reanalyse the library and manually discard the old ones?
+
+NUO-STEMS 4 doesn't work with NUO-STEMS 3 stems (as described in the previous section). You can either:
+- generate new [linked native stems](/docs/getting-started/native-traktor-pro-4) in NUO-STEMS 4 for your originals and therefore get rid of NUO-STEMS 3 stems.
+- or [generate new NUO-STEMS 4 .stem.m4a files and replace existing .stem.m4a files in-place](/docs/tips-and-workflows/only-stem-m4a-no-originals) and use them as standalone files.
+

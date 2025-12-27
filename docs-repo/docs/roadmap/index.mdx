@@ -1,12 +1,12 @@
 # Roadmap
 
-## Priorities:
+### Priorities:
 - [x] Fix all the bugs that users have reported.
 - [x] Windows support.
 - [x] MacOS Intel support.
 - [ ] Everything else.
 
-## Feature list:
+### Feature list:
 - [ ] It would definitely be very cool if NS4 had an option to add automated metadata: for example, a fixed #tag that could be added to the comments or comments 2. Ideally, it would also indicate whether it was generated with #BS or #mel_band. For example, #NS4 mel / #NS4 bs
 
 >I will not include algorithm into it.
@@ -14,16 +14,10 @@
 
 Then I can create a smart list in Traktor again and/or search for it in the browser.
 
-- [ ] Figure out the best way to migrate from NUO-STEMS 3 .stem.m4a (and no originals) to linked native stems.
-    - Use case: user only has NUO-STEMS 3 .stem.m4a files in their collection, and no originals.
-        - [ ] Proposal (have to experiment if AUDIO_ID stays the same):
-            - [ ] Extract original mix from .stem.m4a
-            - [ ] Replace file path, STEMS property in ENTRY in collection with new “original”.
-- [ ] So what does this mean for our old stems? Does this automatically replace them or do we have to reanalyse the library and manually discard the old ones?
 - [x] Add Traktor static playlists support. (see collection tree on the left side of the app)
 - [ ] Add Traktor Smart playlists support.
 
-## Hypothetical feature list:
+### Hypothetical feature list:
 - [ ] Offline licensing. Ability to use NUO-STEMS 4 without an internet connection.
 - [ ] Support AMD GPUs acceleration.
     As of right now, AMD Rocm is not supported with PyTorch on Windows (only Linux).
@@ -76,7 +70,8 @@ On the .stem.m4a song I loaded in VirtualDJ on Windows the 'Kick' stem is empty,
 - [x] Denon Engine DJ integration exploration.
     - Upon primary investigation, it seems that Denon Engine encodes .stems files in a very weird way and none of the decoders (ffmpeg, sox, mp4box) can decode them.
 
-Bugs:
+### Bugs:
+- [ ] Long tracks (e.g. 30 minutes and more) crash the app.
 - [ ] Electron 26 (latest version supporting macOS 10.15) causes certain .wav files to fail extracting metadata. Fix involves upgrade to Electron 36+. This makes me deprecate macOS 10.15 and macOS 11 support.
     - For now I will hold off from doing this fix.
     - My plan:

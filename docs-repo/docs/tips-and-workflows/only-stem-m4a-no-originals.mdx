@@ -2,14 +2,16 @@
 title: I have only .stem.m4a and no originals
 ---
 
+> **Question:** I only have `.stem.m4a` files in my collection and no originals. What should I do? Should I use [natively linked](/docs/getting-started/native-traktor-pro-4) STEMS in Traktor Pro 4?
+
 If you only have `.stem.m4a` files (created in NUO-STEMS 3 or NUO-STEMS 4) in your collection and no original tracks, you have a few options:
 
 ## Option 1: Re-convert existing .stem.m4a files
 
-You can re-convert your existing `.stem.m4a` files to NUO-STEMS 4 `.stem.m4a` files. The main benefit you'll get is improved STEMS quality thanks to the new algorithms in NUO-STEMS 4.
+You can re-convert your existing `.stem.m4a` files to NUO-STEMS 4 `.stem.m4a` files using [Legacy / Export Mode](/docs/getting-started/legacy-traktor). The main benefit you'll get is [improved STEMS quality](/docs/stems-separation-quality) thanks to the new algorithms in NUO-STEMS 4.
 
 :::info
-Upon my testing, AUDIO_ID of the new .stem.m4a (created in NUO-STEMS 4) shall be the same as previous .stem.m4a (created in NUO-STEMS 3). So you can potentially replace existing .stem.m4a files in-place. However, I would advise to check at least a few originals to make sure that everything is working correctly.
+Upon my testing, AUDIO_ID of the new .stem.m4a (created in NUO-STEMS 4) shall be the same as previous .stem.m4a (created in NUO-STEMS 3). So you can potentially replace existing .stem.m4a files in-place. However, I would advise to check at least a few files to make sure that everything is working correctly.
 
 Also, it's always a good idea to backup your collection & files before doing any major changes.
 
@@ -22,7 +24,7 @@ NUO-STEMS 4 will also make sure to output correct filename (e.g. `song.stem.m4a`
 If you want to migrate to the [Traktor Pro 4 approach](/docs/getting-started/native-traktor-pro-4) with both originals and "linked native" stems in your collection:
 
 :::info
-Currently, there is no straight-forward way to do this. But this feature is being looked into for the future. You might want to hold off from migration right now.
+Currently, there is no straight-forward way to do this. Proceed with caution.
 :::
 
 If you still want to proceed with migration, you need to:
@@ -33,7 +35,7 @@ If you still want to proceed with migration, you need to:
 4. Open **NUO-STEMS 3** (not NUO-STEMS 4) and go to [Settings > Traktor Utilities](/docs/v3/traktor-utilities/general/). 
 5. Change "Transfer direction" to "STEMS to Original".
 6. Go to "Traktor Utilities" tab and click "Sync All".
-7. Now you have both originals and "linked native" stems in your collection synced. Originals shall have correct colors, hotcues, beatgrids, etc.
+7. Now you have both originals and .stem.m4a stems in your collection synced. Originals shall have correct colors, hotcues, beatgrids, etc.
     1. :::warning 
         I would advice to check at least few originals to make sure that everything is synced correctly. 
 8. Delete all .stem.m4a files from your collection.

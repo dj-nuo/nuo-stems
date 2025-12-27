@@ -1,0 +1,76 @@
+---
+title: STEMS Separation Quality
+---
+
+NUO-STEMS 4 features improved STEMS separation algorithms that deliver higher quality results compared to previous versions.
+<img src="/img/shared/benchmarks.webp" alt="Screenshot" />
+
+Metric used is called SDR (Signal-to-Distortion Ratio) - read more about it [here](https://source-separation.github.io/tutorial/basics/evaluation.html). And benchmark run results are available [here](https://mvsep.com/quality_checker/multisong_leaderboard?algo_name_filter=NUO&sort=vocals&ranking_metrics=).
+
+### Quality Benchmarks
+
+<table>
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>SDR (Bass)</th>
+      <th>SDR (Drums)</th>
+      <th>SDR (Other)</th>
+      <th>SDR (Instrumental)</th>
+      <th>SDR (Vocals)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>mel_vocals_bs_others</strong> </td>
+      <td align="center">14.44</td>
+      <td align="center">13.96</td>
+      <td align="center">8.34</td>
+      <td align="center">17.19</td>
+      <td align="center">10.88</td>
+    </tr>
+    <tr>
+      <td><strong>bs_roformer</strong> </td>
+      <td align="center">14.44</td>
+      <td align="center">13.87</td>
+      <td align="center">8.54</td>
+      <td align="center">17.45</td>
+      <td align="center">11.14</td>
+    </tr>
+    <tr>
+      <td><strong>mel_band_roformer (from NUO-STEMS 3.1)</strong> </td>
+      <td align="center">12.37</td>
+      <td align="center">11.66</td>
+      <td align="center">6.92</td>
+      <td align="center">17.15</td>
+      <td align="center">10.85</td>
+    </tr>
+    <tr>
+      <td><strong>Traktor Pro 4.0.0</strong></td>
+      <td align="center">11.51</td>
+      <td align="center">10.60</td>
+      <td align="center">5.43</td>
+      <td align="center">---</td>
+      <td align="center">8.07</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+NUO-STEMS 4 comes with 2 new algorithms:
+- mel_vocals_bs_others (Recommended)
+    - Vocals: Processed with Mel-Band-RoFormer (that was first introduced in NUO-STEMS 3.1)
+    - Drums, Bass & Other: Processed with BS-RoFormer
+    - Provides amazing quality, especially for vocals
+    - [Algorithm link](https://github.com/KimberleyJensen/Mel-Band-Roformer-Vocal-Model)
+- bs_roformer
+    - New algorithm introduced in NUO-STEMS 4
+    - Provides great quality for all stems
+    - Vocals quality is similar to 'mel_vocals_bs_others'
+    - Feel free to experiment and compare with 'mel_vocals_bs_others' - sometimes one or another brings better results
+    - [Algorithm link](https://github.com/undef13/splifft)
+
+
+### Hearing comparisons
+There are a lot of comparisons between different programs (Serato, Traktor Pro, RekordBox, etc.) available in [this YouTube playlist](https://youtube.com/playlist?list=PLRe7_kGtbFmgUT9LKCm-B_yGmQgalHS_t&si=wXz2h8UGAwP2rG5b)

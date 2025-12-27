@@ -16,6 +16,7 @@ const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     "intro",
     "demo-trial",
+    "stems-separation-quality",
     {
       type: "category",
       label: "Getting Started",
@@ -43,11 +44,18 @@ const sidebars: SidebarsConfig = {
     {
       type: "category",
       label: "Tips & Workflows",
-      items: ["tips-and-workflows/only-stem-m4a-no-originals"],
+      items: [
+        "tips-and-workflows/migrating-from-ns3",
+        "tips-and-workflows/gaming-pc-to-dj-laptop",
+        "tips-and-workflows/only-stem-m4a-no-originals",
+        "tips-and-workflows/music-tagging-approach",
+        "tips-and-workflows/stems-video-tutorials",
+      ],
     },
     "faq/index",
     "roadmap/index",
     "changelog/index",
+    "contact-support/index",
   ],
 };
 
