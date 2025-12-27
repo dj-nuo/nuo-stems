@@ -104,7 +104,7 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/blog-pic.webp",
     navbar: {
-      title: "NUO-STEMS Docs & Blog",
+      // title: "NUO-STEMS Docs & Blog",
       logo: {
         alt: "My Site Logo",
         src: "img/icon.png",
@@ -217,7 +217,17 @@ const config: Config = {
   } satisfies Preset.ThemeConfig,
   plugins: [
     "docusaurus-plugin-image-zoom", // can also just be 'image-zoom'
-    // ...other plugins
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        // Options for the search plugin
+        // See https://github.com/easyops-cn/docusaurus-search-local for all options
+        hashed: true,
+        language: ["en"],
+        highlightSearchTermsOnTargetPage: true,
+        // explicitSearchResultPath: true,
+      },
+    ],
   ],
 };
 
