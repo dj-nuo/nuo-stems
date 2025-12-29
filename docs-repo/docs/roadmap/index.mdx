@@ -80,13 +80,6 @@ On the .stem.m4a song I loaded in VirtualDJ on Windows the 'Kick' stem is empty,
 
 ### Bugs:
 - [ ] Long tracks (e.g. 30 minutes and more) crash the app.
-- [ ] Electron 26 (latest version supporting macOS 10.15) causes certain .wav files to fail extracting metadata. Fix involves upgrade to Electron 36+. This makes me deprecate macOS 10.15 and macOS 11 support.
-    - For now I will hold off from doing this fix.
-    - My plan:
-        - Release NUO-STEMS 3 updated version with analytics, so that I can collect stats about who is still using those old macOS versions.
-        - Wait 2 weeks to collect stats.
-        - If there are not many users with these old macOS versions - I'll release the update that fixes your .wav issue.
-    - There is also hope that upstream dependency that causes the issue fixes the bug. I reported it, but have low hopes it will be fixed.
 
 
 ### Left for history:
@@ -136,3 +129,12 @@ On the .stem.m4a song I loaded in VirtualDJ on Windows the 'Kick' stem is empty,
 
         Also, added some comments here: https://community.native-instruments.com/discussion/49074/bug-traktor-does-not-play-first-50ms-of-alac-files#latest
     </details>
+
+
+{/* - [ ] Electron 26 (latest version supporting macOS 10.15) causes certain .wav files to fail extracting metadata. Fix involves upgrade to Electron 36+. This makes me deprecate macOS 10.15 and macOS 11 support.
+    - For now I will hold off from doing this fix.
+    - My plan:
+        - Release NUO-STEMS 3 updated version with analytics, so that I can collect stats about who is still using those old macOS versions.
+        - Wait 2 weeks to collect stats.
+        - If there are not many users with these old macOS versions - I'll release the update that fixes your .wav issue.
+    - There is also hope that upstream dependency that causes the issue fixes the bug. I reported it, but have low hopes it will be fixed. */}
