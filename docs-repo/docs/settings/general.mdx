@@ -2,6 +2,7 @@
 sidebar_position: 1
 title: General Settings
 ---
+import TraktorStemsFolderInfo from '@site/src/components/TraktorStemsFolderInfo.mdx';
 
 ## Preferred Algorithm
 
@@ -42,18 +43,32 @@ Due to the nature of audio separation algorithms, the output stems want to be as
 
 Select the folder where processed files will be saved.
 
-:::info
-**Note**: When using "Native Traktor Pro 4" mode, native (.stem.mp4) linked stems are saved in the folder configured in Traktor Pro 4 Preferences, not in the output folder set here. The output folder is only used for .wav files in Native mode.
+:::warning
+In ["Native Traktor Pro 4" mode](/docs/getting-started/native-traktor-pro-4), the output folder is only used for:
+- .wav files
+- Instrumental and acapella files
+
+In [Legacy mode](/docs/getting-started/legacy-traktor), the output folder is ALSO used for:
+- .stem.m4a files
+
+<TraktorStemsFolderInfo />
 :::
 
 ## Output to Original Folder
 
 When enabled, conversion results are saved to the same location as the original track.
 
-This applies to:
-- .stem.m4a files (in [Legacy / Export Mode](/docs/getting-started/legacy-traktor))
-- .wav stem files (if enabled)
-- Instrumental and acapella files (if enabled)
+:::warning
+In ["Native Traktor Pro 4" mode](/docs/getting-started/native-traktor-pro-4), the output folder is only used for:
+- .wav files
+- Instrumental and acapella files
+
+In [Legacy mode](/docs/getting-started/legacy-traktor), the output folder is ALSO used for:
+- .stem.m4a files
+
+<TraktorStemsFolderInfo />
+:::
+
 
 ## Keep WAV Files
 
