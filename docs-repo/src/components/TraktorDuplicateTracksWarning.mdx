@@ -1,0 +1,26 @@
+### What if I have duplicate tracks and use "Native Traktor Pro 4" mode?
+
+This applies only to [Traktor Pro 4 native mode](/docs/getting-started/native-traktor-pro-4).
+
+:::warning Traktor Limitation: Duplicate Tracks
+
+Traktor searches for linked stems files by **AUDIO_ID** of the original track. This means that if you have duplicate tracks (same original) in your collection, they will share the same linked stems file (`{hash}.stem.mp4`).
+
+**Important:** If you process stems for one duplicate track using Traktor's built-in stem separation, it will overwrite the NUO-STEMS processing for all other duplicate tracks of the same original.
+
+**To avoid this issue:**
+- Remove duplicate tracks from your collection. (**recommended**)
+- Use NUO-STEMS 4 exclusively for stem processing when you have duplicate tracks
+
+This is a Traktor limitation, not a NUO-STEMS 4 limitation.
+
+---
+Here is what an example of this issue looks like:
+- Generate Stems for Track A in NUO-STEMS 4 in ["Native Traktor Pro 4" mode](/docs/getting-started/native-traktor-pro-4)
+- Go to Traktor and add another duplicate of the track 
+  - Now you have Track A (already processed by NUO-STEMS 4) and Track B (duplicate of Track A, not processed, doesn't have linked stems)
+- Click "Generate Stems" for Track B in Traktor Pro 4
+- The NUO-STEMS 4 processing of Track A gets overwritten (both tracks now use Traktor's stem separation)
+
+:::
+
