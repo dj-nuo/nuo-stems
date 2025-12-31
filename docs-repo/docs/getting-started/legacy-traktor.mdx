@@ -4,7 +4,7 @@ title: Legacy / Export Mode
 ---
 <img src="/img/shared/queue-page-example.webp" alt="Screenshot" />
 
-Legacy Traktor mode creates legacy `.stem.m4a` files that work with Traktor Pro 3 and 4. 
+Legacy Traktor mode creates legacy `.stem.m4a` files that **only work with Traktor Pro 4**. 
 
 This mode is **also useful** if you have Gaming PC (with NVIDIA GPU) and want to generate STEMS for your DJ Laptop. You can then use [Traktor Utilities in NUO-STEMS 4 (on DJ laptop) to migrate .stem.m4a](/docs/traktor-utilities/migrate-stem-m4a-to-tp4) files to linked stems on your DJ Laptop Traktor collection. Using Traktor Utilities doesn't require paid license.
 
@@ -15,10 +15,10 @@ The only valid use case for this mode is if you want to save space & you're ok t
 
 There is **no Traktor Utilities feature to sync metadata between originals and stems** in NUO-STEMS 4 (like in NUO-STEMS 3). This is a deliberate design decision. I want you to **support Traktor team by upgrading to Traktor Pro 4**. 
 
-Also, .stem.m4a files created in NUO-STEMS 4 are not compatible with NUO-STEMS 3. Meaning that if you want to use Traktor Utilities in NUO-STEMS 3 to sync metadata between originals and stems - it will result in incorrect beatgrids & hotcues.
+Also, .stem.m4a files created in NUO-STEMS 4 are not compatible with NUO-STEMS 3.
 :::
 
-## Overview
+### Overview
 
 <img src="/img/shared/stem-m4a-in-finder-example.webp" alt="Legacy .stem.m4a files in Finder" width="600px" />
 
@@ -28,15 +28,18 @@ When using Legacy Traktor mode:
 - Stems appear as separate entries in your Traktor collection
 - You need to manually add stem files to your collection
 
-## Important Notes
+### Important Notes
 
 :::warning
-If you're using Traktor Pro 3, there are no "Traktor Utilities" similar to NUO-STEMS 3 which would allow you to transfer metadata between originals and stems. You need to treat `.stem.m4a` files as [first class citizens](/docs/tips-and-workflows/only-stem-m4a-no-originals).
+There are no ["Traktor Utilities" similar to NUO-STEMS 3](/docs/v3/traktor-utilities/general/) which would allow you to transfer metadata between originals and stems. You need to treat `.stem.m4a` files as [first class citizens](/docs/tips-and-workflows/only-stem-m4a-no-originals).
 :::
 
 - Stems created in this mode are separate files that need to be added to your collection
-- For Traktor Pro 4 users, we recommend using Native [Traktor Pro 4 mode](/docs/getting-started/native-traktor-pro-4) instead
+- For Traktor Pro 4 users, I recommend using Native [Traktor Pro 4 mode](/docs/getting-started/native-traktor-pro-4) instead
 
+import TraktorPro3Compatibility from '@site/src/components/TraktorPro3Compatibility.mdx';
+
+<TraktorPro3Compatibility />
 
 import ErrorHandling from '@site/src/components/ErrorHandling.mdx';
 

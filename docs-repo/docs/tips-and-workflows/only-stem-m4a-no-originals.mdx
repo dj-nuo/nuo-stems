@@ -10,6 +10,12 @@ If you only have `.stem.m4a` files (created in NUO-STEMS 3 or NUO-STEMS 4) in yo
 
 You can re-convert your existing `.stem.m4a` files to NUO-STEMS 4 `.stem.m4a` files using [Legacy / Export Mode](/docs/getting-started/legacy-traktor). The main benefit you'll get is [improved STEMS quality](/docs/stems-separation-quality) thanks to the new algorithms in NUO-STEMS 4.
 
+This also means that you're essentially treating .stem.m4a files as first class citizens.\
+You remove all original tracks from your collection, and only keep .stem.m4a files.
+
+Keep in mind that after you re-convert your existing NUO-STEMS 3 `.stem.m4a` files to NUO-STEMS 4 `.stem.m4a` files, they won't be compatible with Traktor Pro 3.
+
+
 :::info
 Upon my testing, AUDIO_ID of the new .stem.m4a (created in NUO-STEMS 4) shall be the same as previous .stem.m4a (created in NUO-STEMS 3). So you can potentially replace existing .stem.m4a files in-place. However, I would advise to check at least a few files to make sure that everything is working correctly.
 
@@ -23,7 +29,8 @@ NUO-STEMS 4 will also make sure to output correct filename (e.g. `song.stem.m4a`
 
 ## Option 2: Migrate to Traktor Pro 4 approach
 
-If you want to migrate to the [Traktor Pro 4 approach](/docs/getting-started/native-traktor-pro-4) with both originals and "linked native" stems in your collection:
+If you want to migrate to the [Traktor Pro 4 approach](/docs/getting-started/native-traktor-pro-4) with both originals and "linked native" stems in your collection,\
+BUT you only have `.stem.m4a` files in collection and no originals:
 
 :::info
 Currently, there is no straight-forward way to do this. Proceed with caution.
@@ -42,5 +49,4 @@ If you still want to proceed with migration, you need to:
         I would advice to check at least few originals to make sure that everything is synced correctly. 
 8. Delete all .stem.m4a files from your collection.
 9. Prooceed with generating new ["linked native"](/docs/getting-started/native-traktor-pro-4) stems from the originals using NUO-STEMS 4.
-
 

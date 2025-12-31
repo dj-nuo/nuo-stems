@@ -1,5 +1,13 @@
 # FAQ
 
+:::warning Traktor Pro 3 compatibility
+NUO-STEMS 4 is only compatible with Traktor Pro 4.\
+If you need to use .stem.m4a in Traktor Pro 3, you can continue to use [NUO-STEMS 3](/docs/v3/).
+
+See more information in [Migrating from NUO-STEMS 3](/docs/tips-and-workflows/migrating-from-ns3) section.
+:::
+
+
 ### How to get the 4.0.0-alpha installer?
 Please write me in private messages or to djnuo95@gmail.com, and I will send you the installer 🚀
 
@@ -35,6 +43,13 @@ import TraktorStemsFolderInfo from '@site/src/components/TraktorStemsFolderInfo.
 
 <TraktorStemsFolderInfo />
 
+### I generate stems in Native Traktor Pro 4 mode, but they don't appear as linked in my collection?
+Usually, the only reason this happens is if you don't have correct collection.nml selected.
+
+<img src="/img/shared/tp4-mode-onboarding/select-custom-collection.webp" alt="Collection.nml selection example" width="500px" />
+
+Make sure to select the correct collection.nml file.
+
 ### For existing TP4 stems, will NUO-STEMS 4 replace these in-place?
 Yes, just right-click on track/s in ["Traktor Pro 4" tab](/docs/getting-started/native-traktor-pro-4) of NUO-STEMS 4 and click "Add to Queue".
 
@@ -65,14 +80,9 @@ import GamingPCToDJLaptop from '@site/src/components/GamingPCToDJLaptop.mdx';
 
 <GamingPCToDJLaptop />
 
-### I use only Traktor Pro 3, can I still use NUO-STEMS 4?
-Yes, you can use NUO-STEMS 4 with Traktor Pro 3 by generating .stem.m4a files (aka "legacy" stems).
-BUT, there are no ["Traktor Utilities"](/docs/v3/traktor-utilities/general/) similar to NUO-STEMS 3 which would allow you to transfer metadata between originals and stems.
-Essentially, you need to treat .stem.m4a files as [first class citizens](/docs/tips-and-workflows/only-stem-m4a-no-originals) - and get rid of original files (e.g. MP3/WAV/etc).
+import TraktorPro3Compatibility from '@site/src/components/TraktorPro3Compatibility.mdx';
 
-This is a deliberate decision - I want you to support Traktor team by upgrading to Traktor Pro 4. I strongly believe that 50$ (as of Black Friday deals) is a great value for what you’re getting - it’s an investment into future of Traktor.
-
-You can read more about this in [Legacy / Export Mode](/docs/getting-started/legacy-traktor) section.
+<TraktorPro3Compatibility />
 
 import MigratingFromNS3 from '@site/src/components/MigratingFromNS3.mdx';
 

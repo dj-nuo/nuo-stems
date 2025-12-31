@@ -6,22 +6,7 @@ import TraktorStemsFolderInfo from '@site/src/components/TraktorStemsFolderInfo.
 
 ## Preferred Algorithm
 
-Select the algorithm used for processing all tracks in the queue.
-
-### Available Algorithms
-
-#### mel_vocals_bs_others (Recommended)
-- **Vocals**: Processed with Mel-Band-RoFormer
-- **Drums, Bass & Other**: Processed with BS-RoFormer
-- Provides amazing quality, especially for vocals
-- [Algorithm link](https://github.com/KimberleyJensen/Mel-Band-Roformer-Vocal-Model)
-
-#### bs_roformer
-- New algorithm introduced in NUO-STEMS 4
-- Provides great quality for all stems
-- Vocals quality is similar to 'mel_vocals_bs_others'
-- Feel free to experiment and compare with 'mel_vocals_bs_others' - sometimes one or another brings better results
-- [Algorithm link](https://github.com/undef13/splifft)
+See available algorithms in [Stems Separation Quality](/docs/stems-separation-quality) section.
 
 ## Sum of Stems = Original Mix
 
@@ -44,12 +29,7 @@ Due to the nature of audio separation algorithms, the output stems want to be as
 Select the folder where processed files will be saved.
 
 :::warning
-In ["Native Traktor Pro 4" mode](/docs/getting-started/native-traktor-pro-4), the output folder is only used for:
-- .wav files
-- Instrumental and acapella files
-
-In [Legacy mode](/docs/getting-started/legacy-traktor), the output folder is ALSO used for:
-- .stem.m4a files
+This setting only works in [Legacy mode](/docs/getting-started/legacy-traktor).
 
 <TraktorStemsFolderInfo />
 :::
@@ -59,7 +39,9 @@ In [Legacy mode](/docs/getting-started/legacy-traktor), the output folder is ALS
 When enabled, conversion results are saved to the same location as the original track.
 
 :::warning
-In ["Native Traktor Pro 4" mode](/docs/getting-started/native-traktor-pro-4), the output folder is only used for:
+This setting only works in [Legacy mode](/docs/getting-started/legacy-traktor) or ["DAW / Non-Traktor" mode](/docs/getting-started/daw-non-traktor).
+
+In ["DAW / Non-Traktor" mode](/docs/getting-started/native-traktor-pro-4), the output folder is only used for:
 - .wav files
 - Instrumental and acapella files
 
