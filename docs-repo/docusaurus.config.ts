@@ -217,6 +217,7 @@ const config: Config = {
   } satisfies Preset.ThemeConfig,
   plugins: [
     "docusaurus-plugin-image-zoom", // can also just be 'image-zoom'
+    "docusaurus-plugin-llms",
     [
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
