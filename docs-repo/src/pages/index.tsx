@@ -11,7 +11,14 @@ import styles from "./index.module.css";
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
+    <header
+      className={clsx("hero", styles.heroBanner)}
+      style={{
+        backgroundColor: "#0a0a0a",
+        height: "100vh",
+        paddingBottom: "300px",
+      }}
+    >
       <div className="container">
         <Heading as="h1" className="hero__title">
           {siteConfig.title}
@@ -21,19 +28,28 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro"
+            style={{ borderRadius: "30px" }}
           >
             NUO-STEMS 4 docs 🚀
           </Link>
         </div>
         or
         <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="/docs/v3/">
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/v3/"
+            style={{ borderRadius: "30px" }}
+          >
             NUO-STEMS 3 docs
           </Link>
         </div>
         or
         <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="/blog">
+          <Link
+            className="button button--secondary button--lg"
+            to="/blog"
+            style={{ borderRadius: "30px" }}
+          >
             Read the blog
           </Link>
         </div>
