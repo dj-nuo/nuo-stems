@@ -103,6 +103,11 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: "img/blog-pic.webp",
+    colorMode: {
+      defaultMode: "dark",
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
+    },
     navbar: {
       // title: "NUO-STEMS Docs & Blog",
       logo: {
