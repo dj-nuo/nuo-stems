@@ -58,6 +58,7 @@ const sidebars: SidebarsConfig = {
     "roadmap/index",
     "changelog/index",
     "contact-support/index",
+    "license-transfer/index",
   ],
 };
 
