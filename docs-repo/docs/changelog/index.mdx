@@ -10,6 +10,14 @@ Releases are listed in chronological order (newest first) and include all the ch
 
 ### Changelog
 
+**4.0.0-beta.59** - Feb 3, 2026
+- feat: when installing NS4, install Microsoft Visual C++ Redistributable if not already installed on Windows
+- feat: COMMENT2 tag now also set when doing "migrate .stem.m4a to linked stems"
+- fix: memory leaks fixed by reloading window every 3 hours (it doesn't stop the queue processing)
+- feat: dialog window if there are existing .stem.m4a in the output folder when in Legacy mode
+- misc: slightly improved speed of adding tracks to the queue on macOS.
+- fix: repair collection doesn't repair tracks if there are duplicate AUDIO_IDs in the collection.
+
 **4.0.0-beta.58** - Jan 25, 2026
 - feat: Traktor Pro 4 **SMART Playlists** support on TP4 page
 - feat: new setting "Include Instrumental Stem" when saving WAV files
