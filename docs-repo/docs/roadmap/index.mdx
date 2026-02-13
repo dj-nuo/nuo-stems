@@ -21,6 +21,7 @@
     Currently, NUO-STEMS uses frozen PyTorch for inference, but I had success previously testing ONNX. On MacOS it was slower, so I abandoned this idea. 
     Anyways, my current priority is to make NVIDIA GPUs run properly on Windows using PyTorch. And when some future comes - I'll take a look at AMD GPUs and ONNX.
 
+- [ ] Serato integration.
 - [ ] VirtualDJ integration exploration. Some users report that .stem.m4a files can be played in VirtualDJ.
 <details>
 <summary>Click to expand details</summary>
@@ -60,9 +61,6 @@
 - [x] Denon Engine DJ integration exploration.
     - Upon primary investigation, it seems that Denon Engine encodes .stems files in a very weird way and none of the decoders (ffmpeg, sox, mp4box) can decode them.
 - [ ] Low priority: Offline licensing. Ability to use NUO-STEMS 4 without an internet connection.
-
-### Bugs:
-- [ ] Long tracks (e.g. 30 minutes and more) **sometimes** crash the app.
 
 
 ### Left for history:
