@@ -9,18 +9,7 @@
 ### Feature list:
 
 ### Hypothetical feature list:
-- [ ] Support AMD GPUs acceleration.
-    As of right now, AMD Rocm is not supported with PyTorch on Windows (only Linux).
-    There is some experimental support, but it requires [special system drivers](https://www.amd.com/en/resources/support-articles/release-notes/RN-AMDGPU-WINDOWS-PYTORCH-PREVIEW.html).
-    Not super UX-friendly, therefore not a good choice for NUO-STEMS. List of GPUs is also limited. And only Win 11.
-
-    Vulkan is not supported in PyTorch as well on Windows. Only on [Android via ExecuTorch](https://docs.pytorch.org/executorch/stable/backends/vulkan/vulkan-overview.html).
-
-    There seems to be a way to make ONNX work on AMD GPU on Windows, but not sure how stable it is.
-
-    Currently, NUO-STEMS uses frozen PyTorch for inference, but I had success previously testing ONNX. On MacOS it was slower, so I abandoned this idea. 
-    Anyways, my current priority is to make NVIDIA GPUs run properly on Windows using PyTorch. And when some future comes - I'll take a look at AMD GPUs and ONNX.
-
+- [x] Support AMD GPUs acceleration.
 - [ ] Serato integration.
 - [ ] VirtualDJ integration exploration. Some users report that .stem.m4a files can be played in VirtualDJ.
 <details>

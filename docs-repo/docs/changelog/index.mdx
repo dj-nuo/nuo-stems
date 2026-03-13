@@ -10,6 +10,11 @@ Releases are listed in chronological order (newest first) and include all the ch
 
 ### Changelog
 
+**4.0.0-beta.62** - Mar 13, 2026 - 🤯 **AMD & Intel GPU support and performance improvements** 🤯
+- feat: DirectX 12 GPU acceleration support for AMD and Intel GPUs on Windows. Requires FL 12.0 or higher
+- feat: NVIDIA GPUs and Apple Silicon also benefit from further optimization, with typical speed gains of around 10–20%.
+- feat: On some older NVIDIA cards, such as the GTX 1650, the improvement is even more dramatic, reaching roughly 2x to 2.5x faster performance.
+
 **4.0.0-beta.61** - Feb 13, 2026
 - fix: some NVIDIA CUDA GPUs with 4GB VRAM not being detected on Windows
 - fix: **super long tracks** (e.g. 30 min+) causing app to crash. Memory is now much more controlled and doesn't depend on the track length.
@@ -20,9 +25,9 @@ Releases are listed in chronological order (newest first) and include all the ch
 **4.0.0-beta.59** - Feb 3, 2026
 - feat: when installing NS4, install Microsoft Visual C++ Redistributable if not already installed on Windows
 - feat: COMMENT2 tag now also set when doing "migrate .stem.m4a to linked stems"
-- fix: memory leaks fixed by reloading window every 3 hours (it doesn't stop the queue processing)
+- fix: renderer memory leaks fixed by reloading window every 3 hours
 - feat: dialog window if there are existing .stem.m4a in the output folder when in Legacy mode
-- misc: slightly improved speed of adding tracks to the queue on macOS.
+- feat: cache macOS root volume name to improve performance in getMacOSRootVolumeName function
 - fix: repair collection doesn't repair tracks if there are duplicate AUDIO_IDs in the collection.
 
 **4.0.0-beta.58** - Jan 25, 2026
