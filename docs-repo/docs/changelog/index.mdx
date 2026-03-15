@@ -10,6 +10,17 @@ Releases are listed in chronological order (newest first) and include all the ch
 
 ### Changelog
 
+**4.0.0-beta.63** - Mar 15, 2026
+- feat: "save .wav" now has FLAC option
+- feat: add badge & tooltip for missing AUDIO_ID tracks on TP4 page
+- fix: some weird directory names causing AUDIO_CONVERTER_PROCESS_FAILED
+- fix: when output folder was set in non-TP4 mode, and then folder got deleted - when doing conversions in TP4 mode it triggered an error for inexistence of output folder even if "advanced" mode was disabled
+- misc: on TP4 page all folders are now collapsed by default
+- fix: show Blog popup only once after "Understand" clicked
+- fix: "File Path" SMART Playlist working incorrectly
+- fix: migrating stem.m4a to linked stems stopped every 3 hours
+- fix: "delete" lonely stems when doing "Repair Collection"
+
 **4.0.0-beta.62** - Mar 13, 2026 - 🤯 **AMD & Intel GPU support and performance improvements** 🤯
 - feat: DirectX 12 GPU acceleration support for AMD and Intel GPUs on Windows. Requires FL 12.0 or higher
 - feat: NVIDIA GPUs and Apple Silicon also benefit from further optimization, with typical speed gains of around 10–20%.
