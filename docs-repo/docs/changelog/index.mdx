@@ -10,6 +10,12 @@ Releases are listed in chronological order (newest first) and include all the ch
 
 ### Changelog
 
+**4.0.0-beta.64** - Mar 24, 2026
+- fix: tracks failing to process on AMD & Intel GPUs on Windows due to insufficient GPU memory; Now NS4 falls back to CPU processing for these tracks/GPUs.
+- fix: improve error message when Traktor Stems Folder doesn't exist on disk
+- fix: MUTAGEN_PROCESS_FAILED error sometimes caused by some tricky tags in original tracks
+- refactor: optimized data transfer for Traktor collection & queue. Performance might be slightly improved (I haven't noticed a change myself)
+
 **4.0.0-beta.63** - Mar 15, 2026
 - feat: "save .wav" now has FLAC option
 - feat: add badge & tooltip for missing AUDIO_ID tracks on TP4 page
