@@ -25,7 +25,7 @@ const sidebars: SidebarsConfig = {
         "getting-started/modes-overview",
         "getting-started/native-traktor-pro-4",
         "getting-started/legacy-traktor",
-        "getting-started/daw-non-traktor",
+        "getting-started/daw",
       ],
     },
     {

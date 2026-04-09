@@ -229,6 +229,10 @@ const config: Config = {
       {
         redirects: [
           {
+            from: "/docs/getting-started/daw-non-traktor",
+            to: "/docs/getting-started/daw",
+          },
+          {
             from: "/docs/traktor-utilities",
             to: "/docs/utilities/overview",
           },
