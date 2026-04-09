@@ -30,12 +30,13 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "Traktor Utilities",
+      label: "Utilities",
       items: [
-        "traktor-utilities/overview",
-        "traktor-utilities/migrate-stem-m4a-to-tp4",
-        "traktor-utilities/extract-individual-stems-from-stem-m4a",
-        "traktor-utilities/change-stems-colors",
+        "utilities/overview",
+        "utilities/migrate-stem-m4a-to-tp4",
+        "utilities/extract-individual-stems-from-stem-m4a",
+        "utilities/extract-individual-stems-from-serato-stems",
+        "utilities/change-stems-colors",
       ],
     },
     {

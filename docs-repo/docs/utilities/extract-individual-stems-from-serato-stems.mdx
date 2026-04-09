@@ -1,0 +1,29 @@
+---
+sidebar_position: 3
+title: Extract individual stems from .serato-stems
+---
+
+This utility extracts individual stems from **`.serato-stems`** files produced by NUO-STEMS 4 when using Serato integration.
+
+Use it when you want stem **`.mp3`** files for a **DAW**, **another DJ app**, or any workflow outside Serato DJ — without re-running full separation on the original track.
+
+:::tip
+Extracting stems from an existing `.serato-stems` file is faster than generating stems again from the original audio in NUO-STEMS 4.
+
+Output is **MP3** (lossy). That is similar in spirit to extracting from [`.stem.m4a` / `.stem.mp4`](/docs/utilities/extract-individual-stems-from-stem-m4a) for Traktor-oriented containers, where stems are also decoded to files for external use. If you need **uncompressed WAV** stems, use [**DAW / Non-Traktor**](/docs/getting-started/daw-non-traktor) mode and export from the original file instead.
+:::
+
+## Overview
+
+When you extract stems from `.serato-stems`:
+
+- Each stem is written as its own **`.mp3`** file (vocals, drums, bass, other).
+- Files are saved to the output folder you choose in the utility.
+- Original `.serato-stems` files are not modified.
+
+## How to use
+
+1. Open NUO-STEMS 4 and go to the **Utilities** section.
+2. Choose **Extract individual stems from .serato-stems**.
+3. Select the `.serato-stems` files or folder you want to process.
+4. Choose the output folder and run extraction.

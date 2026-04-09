@@ -224,6 +224,33 @@ const config: Config = {
     },
   } satisfies Preset.ThemeConfig,
   plugins: [
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          {
+            from: "/docs/traktor-utilities",
+            to: "/docs/utilities/overview",
+          },
+          {
+            from: "/docs/traktor-utilities/overview",
+            to: "/docs/utilities/overview",
+          },
+          {
+            from: "/docs/traktor-utilities/migrate-stem-m4a-to-tp4",
+            to: "/docs/utilities/migrate-stem-m4a-to-tp4",
+          },
+          {
+            from: "/docs/traktor-utilities/extract-individual-stems-from-stem-m4a",
+            to: "/docs/utilities/extract-individual-stems-from-stem-m4a",
+          },
+          {
+            from: "/docs/traktor-utilities/change-stems-colors",
+            to: "/docs/utilities/change-stems-colors",
+          },
+        ],
+      },
+    ],
     "docusaurus-plugin-image-zoom", // can also just be 'image-zoom'
     "docusaurus-plugin-llms",
     [
