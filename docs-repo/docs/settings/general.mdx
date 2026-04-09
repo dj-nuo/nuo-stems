@@ -19,7 +19,7 @@ This option makes the sum of stems (drums, bass, other, vocals) exactly equal to
 :::info
 **For Traktor Pro 4 DJing**: Keep this option **enabled** (AI Method) to ensure the sum of stems equals the original mix.
 
-**For Serato DJing**: Keep this option **disabled**, because Serato plays the original mix when all stems are enabled.
+**For [Serato DJing](/docs/getting-started/serato)**: Keep this option **disabled**, because Serato plays the original mix when all stems are enabled. This also gives slightly cleaner stems and faster processing time.
 
 **For Music Production**: It's recommended to disable this option to get cleaner individual stems.
 
@@ -31,7 +31,9 @@ Due to the nature of audio separation algorithms, the output stems want to be as
 Select the folder where processed files will be saved.
 
 :::warning
-This setting only works in [Traktor Pro 4 Legacy / Export mode](/docs/getting-started/legacy-traktor).
+This setting only works for files that are allowed to use a configurable output folder.
+
+In [Serato mode](/docs/getting-started/serato), `.serato-stems` are always saved right next to the original file because that is where Serato expects them.
 
 <TraktorStemsFolderInfo />
 :::
@@ -46,6 +48,8 @@ This setting only works in [Traktor Pro 4 Legacy / Export mode](/docs/getting-st
 In [Native Traktor Pro 4](/docs/getting-started/native-traktor-pro-4) mode, the output folder is only used for:
 - .wav files
 - Instrumental and acapella files
+
+In [Serato mode](/docs/getting-started/serato), `.serato-stems` are always saved right next to the original file regardless of this setting.
 
 In [Traktor Pro 4 Legacy / Export mode](/docs/getting-started/legacy-traktor), the output folder is ALSO used for:
 - .stem.m4a files
@@ -85,4 +89,3 @@ You can select the encoding format for instrumental and acapella:
 
 - **MP3 @ 320 kbps** - Compressed format with high quality
 - **WAV** - Uncompressed format
-

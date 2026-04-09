@@ -23,6 +23,7 @@ const sidebars: SidebarsConfig = {
       label: "Getting Started",
       items: [
         "getting-started/modes-overview",
+        "getting-started/serato",
         "getting-started/native-traktor-pro-4",
         "getting-started/legacy-traktor",
         "getting-started/daw",
