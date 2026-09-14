@@ -1,0 +1,56 @@
+---
+sidebar_position: 1
+title: Repair Traktor collection
+sidebar_label: Repair Traktor collection
+---
+
+<img src="/img/shared/repair-traktor-collection-wrench.webp" alt="Repair Traktor collection wrench icon" />
+
+The **Repair Traktor collection** feature checks the relationship between your **Traktor Pro 4 collection** and its natively linked STEMS files. It helps fix collection metadata after files have been moved, deleted, or otherwise become out of sync.
+
+This feature is for [Native Traktor Pro 4 mode](/docs/getting-started/native-traktor-pro-4). It does not generate or re-generate audio STEMS.
+
+## What it finds
+
+When a Traktor collection is loaded, NUO-STEMS checks Linked STEMS issues and lonely STEM files. The orange **wrench** icon appears next to the collection selector when there is something to repair.
+
+The report can contain two types of issues:
+
+#### Linked STEMS issues
+
+For each original track in the collection, NUO-STEMS checks whether the expected `.stem.mp4` file exists in the [Traktor Pro 4 Stems folder](/docs/getting-started/native-traktor-pro-4) and proposes to fix the collection "link" accordingly.
+
+#### Lonely STEM files
+
+These are `.stem.mp4` files found in the [Traktor Pro 4 Stems folder](/docs/getting-started/native-traktor-pro-4) that do not have a matching original entry in the collection. They can be leftovers from tracks that were removed, moved, or replaced.
+
+## How to repair the collection
+
+1. Open NUO-STEMS 4 and go to **Traktor Pro 4**.
+2. Wait for the collection to load and the orange **wrench** icon to appear next to the collection name. Icon appears only if there are issues to repair. If you use a non-default `collection.nml`, see [Custom Collection Selection](/docs/getting-started/native-traktor-pro-4#custom-collection-selection).
+3. Click the orange **wrench** icon next to the collection name.
+
+<img src="/img/shared/repair-traktor-collection-details.webp" alt="Collection Repair Details dialog" />
+
+4. Review the **Linked Stems Issues** and **Lonely Stem Files** sections. Expand a section to see the affected collection paths and files.
+5. If lonely files were found, choose how to handle them:
+
+   - **Do Nothing** — leave the files where they are.
+   - **Archive** — move them to a folder you select. NUO-STEMS preserves their folder structure inside the archive folder.
+   - **Delete** — move them to the system Trash.
+
+6. Click **Repair**. NUO-STEMS updates the collection flags and handles lonely files according to your selection, then reloads the collection.
+
+:::warning
+Repair changes your Traktor collection and may move or delete files. NUO-STEMS creates a compressed backup each time the collection is loaded. You can find these backups in the **Collection Backups NUO-STEMS 4** folder next to your Traktor collection file. 
+
+Example :
+```
+...\Documents\Native Instruments\Traktor Pro 4.5.0\collection.nml
+...\Documents\Native Instruments\Traktor Pro 4.5.0\Collection Backups NUO-STEMS 4\collection.nml.zip
+```
+:::
+
+:::tip
+Utilities in NUO-STEMS 4 are **free to use** and do not require a license.
+:::

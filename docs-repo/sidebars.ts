@@ -34,6 +34,7 @@ const sidebars: SidebarsConfig = {
       label: "Utilities",
       items: [
         "utilities/overview",
+        "utilities/repair-traktor-collection",
         "utilities/migrate-stem-m4a-to-tp4",
         "utilities/extract-individual-stems-from-stem-m4a",
         "utilities/extract-individual-stems-from-serato-stems",
