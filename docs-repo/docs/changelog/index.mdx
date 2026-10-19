@@ -10,6 +10,23 @@ Releases are listed in chronological order (newest first) and include all the ch
 
 ### Changelog
 
+**4.1.0** — Oct 19, 2026
+
+NUO-STEMS 4.1.0 is a stable application release. Serato integration is included and remains alpha.
+
+- Smoother scrolling and less freezing on large Traktor collections.
+- Faster loading when reopening Traktor collections.
+- Long sessions, including overnight runs, should crash less often. Stopping a job cleans up after itself, and quitting saves the queue before the app exits.
+- Change **Sum = Original** directly in Quick Settings. Switching modes selects appropriate defaults and asks for confirmation before changing these settings; DAW mode also enables saving individual stem files.
+- Fixed checking for updates on stable releases.
+- **Serato integration (alpha):** create Serato-compatible `.1.2.serato-stems` files next to your original tracks for use in Serato DJ Pro and Lite.
+- Detect existing Serato stems before processing, with options to skip them or regenerate them.
+- Inspect `.serato-stems` metadata, preview individual stems, and save them as MP3 files with the new [Serato extraction utility](/docs/utilities/extract-individual-stems-from-serato-stems).
+- Generating Serato stems requires an active license or eligible Patreon access and is unavailable in the demo.
+- Improved reliability when creating Serato stems from certain FLAC and M4A tracks.
+
+Serato integration can still break. If Serato rejects a stems file, it moves that file to the Trash. Keep Serato DJ closed while generating stems. See [Serato mode](/docs/getting-started/serato).
+
 **4.1.0-alpha.2** - Apr 9, 2026
 - fix: mp3 files failing to convert to Serato stems
 

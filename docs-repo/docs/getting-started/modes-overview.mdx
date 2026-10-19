@@ -7,7 +7,7 @@ title: Modes Overview
 
 NUO-STEMS 4 has these modes:
 
-- [**Serato mode**](/docs/getting-started/serato)
+- [**Serato mode**](/docs/getting-started/serato) <span className="alpha-feature-badge">Alpha</span>
     - Creates `.serato-stems` files for Serato DJ.
     - `.serato-stems` files are always saved right next to the original track. Example: `track1.mp3` -> `track1.1.2.serato-stems`
     - Serato scans for `.serato-stems` files when opening a Crate, so you will see Stems icon next to the track.
@@ -26,3 +26,15 @@ NUO-STEMS 4 has these modes:
 :::info
 It is recommended to use Native Traktor Pro 4 mode, as it provides the best User Experience when using Traktor Pro 4 STEMS.
 :::
+
+## Switching modes in 4.1.0
+
+NUO-STEMS 4.1.0 is stable; only the Serato integration is marked **alpha**.
+
+Switching modes also selects appropriate settings:
+
+- **Traktor modes:** enables **Sum of Stems = Original Mix (AI Method)**.
+- **DAW and Serato modes:** disables that correction for cleaner individual stems.
+- **DAW mode:** enables **Keep WAV Files**.
+
+If these settings would change, a confirmation dialog lists the changes before applying them. You can still adjust **Sum = Original** in Quick Settings afterward.
