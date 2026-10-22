@@ -58,3 +58,31 @@ Keep in mind that ["Auto-start processing" from Advanced tab](/docs/settings/adv
 
 When enabled, NUO-STEMS will automatically start processing tracks in the queue as soon as Traktor tracks are added to the queue.
 
+## Processing while Traktor is running (experimental)
+
+:::danger
+Leave this off unless you have a specific reason to use it. It is meant for advanced users who accept doing a manual repair afterwards.
+:::
+
+Setting name: **Allow Traktor Pro 4 Native processing while Traktor is running**. It is available only in [Native Traktor Pro 4 mode](/docs/getting-started/native-traktor-pro-4) and is off by default.
+
+Normally NUO-STEMS pauses Traktor tracks while Traktor Pro 4 is open, because Traktor overwrites `collection.nml` when it quits. With this setting enabled, NUO-STEMS keeps generating STEMS while Traktor is open:
+
+- It uses the collection Traktor last saved, so tracks imported into Traktor since then may not appear yet.
+- STEMS files are created as usual, but NUO-STEMS does not save `collection.nml` until Traktor is closed. Traktor will not show the new STEMS yet.
+- When Traktor closes, NUO-STEMS reloads the collection Traktor saved.
+
+To link the new STEMS:
+
+1. Close Traktor completely and leave NUO-STEMS open.
+2. On the **Traktor Pro 4** page, wait for the collection to load.
+3. Click **Needs Repair** next to the collection name and apply the [collection repair](/docs/utilities/repair-traktor-collection).
+4. Reopen Traktor.
+
+While Traktor is open, [changing STEMS colors](/docs/utilities/change-stems-colors), [migrating .stem.m4a files](/docs/utilities/migrate-stem-m4a-to-tp4), and collection repair are unavailable.
+
+:::warning
+- Existing STEMS files can be overwritten while Traktor is using them. Avoid generating STEMS for the same track in NUO-STEMS and Traktor at the same time.
+- Generating STEMS can affect Traktor's playback performance.
+- Collection text tags added by NUO-STEMS while Traktor is open are not saved.
+:::
