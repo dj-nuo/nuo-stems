@@ -12,7 +12,9 @@ Releases are listed in chronological order (newest first) and include all the ch
 
 **4.1.1** — date TBD
 
+- feat: NUO-STEMS now asks you to accept a license agreement when you first open it, and again whenever the agreement changes. The queue doesn't start until you accept. You can read the agreement again in **Settings > App Info**.
 - feat: (experimental, off by default) generate STEMS in Native Traktor Pro 4 mode while Traktor is running. Most users should leave this off. See [Processing while Traktor is running](/docs/settings/traktor-pro#processing-while-traktor-is-running-experimental).
+- feat: Windows: NUO-STEMS now uses Apple's AAC encoder from your own iTunes installation. With iTunes, AAC 256 stems are smaller and slightly higher quality, and AAC 320 is encoded as before. Without it, NUO-STEMS uses its built-in AAC encoder, [fdkaac](https://github.com/nu774/fdkaac) (based on the Fraunhofer FDK AAC library), which keeps frequencies up to 20 kHz at AAC 320. **Settings > Traktor Pro** shows whether iTunes was found and links to Apple's installer. See [AAC on Windows](/docs/settings/traktor-pro#aac-on-windows-install-itunes-for-smaller-aac-256-files).
 - perf: Windows: smaller and faster built-in FFmpeg. NUO-STEMS takes about 130 MB less disk space, and reading and converting audio files is faster.
 - fix: blog news pop-up reappearing every time a setting was changed after choosing **Read Later**. It now shows again only on the next app launch.
 - fix: changing the update channel in **Settings > Advanced** now checks for updates right away, so you no longer need to restart the app to see the update button.

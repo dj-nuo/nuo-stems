@@ -14,11 +14,20 @@ Select the compression format for stem files:
 ### AAC 320 kbps (CBR) - Recommended
 - Recommended for most use cases
 - Provides high quality with constant bitrate
-- As of Traktor Pro 4, 320 kbps CBR AAC is used by native Traktor stems
+- Higher than Traktor's own stems: Traktor Pro 4 creates stems in AAC at 256 kbps on macOS and 192 kbps on Windows
 
 ### AAC 256 kbps (VBR)
 - Good quality with smaller file size
+- On Windows without iTunes, it's shown as **AAC 256 kbps (CBR)**: the built-in encoder uses a constant bitrate (see below)
 - Default in Native Instruments "Stem Creator" software
+
+### AAC on Windows: install iTunes for smaller AAC 256 files
+On macOS, NUO-STEMS always encodes AAC with Apple's encoder. On Windows, Apple's encoder comes with iTunes:
+
+- **With iTunes installed**, both AAC options use Apple's encoder. AAC 256 uses variable bitrate: files are smaller and the quality slightly higher. AAC 320 keeps the full frequency range, up to 22 kHz.
+- **Without iTunes**, NUO-STEMS uses its built-in encoder, [fdkaac](https://github.com/nu774/fdkaac) (based on the Fraunhofer FDK AAC library). AAC 256 is encoded at a constant 256 kbps. AAC 320 keeps frequencies up to 20 kHz, above what most people can hear.
+
+Settings shows whether iTunes was found. Install iTunes with [Apple's installer](https://www.apple.com/itunes/download/win64), then click **Check again**. The Microsoft Store version of iTunes can't be used.
 
 ### ALAC (Lossless)
 - **Not recommended**. See warnings below.
