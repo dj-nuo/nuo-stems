@@ -39,6 +39,7 @@ const sidebars: SidebarsConfig = {
         "utilities/extract-individual-stems-from-stem-m4a",
         "utilities/extract-individual-stems-from-serato-stems",
         "utilities/change-stems-colors",
+        "utilities/create-stem-m4a-from-own-stems",
       ],
     },
     {

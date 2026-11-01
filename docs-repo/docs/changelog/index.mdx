@@ -10,6 +10,10 @@ Releases are listed in chronological order (newest first) and include all the ch
 
 ### Changelog
 
+**4.1.3** — Nov 2, 2026
+
+- feat: new utility [**Create .stem.m4a from your own stems**](/docs/utilities/create-stem-m4a-from-own-stems) (vibe coded): pack a master and drums, bass, other and vocals files you already have (WAV, FLAC, AIFF or ALAC) into a Traktor `.stem.m4a`. Files are sorted into slots by name, and the utility checks that they all have exactly the same length in samples before packing. A missing stem can be filled with silence. It's marked vibe coded on purpose: I added it because users asked for it, but I think Native Instruments' **Stem Creator** is the better tool for packing your own stems, and that generated stems are usually the better choice anyway (consistent, quicker, and the stems add up to the original). See [why it's vibe coded](/docs/utilities/create-stem-m4a-from-own-stems#why-its-vibe-coded).
+
 **4.1.2** — Nov 1, 2026
 
 - fix: Native Traktor Pro 4 mode: stems of some unusually encoded MP3 files started slightly late (26 ms) compared with the original track in Traktor. They now line up exactly. The same fix applies to [Legacy / Export mode](/docs/getting-started/legacy-traktor). Your original files are never changed.
