@@ -13,6 +13,8 @@ Releases are listed in chronological order (newest first) and include all the ch
 **4.1.4** — upcoming
 
 - fix: long processing sessions no longer run out of memory. While converting, memory use grew by about 250–300 MB per hour, so after many hours of processing the app could slow down and crash. Memory use now stays flat however long the queue runs.
+- misc: when the app crashes, it now saves a crash report on your computer. The report is never uploaded: the app only reports that a crash happened.
+- feat: **Share detailed diagnostics** (off by default): a new switch on the license agreement screen and in **Settings > Advanced**. If you switch it on, the app records how you use it (screens, clicks and timings), with all text, inputs and pictures hidden, to help us understand problems that are hard to reproduce. It needs usage analytics to be on, and you can switch it off at any time.
 
 **4.1.3** — Nov 2, 2026
 
