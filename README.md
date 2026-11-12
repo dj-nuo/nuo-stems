@@ -1,24 +1,6 @@
-# NUO-STEMS docs
+# NUO-STEMS
 
-- NUO-STEMS 3 docs: https://docs.nuo-stems.com/docs/v3/
-- NUO-STEMS 4 docs: https://docs.nuo-stems.com/docs/intro/
-- NUO-STEMS blog: https://docs.nuo-stems.com/blog/
+NUO-STEMS is a desktop app that separates tracks into vocals, drums, bass, and other instruments for use in Traktor, Serato, and DAWs.
 
-# Repo structure
-Docs & Blog are in `docs-repo` folder. Built using [Docusaurus](https://docusaurus.io/).
-
-
-# Description
-
-NUO-STEMS is software which lets you convert your existing MP3/WAV tracks to .STEM tracks which are used by Traktor Pro DJ software.
-.STEM tracks consist of 4 parts:
-
-- drums
-- bass
-- other (melody, etc)
-- vocals
-
-It integrates these things to work:
-
-- Machine Learning (AI)
-- Native Instruments docs to bundle everything inside .stem.m4a file
+- [Product website and downloads](https://nuo-stems.com/)
+- [Documentation and blog](https://docs.nuo-stems.com/)
