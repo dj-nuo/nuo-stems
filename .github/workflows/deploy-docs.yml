@@ -1,13 +1,7 @@
 name: Deploy static docs & blog to FTP
 
 on:
-  push:
-    branches:
-      - master
-      - main
-      - docs-dev
-    paths:
-      - 'docs-repo/**'
+  workflow_dispatch:
 
 jobs:
   build:
